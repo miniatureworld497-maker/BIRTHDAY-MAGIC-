@@ -137,6 +137,12 @@ padding:12px 25px;border-radius:25px
 .extra-surprises{background:linear-gradient(145deg,#fffafd,#fff0f7);border:1px solid #efc4d8;border-radius:26px;padding:24px 16px;margin:22px auto;box-shadow:0 12px 32px #9a426018}
 .extra-surprises h2,.extra-surprises h3{color:#a52e6b}
 .extra-surprise-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.extra-page{display:none;background:#fff;border:1px solid #f1c8dc;border-radius:20px;padding:22px 14px;margin:18px auto;max-width:520px}
+.extra-page.active{display:block;animation:extraPop .5s ease both}
+.extra-nav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:20px}
+.extra-nav .btn{flex:1;min-width:115px}
+.extra-nav button:disabled{opacity:.45;cursor:not-allowed}
+
 .extra-surprise-tile{background:#fff;border:1px solid #f1c8dc;border-radius:18px;padding:16px 10px;display:none}
 .extra-surprise-tile.active{display:block;animation:extraPop .5s ease both}
 .extra-progress{font:13px Arial;color:#a34e79;margin:12px auto}
@@ -250,49 +256,52 @@ Tumhari taraf se ek special insaan ❤️
 </section>
 
 
-<!-- FIVE NEW SURPRISES - ADDED WITHOUT CHANGING THE ORIGINAL SECTIONS -->
-<section class="extra-surprises">
+<!-- FIVE PAGE-BY-PAGE SURPRISES -->
+<section class="extra-surprises" id="extraJourney">
 <div style="font-size:36px">💝✨🌹</div>
-<h2>Five More Little Surprises</h2>
-<p class="memory-intro">Har surprise ek-ek karke unlock hoga. Pehle ko kholo, phir agla saamne aayega! 💗</p>
-<div class="extra-progress" id="extraProgress">Surprise 1 of 5 · A little journey of love</div>
-<div class="extra-surprise-grid">
-<div class="extra-surprise-tile active">
-<div style="font-size:30px">💌</div>
-<h3>Secret Love Letter</h3>
+<h2>A Little Journey for Shikha</h2>
+<p class="memory-intro">Har page par ek naya surprise. Aaram se enjoy karna! 💗</p>
+<div class="extra-progress" id="extraProgress">PAGE 1 OF 5 · A LITTLE LOVE NOTE</div>
+
+<div class="extra-page active" id="extraPage1">
+<div style="font-size:48px">💌</div><h3>Page 1 · Secret Love Letter</h3>
 <p>Ek chhota sa message, sirf tumhare liye.</p>
-<button class="btn" onclick="revealExtra('extraLetter')">Open Secret Letter</button>
+<button class="btn" onclick="revealPageMessage('extraLetter')">Open Secret Letter</button>
 <div class="extra-reveal" id="extraLetter">Shikha, tumhari smile kisi bhi din ko special bana sakti hai. Bas hamesha aise hi muskurati rehna. Tum bahut precious ho. ❤️</div>
+<div class="extra-nav"><button class="btn alt" disabled>← Back</button><button class="btn" onclick="goExtraPage(2)">Next Surprise →</button></div>
 </div>
-<div class="extra-surprise-tile">
-<div style="font-size:30px">💖</div>
-<h3>Heart Surprise</h3>
-<p>Tap karo aur screen ko hearts se bhar do.</p>
-<button class="btn" onclick="launchExtraHearts()">Send Some Love</button>
+
+<div class="extra-page" id="extraPage2">
+<div style="font-size:48px">💖</div><h3>Page 2 · Heart Surprise</h3>
+<p>Tap karo aur screen ko pyaar bhare hearts se bhar do.</p>
+<button class="btn" onclick="launchExtraHearts()">Send Some Love 💗</button>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(1)">← Back</button><button class="btn" onclick="goExtraPage(3)">Next Surprise →</button></div>
 </div>
-<div class="extra-surprise-tile">
-<div class="extra-gift" onclick="revealExtra('extraGift')">🎁</div>
-<h3>Mystery Gift Box</h3>
+
+<div class="extra-page" id="extraPage3">
+<div style="font-size:48px">🎁</div><h3>Page 3 · Mystery Gift</h3>
 <p>Gift box kholo aur apna surprise dekho.</p>
-<button class="btn" onclick="revealExtra('extraGift')">Unwrap Gift</button>
+<button class="btn" onclick="revealPageMessage('extraGift')">Unwrap Gift</button>
 <div class="extra-reveal" id="extraGift">🎀 Surprise! Tumhare liye ek lifetime supply of smiles, hugs aur endless happiness! 🌸💗</div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(2)">← Back</button><button class="btn" onclick="goExtraPage(4)">Next Surprise →</button></div>
 </div>
-<div class="extra-surprise-tile">
-<div style="font-size:30px">🌹</div>
-<h3>Rose Rain</h3>
-<p>Ek dreamy gulabon ki baarish.</p>
-<button class="btn" onclick="launchRoseRain()">Make It Rain Roses</button>
+
+<div class="extra-page" id="extraPage4">
+<div style="font-size:48px">🌹</div><h3>Page 4 · Rose Rain</h3>
+<p>Ek dreamy gulabon ki baarish tumhare liye.</p>
+<button class="btn" onclick="launchRoseRain()">Make It Rain Roses 🌹</button>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(3)">← Back</button><button class="btn" onclick="goExtraPage(5)">Final Surprise →</button></div>
 </div>
-<div class="extra-surprise-tile" style="grid-column:1/-1">
-<div style="font-size:30px">💕</div>
-<h3>One Special Question</h3>
+
+<div class="extra-page" id="extraPage5">
+<div style="font-size:48px">💕</div><h3>Page 5 · One Special Question</h3>
 <p>Shikha, will you keep smiling and stay this amazing always?</p>
 <button class="btn" onclick="answerSpecial(true)">YES 💖</button>
 <button class="btn alt" onclick="answerSpecial(false)">Always try 🌷</button>
 <div class="extra-reveal extra-answer" id="extraAnswer"></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button></div>
 </div>
-</div>
-<div class="extra-finished" id="extraFinished">🎉 Tumne saare surprises unlock kar liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
+<div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
 </section>
 
 <div class="footer">Made with warm wishes, just for your birthday. 💗</div>
@@ -358,35 +367,22 @@ youtubePlayer=frame;
 b.textContent='⏹ Stop song';
 }
 
-/* NEW INDEPENDENT SURPRISE INTERACTIONS */
-function advanceExtraStep(currentTile){
-const tiles=[...document.querySelectorAll('.extra-surprise-tile')];
-const current=tiles[currentTile];
-if(!current || current.dataset.completed==='yes')return;
-current.dataset.completed='yes';
-const next=tiles[currentTile+1];
-if(next){
-next.classList.add('active');
-document.getElementById('extraProgress').textContent='Surprise '+(currentTile+2)+' of 5 · Keep going, Shikha! ✨';
-setTimeout(()=>next.scrollIntoView({behavior:'smooth',block:'center'}),250);
-}else{
-document.getElementById('extraProgress').textContent='All 5 surprises unlocked! 💖';
-document.getElementById('extraFinished').classList.add('show');
+/* PAGE-BY-PAGE SURPRISE JOURNEY */
+function goExtraPage(page){
+for(let i=1;i<=5;i++){
+const el=document.getElementById('extraPage'+i);
+if(el)el.classList.toggle('active',i===page);
 }
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','A SHOWER OF ROSES','ONE LAST QUESTION'];
+document.getElementById('extraProgress').textContent='PAGE '+page+' OF 5 · '+labels[page-1];
+if(page===5)document.getElementById('extraFinished').classList.add('show');
+document.getElementById('extraJourney').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
-function revealExtra(id){
+function revealPageMessage(id){
 const el=document.getElementById(id);
-if(el){
-const opening=!el.classList.contains('show');
-el.classList.toggle('show');
-if(opening && id==='extraLetter')advanceExtraStep(0);
-if(opening && id==='extraGift')advanceExtraStep(2);
+if(el)el.classList.add('show');
 }
-}
-
 function launchExtraHearts(){
-advanceExtraStep(1);
 const symbols=['💖','💕','💗','💓','💘','❤️'];
 for(let i=0;i<32;i++){
 const el=document.createElement('div');
@@ -399,9 +395,7 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),5000);
 }
 }
-
 function launchRoseRain(){
-advanceExtraStep(3);
 for(let i=0;i<26;i++){
 const el=document.createElement('div');
 el.className='extra-heart';
@@ -414,9 +408,7 @@ document.body.appendChild(el);
 setTimeout(()=>el.remove(),6500);
 }
 }
-
 function answerSpecial(yes){
-advanceExtraStep(4);
 const el=document.getElementById('extraAnswer');
 el.textContent=yes
 ?'Yay! Tumhari smile hamesha aise hi chamakti rahe. Sending you lots of love! ❤️✨'
