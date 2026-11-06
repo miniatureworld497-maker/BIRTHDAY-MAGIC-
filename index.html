@@ -413,6 +413,16 @@ body:before{
  #letter .letter-typing::after { animation: none; }
 }
 
+
+/* TAP-TO-OPEN LOVE BOXES */
+.love-ten-card{cursor:pointer;min-height:86px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;user-select:none}
+.love-ten-card:focus-visible{outline:3px solid #d879a7;outline-offset:3px}
+.love-ten-card span:not(.love-ten-icon){display:none}
+.love-ten-card::after{content:"Tap to open 🎁";display:block;margin-top:9px;color:#b65d88;font:11px Arial,sans-serif;letter-spacing:.3px}
+.love-ten-card.is-open{background:linear-gradient(145deg,#fff0f7,#fffafd);border-color:#dc91b4;box-shadow:0 10px 24px #9a426025;transform:translateY(-2px)}
+.love-ten-card.is-open span:not(.love-ten-icon){display:block;animation:tenFloat .35s ease both}
+.love-ten-card.is-open::after{content:"Opened with love 💗"}
+
 </style>
 </head>
 
@@ -481,16 +491,16 @@ body:before{
 <h2 style="color:#a52e6b">10 Things I Love About You</h2>
 <p class="memory-intro">Shikha, kuch chhoti-chhoti baatein jo tumhe aur bhi special banati hain. ❤️</p>
 <div class="love-ten-grid">
-<div class="love-ten-card"><span class="love-ten-icon">😊</span><strong>1. Your Beautiful Smile</strong><span>Tumhari ek smile se din aur bhi khoobsurat lagne lagta hai.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">😂</span><strong>2. Your Cute Laughter</strong><span>Tumhari hasi sun kar khud bhi muskurane ka mann karta hai.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">🥹</span><strong>3. Your Soft Heart</strong><span>Tumhari pyaari si sensitivity tumhe alag banati hai.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">😜</span><strong>4. Your Naughty Side</strong><span>Thodi masti, thodi shararat—ye tumhara cute andaaz hai.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">🤗</span><strong>5. The Way You Care</strong><span>Chhoti si care bhi kisi ke liye bahut maayne rakhti hai.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">🎶</span><strong>6. Your Love for Little Joys</strong><span>Gaane, hasi aur chhote moments ko special banana.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">🌸</span><strong>7. Your Natural Charm</strong><span>Tumhara apna simple aur pyaara sa style.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">✨</span><strong>8. Your Dreams</strong><span>Tumhare sapne aur unhe poora karne ki umeed.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">💞</span><strong>9. Your Little Talks</strong><span>Tumse hui chhoti si baat bhi yaad reh jaati hai.</span></div>
-<div class="love-ten-card"><span class="love-ten-icon">🦋</span><strong>10. Simply Being You</strong><span>Kyunki tumhe special banane ke liye kisi wajah ki zaroorat nahi.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">😊</span><strong>1. Your Beautiful Smile</strong><span>Tumhari ek smile se din aur bhi khoobsurat lagne lagta hai.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">😂</span><strong>2. Your Cute Laughter</strong><span>Tumhari hasi sun kar khud bhi muskurane ka mann karta hai.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">🥹</span><strong>3. Your Soft Heart</strong><span>Tumhari pyaari si sensitivity tumhe alag banati hai.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">😜</span><strong>4. Your Naughty Side</strong><span>Thodi masti, thodi shararat—ye tumhara cute andaaz hai.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">🤗</span><strong>5. The Way You Care</strong><span>Chhoti si care bhi kisi ke liye bahut maayne rakhti hai.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">🎶</span><strong>6. Your Love for Little Joys</strong><span>Gaane, hasi aur chhote moments ko special banana.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">🌸</span><strong>7. Your Natural Charm</strong><span>Tumhara apna simple aur pyaara sa style.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">✨</span><strong>8. Your Dreams</strong><span>Tumhare sapne aur unhe poora karne ki umeed.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">💞</span><strong>9. Your Little Talks</strong><span>Tumse hui chhoti si baat bhi yaad reh jaati hai.</span></div>
+<div class="love-ten-card" role="button" tabindex="0" aria-expanded="false" onclick="toggleLoveTen(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoveTen(this)}"><span class="love-ten-icon">🦋</span><strong>10. Simply Being You</strong><span>Kyunki tumhe special banane ke liye kisi wajah ki zaroorat nahi.</span></div>
 </div>
 <p class="love-ten-note">In sabse zyada, I love the person you are. Happy Birthday, Shikha! 💖</p>
 </section>
@@ -739,6 +749,12 @@ buttons[1].textContent=mainSlideIndex===mainSlides.length-1?'Back to Start ↺':
 document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 setupMainSlideshow();
+
+function toggleLoveTen(card){
+const opening=!card.classList.contains('is-open');
+card.classList.toggle('is-open',opening);
+card.setAttribute('aria-expanded',opening?'true':'false');
+}
 
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
