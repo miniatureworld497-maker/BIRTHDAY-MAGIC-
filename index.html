@@ -259,6 +259,75 @@ body{
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 
+
+/* SOFT DREAMY SCRAPBOOK AESTHETIC — visual layer only */
+body{font-family:"Palatino Linotype",Palatino,Georgia,serif;color:#59364a}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.42;
+ background-image:
+ radial-gradient(1.5px 1.5px at 8% 18%,#d98bad 98%,transparent),
+ radial-gradient(1px 1px at 82% 12%,#c58ab0 98%,transparent),
+ radial-gradient(2px 2px at 91% 72%,#e7a9c7 98%,transparent),
+ radial-gradient(1px 1px at 17% 83%,#c58ab0 98%,transparent),
+ radial-gradient(1px 1px at 53% 42%,#e7a9c7 98%,transparent);
+ background-size:260px 260px
+}
+.wrap{position:relative;z-index:1}
+.tag{font-size:10px;letter-spacing:3.5px;color:#9c6681}
+.card,.magic-surprise,.extra-surprises{
+ border:1px solid rgba(224,174,199,.72);
+ outline:1px solid rgba(255,255,255,.8);
+ outline-offset:-6px;
+}
+.hero{padding-top:34px}
+.hero>div:first-child{filter:drop-shadow(0 5px 8px #d58aab45)}
+.hero h1{letter-spacing:-1.6px;font-weight:600}
+.hero .heart{font-family:Georgia,serif;font-style:italic;letter-spacing:.2px}
+.memory-section h2,.magic-surprise h2,.extra-surprises h2{
+ font-weight:600;letter-spacing:-.45px
+}
+.memory-item{position:relative;overflow:hidden}
+.memory-item:after{
+ content:"";position:absolute;inset:5px;border:1px solid rgba(226,178,201,.55);
+ border-radius:12px;pointer-events:none
+}
+.memory-item img{border-radius:10px}
+.memory-item figcaption{font-size:13px;font-style:italic;color:#96617c}
+.letter{
+ background:linear-gradient(180deg,#fffafc,#fff5f8);
+ border:1px solid #f0d7e2;border-radius:18px;padding:22px;
+ box-shadow:inset 0 0 28px rgba(218,164,190,.08)
+}
+.letter h2{font-family:"Palatino Linotype",Georgia,serif;font-style:italic}
+.magic-surprise{position:relative;overflow:hidden}
+.magic-surprise:after,.extra-surprises:after{
+ content:"✧  ·  ✧  ·  ✧";display:block;color:#c68ba8;
+ font:15px Georgia,serif;letter-spacing:5px;margin-top:14px;opacity:.8
+}
+.extra-page{background:linear-gradient(155deg,#fff 0%,#fff9fc 100%);border-color:#edd2df}
+.extra-page h3{font-weight:600;letter-spacing:-.25px}
+.extra-reveal{background:#fff9fc;border-color:#dfb0c8}
+.main-slide-nav{
+ background:rgba(255,250,253,.78);
+ border-color:rgba(229,190,208,.75);
+ box-shadow:0 8px 22px rgba(135,71,102,.06);
+ backdrop-filter:blur(10px)
+}
+.main-slide-nav .btn{letter-spacing:.15px}
+.main-slide-count{font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.extra-progress{font-size:10px;letter-spacing:1.4px}
+.footer{font-family:Georgia,serif;font-style:italic;color:#a77991}
+.lockbox{position:relative;overflow:hidden}
+.lockbox:before{
+ content:"✧";position:absolute;right:22px;top:12px;
+ color:#d79ab8;font-size:25px
+}
+@media(max-width:480px){
+ .hero{padding-top:28px}
+ .letter{padding:17px;font-size:16px}
+ .memory-item{padding:8px 8px 14px}
+}
+
 </style>
 </head>
 
