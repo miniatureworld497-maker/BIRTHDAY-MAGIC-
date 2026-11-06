@@ -650,10 +650,18 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .bubu-after-card p{color:#854466;line-height:1.7;margin:6px 0}
 /* BUBU & DUDU: A TINY CAKE-AND-KISS ANIMATION */
 .bubu-scene{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:8px;height:142px;margin:8px auto 18px;overflow:hidden;border-radius:20px;background:linear-gradient(180deg,#fff5fa,#fce7f2);border:1px solid #f5cadd}
-.bubu-bear{position:relative;font-size:66px;line-height:1;filter:drop-shadow(0 5px 3px #9b557522)}
-.bubu-white{animation:bubuLean 2.8s ease-in-out infinite;transform-origin:bottom center}
-.bubu-brown{animation:duduArrive 2.8s ease-in-out infinite;transform-origin:bottom center}
-.bubu-cake{position:absolute;font-size:30px;left:-5px;top:20px;animation:cakeOffer 2.8s ease-in-out infinite;z-index:2}
+.bubu-bear{position:relative;display:block;width:76px;height:82px;flex:0 0 76px;border-radius:46% 46% 40% 40%;z-index:1;filter:drop-shadow(0 5px 3px #9b557522)}
+.bubu-white{background:linear-gradient(145deg,#fff 0%,#f7edf0 100%);border:2px solid #e8dce2;animation:bubuLean 2.8s ease-in-out infinite;transform-origin:bottom center}
+.bubu-brown{background:linear-gradient(145deg,#c98b61,#98603f);border:2px solid #8b5639;animation:duduArrive 2.8s ease-in-out infinite;transform-origin:bottom center}
+.bear-ear{position:absolute;width:29px;height:29px;top:-9px;left:5px;border-radius:50%;background:inherit;border:inherit;z-index:-1}
+.bear-ear:after{content:"";position:absolute;width:29px;height:29px;left:34px;top:-2px;border-radius:50%;background:inherit;border:inherit}
+.bear-face{position:absolute;left:0;right:0;top:28px;height:32px;display:flex;align-items:center;justify-content:center;gap:17px}
+.bear-face i{width:5px;height:7px;border-radius:50%;background:#49312e;display:block;box-shadow:0 1px 2px #49312e55}
+.bear-face b{position:absolute;top:12px;width:17px;height:12px;border-radius:50%;background:#fff0e8}
+.bear-face b:after{content:"";position:absolute;width:6px;height:4px;border-radius:50%;background:#55342f;left:6px;top:2px}
+.bear-blush{position:absolute;left:8px;top:48px;width:12px;height:7px;border-radius:50%;background:#f3a2ad88;box-shadow:47px 0 #f3a2ad88}
+.bubu-white .bear-face b{background:#f5e9e9}
+.bubu-cake{position:absolute;font-size:29px;left:-17px;top:18px;animation:cakeOffer 2.8s ease-in-out infinite;z-index:3;filter:drop-shadow(0 3px 3px #79405a33)}
 .bubu-kiss{position:absolute;left:50%;top:12px;font-size:25px;opacity:0;animation:kissPop 2.8s ease-in-out infinite;z-index:3}
 .bubu-scene-caption{position:absolute;bottom:7px;left:0;right:0;font:italic 12px Georgia,serif;color:#a34e79}
 @keyframes duduArrive{0%,12%{transform:translateX(42px)}35%,75%{transform:translateX(0)}100%{transform:translateX(42px)}}
@@ -690,8 +698,8 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
   <div class="bubu-after-card">
     <div style="font-size:30px">A LITTLE BIRTHDAY MOMENT 💗</div>
     <div class="bubu-scene" role="img" aria-label="Dudu brings Bubu a birthday cake and gives her a kiss">
-  <span class="bubu-bear bubu-white" aria-hidden="true">🐻‍❄️</span>
-  <span class="bubu-bear bubu-brown" aria-hidden="true">🐻<span class="bubu-cake">🎂</span></span>
+  <div class="bubu-bear bubu-white" aria-hidden="true"><span class="bear-ear"></span><span class="bear-face"><i></i><i></i><b></b></span><span class="bear-blush"></span></div>
+  <div class="bubu-bear bubu-brown" aria-hidden="true"><span class="bear-ear"></span><span class="bear-face"><i></i><i></i><b></b></span><span class="bear-blush"></span><span class="bubu-cake">🎂</span></div>
   <span class="bubu-kiss" aria-hidden="true">💋💕</span>
   <span class="bubu-scene-caption">Dudu brought a little cake for Bubu… then stole a kiss! 💗</span>
 </div>
