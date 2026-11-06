@@ -614,6 +614,17 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @keyframes shootArrow{0%{bottom:var(--shoot-from);opacity:1}75%{opacity:1}100%{bottom:68%;opacity:0}}
 @keyframes heartReceiveVertical{0%{transform:translate(-50%,0) scale(.82);filter:drop-shadow(0 12px 18px #b1366933)}35%{transform:translate(-50%,0) scale(1.22);filter:drop-shadow(0 0 30px #ff4f9e)}100%{transform:translate(-50%,0) scale(1);filter:drop-shadow(0 0 22px #ff4f9e)}}
 @media(max-width:480px){.arrow-stage{height:58vh;min-height:280px;max-height:360px}.arrow-intro-title{margin-top:2px}}
+
+/* Realistic handcrafted arrow: steel point, wooden shaft, feather fletching */
+.stage-arrow{width:5px;height:clamp(88px,19vh,112px);background:linear-gradient(90deg,#75401f 0%,#d59a56 28%,#f1d09a 50%,#9b5b2e 76%,#5c321d 100%);border-radius:3px;box-shadow:0 1px 2px #4b241b88,0 0 5px #e8c58b66}
+.stage-arrow span{position:absolute;display:block;pointer-events:none}
+.stage-arrow .real-arrow-tip{left:50%;top:-17px;width:0;height:0;transform:translateX(-50%);border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:19px solid #aeb8c4;filter:drop-shadow(0 1px 1px #39434e);z-index:3}
+.stage-arrow .real-arrow-tip:after{content:"";position:absolute;left:-2px;top:5px;width:4px;height:10px;background:linear-gradient(90deg,#6d7782,#eef2f5,#68727d);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.stage-arrow .real-arrow-feathers{left:50%;bottom:-3px;width:27px;height:25px;transform:translateX(-50%);background:linear-gradient(105deg,transparent 0 12%,#a83e58 13% 31%,transparent 32% 39%,#f0d5dc 40% 59%,transparent 60% 67%,#a83e58 68% 86%,transparent 87%);clip-path:polygon(50% 0,100% 100%,50% 76%,0 100%);filter:drop-shadow(0 1px 1px #5b2438)}
+.stage-arrow .real-arrow-nock{left:50%;bottom:-7px;width:9px;height:5px;transform:translateX(-50%);border-radius:0 0 5px 5px;border-bottom:2px solid #d9b477}
+.stage-arrow.pulling{filter:drop-shadow(0 0 9px #d84c91) drop-shadow(0 2px 2px #65371f)}
+.stage-arrow.shooting{animation:shootArrow .62s cubic-bezier(.15,.7,.2,1) forwards;pointer-events:none}
+@media(max-width:480px){.stage-arrow{height:clamp(84px,18vh,104px)}}
 </style>
 </head>
 
@@ -633,7 +644,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 
 <div class="arrow-intro" id="arrowIntro" aria-hidden="true">
 <div class="arrow-intro-kicker">A LITTLE MAGIC FOR YOU</div>
-<div class="arrow-stage"><div class="stage-arrow" id="dragArrow" role="button" tabindex="0" aria-label="Pull the arrow down and release it"><span>➶</span></div><div class="arrow-heart" id="targetHeart">❤️</div><div class="arrow-spark">✦</div></div>
+<div class="arrow-stage"><div class="stage-arrow" id="dragArrow" role="button" tabindex="0" aria-label="Pull the realistic arrow down and release it"><span class="real-arrow-tip"></span><span class="real-arrow-feathers"></span><span class="real-arrow-nock"></span></div><div class="arrow-heart" id="targetHeart">❤️</div><div class="arrow-spark">✦</div></div>
 <div class="arrow-intro-title">Straight to the heart</div>
 <div class="arrow-intro-subtitle" id="arrowHint">Teer ko peeche kheecho… phir chhod do 💗</div>
 </div>
