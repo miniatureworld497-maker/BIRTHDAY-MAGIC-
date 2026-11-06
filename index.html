@@ -578,37 +578,27 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 }
 
 
-/* SHIKHA DRAWS THE LOADED ARROW AND HITS THE HEART */
+/* DRAG-TO-SHOOT ARROW INTRO */
 .arrow-intro{position:fixed;inset:0;z-index:200;display:none;overflow:hidden;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 50% 46%,#fff 0%,#ffecf5 48%,#f6d0e1 100%);opacity:0}
 .arrow-intro.play{display:flex;animation:introFadeIn .35s ease forwards}
 .arrow-intro-kicker{font:600 10px Arial,sans-serif;letter-spacing:4px;color:#a34e79}
-.arrow-stage{position:relative;width:min(94vw,440px);height:245px;margin:20px auto 10px}
-.stage-bow{position:absolute;left:24%;top:50%;font-size:clamp(105px,27vw,145px);line-height:1;transform:translateY(-50%) rotate(0deg);filter:drop-shadow(0 7px 8px #9b426033);z-index:1}
-.stage-arrow{position:absolute;left:37%;top:50%;width:39%;height:4px;transform:translateY(-50%);border-radius:8px;background:linear-gradient(90deg,#b77a98,#71334f);z-index:2}
-.stage-arrow span{position:absolute;right:-17px;top:-23px;font-size:42px;color:#8e315f;filter:drop-shadow(0 4px 5px #9b426044)}
-.shikha-reach{position:absolute;left:-20%;top:50%;width:45%;height:150px;transform:translateY(-50%);z-index:4;opacity:0}
-.shikha-figure{position:absolute;left:0;top:30px;font-size:clamp(58px,15vw,78px);filter:drop-shadow(0 7px 8px #9b426033)}
-.shikha-hand{position:absolute;right:-5px;top:75px;font-size:34px;transform:rotate(-25deg)}
-.arrow-heart{position:absolute;right:2%;top:50%;transform:translateY(-50%) scale(.78);font-size:clamp(88px,23vw,132px);filter:drop-shadow(0 12px 18px #b1366933);opacity:.95;z-index:1}
-.arrow-intro.play .shikha-reach{animation:shikhaComesAndPulls 1.65s .15s cubic-bezier(.2,.8,.2,1) both}
-.arrow-intro.play .shikha-hand{animation:handPull 1.65s .15s ease-in-out both}
-.arrow-intro.play .stage-arrow{animation:drawAndRelease 2.15s 1.25s cubic-bezier(.2,.75,.2,1) both}
-.arrow-intro.play .stage-bow{animation:bowTwang 2.15s 1.25s ease-out both}
-.arrow-intro.play .arrow-heart{animation:heartReceive 1.1s 3.15s cubic-bezier(.2,.8,.2,1) both}
-.arrow-spark{position:absolute;right:12%;top:46%;font-size:28px;color:#e5a34e;opacity:0;z-index:5}
-.arrow-intro.play .arrow-spark{animation:heartSpark .8s 3.25s ease-out both}
+.arrow-stage{position:relative;width:min(94vw,440px);height:245px;margin:20px auto 10px;touch-action:pan-y}
+.stage-bow{position:absolute;left:19%;top:50%;font-size:clamp(105px,27vw,145px);line-height:1;transform:translateY(-50%);filter:drop-shadow(0 7px 8px #9b426033);z-index:1;pointer-events:none}
+.stage-arrow{position:absolute;left:36%;top:50%;width:51%;height:5px;transform:translateY(-50%);border-radius:8px;background:linear-gradient(90deg,#b77a98,#71334f);z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.stage-arrow:active{cursor:grabbing}
+.stage-arrow span{position:absolute;right:-18px;top:-25px;font-size:46px;color:#8e315f;filter:drop-shadow(0 4px 5px #9b426044);pointer-events:none}
+.stage-arrow.pulling{filter:drop-shadow(0 0 8px #d84c91)}
+.stage-arrow.shooting{animation:shootArrow .62s cubic-bezier(.15,.7,.2,1) forwards;pointer-events:none}
+.arrow-heart{position:absolute;right:1%;top:50%;transform:translateY(-50%) scale(.82);font-size:clamp(88px,23vw,132px);filter:drop-shadow(0 12px 18px #b1366933);opacity:.96;z-index:1;pointer-events:none}
+.arrow-heart.hit{animation:heartReceive 1.15s cubic-bezier(.2,.8,.2,1) both}
+.arrow-spark{position:absolute;right:12%;top:46%;font-size:28px;color:#e5a34e;opacity:0;z-index:5;pointer-events:none}
+.arrow-spark.burst{animation:heartSpark .8s ease-out both}
 .arrow-intro-title{font:italic clamp(25px,6vw,34px) Georgia,serif;color:#9d3c6e;opacity:0}
-.arrow-intro-subtitle{margin-top:9px;font:13px Arial,sans-serif;letter-spacing:.4px;color:#94677f;opacity:0}
-.arrow-intro.play .arrow-intro-title{animation:introText .7s 3.4s ease forwards}
-.arrow-intro.play .arrow-intro-subtitle{animation:introText .7s 3.65s ease forwards}
+.arrow-intro-subtitle{margin-top:9px;font:13px Arial,sans-serif;letter-spacing:.4px;color:#94677f;text-align:center;opacity:1;padding:0 16px}
 @keyframes introFadeIn{to{opacity:1}}
-@keyframes shikhaComesAndPulls{0%{left:-20%;opacity:0}18%{left:2%;opacity:1}55%{left:2%;transform:translateY(-50%) translateX(-10px)}78%{left:2%;transform:translateY(-50%) translateX(0)}100%{left:-20%;opacity:0}}
-@keyframes handPull{0%,25%{transform:rotate(-25deg) translateX(0)}58%{transform:rotate(-25deg) translateX(-24px)}78%,100%{transform:rotate(-25deg) translateX(0)}}
-@keyframes drawAndRelease{0%,12%{left:37%;opacity:1}38%{left:29%;opacity:1}48%{left:29%;opacity:1}100%{left:73%;opacity:0}}
-@keyframes bowTwang{0%,35%{transform:translateY(-50%) scaleX(1)}48%{transform:translateY(-50%) scaleX(.94)}58%,100%{transform:translateY(-50%) scaleX(1)}}
-@keyframes heartReceive{0%{transform:translateY(-50%) scale(.78)}45%{transform:translateY(-50%) scale(1.16);filter:drop-shadow(0 0 32px #dc417dcc)}70%{transform:translateY(-50%) scale(.98)}100%{transform:translateY(-50%) scale(1.08);filter:drop-shadow(0 0 34px #dc417dcc)}}
+@keyframes shootArrow{0%{left:var(--shoot-from);opacity:1}75%{opacity:1}100%{left:36%;opacity:0}}
+@keyframes heartReceive{0%{transform:translateY(-50%) scale(.82);filter:drop-shadow(0 12px 18px #b1366933)}35%{transform:translateY(-50%) scale(1.2);filter:drop-shadow(0 0 38px #dc417ddd)}65%{transform:translateY(-50%) scale(1.02);filter:drop-shadow(0 0 28px #dc417dcc)}100%{transform:translateY(-50%) scale(1.12);filter:drop-shadow(0 0 36px #dc417ddd)}}
 @keyframes heartSpark{0%{opacity:0;transform:scale(.3) rotate(0)}35%{opacity:1;transform:scale(1.5) rotate(55deg)}100%{opacity:0;transform:scale(2.1) rotate(90deg)}}
-@keyframes introText{to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.arrow-intro.play,.arrow-intro.play *{animation-duration:.01ms!important;animation-delay:0ms!important}}
 </style>
 </head>
@@ -629,9 +619,9 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 
 <div class="arrow-intro" id="arrowIntro" aria-hidden="true">
 <div class="arrow-intro-kicker">A LITTLE MAGIC FOR YOU</div>
-<div class="arrow-stage"><div class="stage-bow">🏹</div><div class="stage-arrow"><span>➶</span></div><div class="shikha-reach"><span class="shikha-figure">👩🏻‍🦰</span><span class="shikha-hand">🤏🏻</span></div><div class="arrow-heart">❤️</div><div class="arrow-spark">✦</div></div>
+<div class="arrow-stage"><div class="stage-bow">🏹</div><div class="stage-arrow" id="dragArrow" role="button" tabindex="0" aria-label="Pull the arrow back and release it"><span>➶</span></div><div class="arrow-heart" id="targetHeart">❤️</div><div class="arrow-spark">✦</div></div>
 <div class="arrow-intro-title">Straight to the heart</div>
-<div class="arrow-intro-subtitle">A little love is on its way… 💗</div>
+<div class="arrow-intro-subtitle" id="arrowHint">Teer ko peeche kheecho… phir chhod do 💗</div>
 </div>
 <main class="wrap">
 
@@ -827,15 +817,79 @@ intro.classList.remove('play');
 void intro.offsetWidth;
 intro.classList.add('play');
 intro.setAttribute('aria-hidden','false');
-setTimeout(()=>{
-intro.classList.remove('play');
-intro.setAttribute('aria-hidden','true');
-startMagic();
-},4800);
 }else{
 document.getElementById('error').textContent='That code did not match. Try again 💗';
 document.getElementById('pin').value='';
 }
+}
+
+let arrowPullStartX=0,arrowCurrentPull=0,arrowIsDragging=false,arrowFinished=false;
+const dragArrow=document.getElementById('dragArrow');
+const arrowStage=document.querySelector('.arrow-stage');
+const arrowHeart=document.getElementById('targetHeart');
+const arrowHint=document.getElementById('arrowHint');
+function resetPulledArrow(){
+dragArrow.classList.remove('pulling');
+dragArrow.style.left='36%';
+dragArrow.style.removeProperty('--shoot-from');
+arrowCurrentPull=0;
+}
+dragArrow.addEventListener('pointerdown',e=>{
+if(arrowFinished||dragArrow.classList.contains('shooting'))return;
+arrowIsDragging=true;
+arrowPullStartX=e.clientX;
+arrowCurrentPull=0;
+dragArrow.setPointerCapture(e.pointerId);
+dragArrow.classList.add('pulling');
+e.preventDefault();
+});
+dragArrow.addEventListener('pointermove',e=>{
+if(!arrowIsDragging)return;
+arrowCurrentPull=Math.max(0,Math.min(105,arrowPullStartX-e.clientX));
+const stageWidth=arrowStage.getBoundingClientRect().width;
+const left=36-(arrowCurrentPull/stageWidth*100);
+dragArrow.style.left=left+'%';
+});
+function releaseArrow(){
+if(!arrowIsDragging)return;
+arrowIsDragging=false;
+dragArrow.classList.remove('pulling');
+if(arrowCurrentPull<35){
+resetPulledArrow();
+return;
+}
+arrowFinished=true;
+const currentLeft=dragArrow.style.left||'36%';
+dragArrow.style.setProperty('--shoot-from',currentLeft);
+dragArrow.classList.add('shooting');
+arrowHint.textContent='💘 Pyaar seedha dil tak…';
+setTimeout(()=>{
+arrowHeart.classList.add('hit');
+document.querySelector('.arrow-spark').classList.add('burst');
+arrowHint.textContent='Dil mein lag gaya! ❤️';
+},500);
+setTimeout(()=>{
+const intro=document.getElementById('arrowIntro');
+intro.classList.remove('play');
+intro.setAttribute('aria-hidden','true');
+startMagic();
+},2350);
+}
+dragArrow.addEventListener('pointerup',releaseArrow);
+dragArrow.addEventListener('pointercancel',releaseArrow);
+dragArrow.addEventListener('keydown',e=>{
+if(e.key==='Enter'||e.key===' '){
+e.preventDefault();
+if(!arrowFinished){
+arrowCurrentPull=75;
+dragArrow.style.left='27%';
+releaseArrowFromKeyboard();
+}
+}
+});
+function releaseArrowFromKeyboard(){
+arrowIsDragging=true;
+releaseArrow();
 }
 
 document.getElementById('pin').addEventListener('keydown',e=>{
