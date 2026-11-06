@@ -462,10 +462,10 @@ Tumhari taraf se ek special insaan ❤️
 </div>
 
 <div class="extra-page" id="extraPage5">
-<div style="font-size:48px">💕</div><h3>Page 5 · One Special Question</h3>
-<p>Shikha, will you keep smiling and stay this amazing always?</p>
-<button class="btn" onclick="answerSpecial(true)">YES 💖</button>
-<button class="btn alt" onclick="answerSpecial(false)">Always try 🌷</button>
+<div style="font-size:48px">💕</div><h3>Page 5 · Dil Se Ek Sawaal</h3>
+<p>Shikha, ek baat poochun? ❤️<br><strong>Kya tum meri zindagi ka ek hamesha wala, sabse khoobsurat hissa banogi?</strong></p>
+<button class="btn" onclick="answerSpecial(true)">YES, HAMESHA! 💖</button>
+<button class="btn alt" type="button" disabled aria-disabled="true" title="Is button par click nahi hoga 😜">NO 🙈</button>
 <div class="extra-reveal extra-answer" id="extraAnswer"></div>
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button></div>
 </div>
@@ -624,9 +624,7 @@ setTimeout(()=>el.remove(),6500);
 }
 function answerSpecial(yes){
 const el=document.getElementById('extraAnswer');
-el.textContent=yes
-?'Yay! Tumhari smile hamesha aise hi chamakti rahe. Sending you lots of love! ❤️✨'
-:'That is a promise worth keeping! Hamesha khush rehna, Shikha. 🌷💗';
+el.textContent='Mujhe pata tha tum YES kahogi! 🥹❤️ Tum meri zindagi ki sabse pyaari feeling ho. Bas yunhi mere saath muskurati rehna. 💍✨';
 el.classList.add('show');
 }
 
