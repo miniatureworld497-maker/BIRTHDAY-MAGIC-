@@ -577,6 +577,30 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
  .photo:hover,.memory-item:hover,.btn:hover{transform:none}
 }
 
+
+/* CINEMATIC ARROW HITTING HEART INTRO */
+.arrow-intro{position:fixed;inset:0;z-index:200;display:none;overflow:hidden;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 50% 46%,#fff 0%,#ffecf5 48%,#f6d0e1 100%);opacity:0}
+.arrow-intro.play{display:flex;animation:introFadeIn .35s ease forwards}
+.arrow-intro-kicker{font:600 10px Arial,sans-serif;letter-spacing:4px;color:#a34e79}
+.arrow-stage{position:relative;width:min(88vw,390px);height:210px;margin:22px auto 12px}
+.arrow-heart{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.72);font-size:clamp(90px,24vw,142px);filter:drop-shadow(0 12px 18px #b1366933);opacity:.92}
+.arrow-intro.play .arrow-heart{animation:heartReceive 1.1s 1.05s cubic-bezier(.2,.8,.2,1) both}
+.love-arrow{position:absolute;left:-16%;top:50%;width:65%;height:4px;transform:translateY(-50%) rotate(-13deg);opacity:0;background:linear-gradient(90deg,transparent,#a75b83);border-radius:10px}
+.love-arrow span{position:absolute;right:-17px;top:-23px;font-size:42px;color:#8e315f;transform:rotate(-8deg);filter:drop-shadow(0 4px 5px #9b426044)}
+.arrow-intro.play .love-arrow{animation:arrowPierce 1.05s .2s cubic-bezier(.18,.75,.22,1) forwards}
+.arrow-spark{position:absolute;left:51%;top:48%;font-size:28px;color:#e5a34e;opacity:0}
+.arrow-intro.play .arrow-spark{animation:heartSpark .8s 1.25s ease-out both}
+.arrow-intro-title{font:italic clamp(25px,6vw,34px) Georgia,serif;color:#9d3c6e;opacity:0}
+.arrow-intro-subtitle{margin-top:9px;font:13px Arial,sans-serif;letter-spacing:.4px;color:#94677f;opacity:0}
+.arrow-intro.play .arrow-intro-title{animation:introText .7s 1.45s ease forwards}
+.arrow-intro.play .arrow-intro-subtitle{animation:introText .7s 1.7s ease forwards}
+@keyframes introFadeIn{to{opacity:1}}
+@keyframes arrowPierce{0%{left:-16%;opacity:0}12%{opacity:1}78%{left:46%;opacity:1}100%{left:49%;opacity:0}}
+@keyframes heartReceive{0%{transform:translate(-50%,-50%) scale(.72)}45%{transform:translate(-50%,-50%) scale(1.12);filter:drop-shadow(0 0 28px #dc417d99)}70%{transform:translate(-50%,-50%) scale(.98)}100%{transform:translate(-50%,-50%) scale(1.04);filter:drop-shadow(0 12px 22px #b136694d)}}
+@keyframes heartSpark{0%{opacity:0;transform:scale(.3) rotate(0)}35%{opacity:1;transform:scale(1.5) rotate(55deg)}100%{opacity:0;transform:scale(2.1) rotate(90deg)}}
+@keyframes introText{to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.arrow-intro.play,.arrow-intro.play *{animation-duration:.01ms!important;animation-delay:0ms!important}}
+
 </style>
 </head>
 
@@ -594,6 +618,12 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 </div>
 </div>
 
+<div class="arrow-intro" id="arrowIntro" aria-hidden="true">
+<div class="arrow-intro-kicker">A LITTLE MAGIC FOR YOU</div>
+<div class="arrow-stage"><div class="arrow-heart">❤️</div><div class="love-arrow"><span>➶</span></div><div class="arrow-spark">✦</div></div>
+<div class="arrow-intro-title">Straight to the heart</div>
+<div class="arrow-intro-subtitle">A little love is on its way… 💗</div>
+</div>
 <main class="wrap">
 
 <div class="tag">A SPECIAL SURPRISE FOR YOU</div>
@@ -783,7 +813,16 @@ function unlock(){
 const p=document.getElementById('pin').value;
 if(p==='2311'){
 document.getElementById('lock').style.display='none';
+const intro=document.getElementById('arrowIntro');
+intro.classList.remove('play');
+void intro.offsetWidth;
+intro.classList.add('play');
+intro.setAttribute('aria-hidden','false');
+setTimeout(()=>{
+intro.classList.remove('play');
+intro.setAttribute('aria-hidden','true');
 startMagic();
+},2600);
 }else{
 document.getElementById('error').textContent='That code did not match. Try again 💗';
 document.getElementById('pin').value='';
