@@ -1,77 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Shikha ❤️</title>
+
 <style>
-:root{--pink:#ff6fae;--deep:#6b2450;--cream:#fff8fc}
 *{box-sizing:border-box}
-body{margin:0;font-family:Georgia,'Times New Roman',serif;background:radial-gradient(circle at top,#ffe1ef,#fff7fb 55%,#f8d9e8);color:#56233f;min-height:100vh;text-align:center;overflow-x:hidden}
+body{
+margin:0;
+font-family:Georgia,serif;
+background:radial-gradient(circle at top,#ffe1ef,#fff7fb 55%,#f8d9e8);
+color:#56233f;
+min-height:100vh;
+text-align:center;
+overflow-x:hidden
+}
 .wrap{max-width:760px;margin:auto;padding:28px 16px 60px}
-.tag{letter-spacing:4px;font:12px Arial,sans-serif;color:#a34e79}
-.card{background:#ffffffd9;border:1px solid #f5c7dc;border-radius:26px;padding:25px;box-shadow:0 15px 45px #9a42601c;margin:18px auto}
-.hero h1{font-size:clamp(35px,8vw,60px);margin:10px 0;color:#a52e6b}
-.hero p{font:16px Arial,sans-serif;line-height:1.7}
-.photo{width:min(100%,390px);max-height:570px;object-fit:cover;border-radius:20px;border:7px solid white;box-shadow:0 10px 28px #6b24502a}
-.btn{border:0;border-radius:30px;padding:13px 23px;margin:8px;background:linear-gradient(120deg,#f45e9d,#b94b87);color:white;font-weight:bold;font-size:15px;cursor:pointer;box-shadow:0 6px 16px #c44b842e}
-.btn.alt{background:#fff;color:#9a3f70;border:1px solid #eab5ce}
+.tag{letter-spacing:4px;font:12px Arial;color:#a34e79}
+.card{
+background:#ffffffd9;
+border:1px solid #f5c7dc;
+border-radius:26px;
+padding:25px;
+box-shadow:0 15px 45px #9a42601c;
+margin:18px auto
+}
+.hero h1{font-size:clamp(35px,8vw,60px);color:#a52e6b}
+.hero p{font:16px Arial;line-height:1.7}
+.photo{
+width:min(100%,390px);
+max-height:570px;
+object-fit:cover;
+border-radius:20px;
+border:7px solid white
+}
+.btn{
+border:0;border-radius:30px;padding:13px 23px;
+margin:8px;
+background:linear-gradient(120deg,#f45e9d,#b94b87);
+color:white;font-weight:bold;font-size:15px;
+cursor:pointer
+}
+.btn.alt{background:white;color:#9a3f70;border:1px solid #eab5ce}
 .hidden{display:none}
 .letter{font-size:17px;line-height:1.9;text-align:left;white-space:pre-line}
 .letter h2{text-align:center;color:#a52e6b}
-.small{font:12px Arial,sans-serif;color:#96627d}
-.lock{position:fixed;inset:0;background:linear-gradient(145deg,#4c193d,#9b3f72);z-index:5;display:grid;place-items:center;padding:20px}
-.lockbox{background:#fff8fc;border-radius:24px;padding:28px;max-width:360px;width:100%;box-shadow:0 20px 60px #26091d66}
-.lockbox h2{color:#a52e6b}
-.lockbox input{width:100%;padding:14px;border:1px solid #e4a9c5;border-radius:12px;text-align:center;font-size:22px;letter-spacing:8px;margin:12px 0}
-.error{color:#bd245b;font:13px Arial,sans-serif;min-height:18px}
 .heart{color:#e94d91}
-.footer{font:12px Arial,sans-serif;color:#9d6b83;margin-top:25px}
+.footer{font:12px Arial;color:#9d6b83;margin-top:25px}
 
-/* Added photo memories gallery */
-.memory-section{margin:22px auto}
-.memory-section h2{color:#a52e6b;font-size:28px;margin:8px 0}
-.memory-intro{font:14px Arial,sans-serif;line-height:1.7;color:#96627d}
-.memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
-.memory-item{background:#fff;border:1px solid #f3c7db;border-radius:16px;padding:10px 10px 16px;box-shadow:0 10px 25px #9a42601c;transform:rotate(-1deg);transition:transform .25s,box-shadow .25s}
-.memory-item:nth-child(even){transform:rotate(1.2deg)}
-.memory-item:hover{transform:translateY(-5px) rotate(0);box-shadow:0 14px 30px #9a426033}
-.memory-item img{width:100%;height:240px;object-fit:cover;border-radius:10px;display:block}
-.memory-item figcaption{font:14px Georgia,serif;color:#a34e79;padding-top:12px}
-@media(max-width:480px){.memory-grid{grid-template-columns:1fr}.memory-item img{height:auto;max-height:420px}.memory-section h2{font-size:25px}}
+.lock{
+position:fixed;inset:0;
+background:linear-gradient(145deg,#4c193d,#9b3f72);
+z-index:50;display:grid;place-items:center;padding:20px
+}
+.lockbox{
+background:#fff8fc;border-radius:24px;
+padding:28px;max-width:360px;width:100%
+}
+.lockbox h2{color:#a52e6b}
+.lockbox input{
+width:100%;padding:14px;
+border:1px solid #e4a9c5;border-radius:12px;
+text-align:center;font-size:22px;letter-spacing:8px;
+margin:12px 0
+}
+.error{color:#bd245b;font:13px Arial;min-height:18px}
 
-/* Added floating hearts, sparkles and surprise */
-.magic-float{position:fixed;bottom:-40px;z-index:20;pointer-events:none;animation:magicRise linear forwards;font-size:23px}
-@keyframes magicRise{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:1}100%{transform:translateY(-115vh) rotate(360deg);opacity:0}}
-.magic-surprise{background:linear-gradient(135deg,#fff0f7,#f5e5ff);border:1px solid #f2bad6;border-radius:25px;padding:25px 15px;margin:20px auto;box-shadow:0 10px 30px #a52e6b18}
+/* PHOTO GALLERY */
+.memory-section h2{color:#a52e6b}
+.memory-intro{font:14px Arial;line-height:1.7;color:#96627d}
+.memory-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:16px;margin-top:20px
+}
+.memory-item{
+background:white;border:1px solid #f3c7db;
+border-radius:16px;padding:10px 10px 16px;
+box-shadow:0 10px 25px #9a42601c
+}
+.memory-item img{
+width:100%;height:240px;
+object-fit:cover;border-radius:10px
+}
+.memory-item figcaption{
+font:14px Georgia;color:#a34e79;padding-top:12px
+}
+@media(max-width:480px){
+.memory-grid{grid-template-columns:1fr}
+.memory-item img{height:auto;max-height:420px}
+}
+
+/* FLOATING HEARTS */
+.magic-float{
+position:fixed;bottom:-40px;z-index:20;
+pointer-events:none;
+animation:magicRise linear forwards;
+font-size:23px
+}
+@keyframes magicRise{
+0%{transform:translateY(0);opacity:0}
+15%{opacity:1}
+100%{transform:translateY(-115vh) rotate(360deg);opacity:0}
+}
+
+/* SECRET SURPRISE */
+.magic-surprise{
+background:linear-gradient(135deg,#fff0f7,#f5e5ff);
+border:1px solid #f2bad6;
+border-radius:25px;padding:25px 15px;
+margin:20px auto
+}
 .magic-surprise h2{color:#a52e6b}
-.magic-modal{display:none;position:fixed;inset:0;z-index:100;background:#301026e8;align-items:center;justify-content:center;padding:18px}
-.magic-box{background:linear-gradient(145deg,#fff5fa,#f4e5ff);border-radius:27px;padding:30px 22px;width:100%;max-width:360px;box-shadow:0 0 45px #ff8ac8;animation:magicPop .5s ease}
-@keyframes magicPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
-.magic-box h2{color:#c0397c;font-size:28px}
+.magic-modal{
+display:none;position:fixed;inset:0;
+z-index:100;background:#301026e8;
+align-items:center;justify-content:center;padding:18px
+}
+.magic-box{
+background:linear-gradient(145deg,#fff5fa,#f4e5ff);
+border-radius:27px;padding:30px 22px;
+width:100%;max-width:360px
+}
+.magic-box h2{color:#c0397c}
 .magic-box p{line-height:1.8;color:#753c70}
-.magic-close{background:#e83e8c;color:white;border:0;padding:12px 25px;border-radius:25px;cursor:pointer;font-weight:bold}
+.magic-close{
+background:#e83e8c;color:white;border:0;
+padding:12px 25px;border-radius:25px
+}
 </style>
 </head>
+
 <body>
-<div class="lock" id="lock"><div class="lockbox"><div style="font-size:42px">🎁</div><h2>A little surprise for you</h2><p>Shikha, enter your 4-digit birthday code 💗</p><input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••" aria-label="4 digit password"><button class="btn" onclick="unlock()">Open my surprise</button><div class="error" id="error"></div></div></div>
+
+<!-- PASSWORD SCREEN -->
+<div class="lock" id="lock">
+<div class="lockbox">
+<div style="font-size:42px">🎁</div>
+<h2>A little surprise for you</h2>
+<p>Shikha, enter your 4-digit birthday code 💗</p>
+<input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••">
+<button class="btn" onclick="unlock()">Open my surprise</button>
+<div class="error" id="error"></div>
+</div>
+</div>
 
 <main class="wrap">
-<div class="tag">A SPECIAL SURPRISE FOR YOU</div>
-<section class="hero card"><div style="font-size:34px">🎂✨💗</div><h1>Happy Birthday, Shikha!</h1><p>Today is all about celebrating you. May your day be filled with smiles, beautiful memories and everything that makes you happy.</p><img class="photo" src="memory-2.png" alt="A special birthday memory"><p class="heart">You deserve all the happiness in the world. ❤️</p><button class="btn" onclick="showLetter()">💌 Open your letter</button><button class="btn alt" onclick="toggleMusic()" id="musicBtn">🎵 Play birthday tune</button></section>
 
-<!-- Added: photos supplied for the memory gallery -->
-<section class="card memory-section">
-  <div style="font-size:32px">📸💗</div>
-  <h2>Our Little Memory Gallery</h2>
-  <p class="memory-intro">Some moments deserve to be kept close to the heart. ✨</p>
-  <div class="memory-grid">
-    <figure class="memory-item"><img src="memory-1.png" alt="A playful illustrated couple memory"><figcaption>Little moments, big smiles 💕</figcaption></figure>
-    <figure class="memory-item"><img src="memory-2.png" alt="A couple's special photo"><figcaption>A memory to treasure 🌸</figcaption></figure>
-    <figure class="memory-item"><img src="memory-3.jpg" alt="A candid shared moment"><figcaption>Forever worth remembering ❤️</figcaption></figure>
-  </div>
+<div class="tag">A SPECIAL SURPRISE FOR YOU</div>
+
+<!-- ORIGINAL BIRTHDAY SECTION -->
+<section class="hero card">
+<div style="font-size:34px">🎂✨💗</div>
+<h1>Happy Birthday, Shikha!</h1>
+<p>Today is all about celebrating you. May your day be filled with smiles, beautiful memories and everything that makes you happy.</p>
+
+<img class="photo" src="memory-2.png" alt="Shikha">
+
+<p class="heart">You deserve all the happiness in the world. ❤️</p>
+
+<button class="btn" onclick="showLetter()">💌 Open your letter</button>
+<button class="btn alt" onclick="toggleMusic()" id="musicBtn">🎵 Play birthday tune</button>
 </section>
 
-<section class="card hidden" id="letter"><div class="letter"><h2>For Shikha ❤️</h2>Happy Birthday, Shikha! 🎂💗
+<!-- NEW PHOTO GALLERY -->
+<section class="card memory-section">
+<div style="font-size:32px">📸💗</div>
+<h2>Our Little Memory Gallery</h2>
+<p class="memory-intro">Some moments deserve to be kept close to the heart. ✨</p>
+
+<div class="memory-grid">
+
+<figure class="memory-item">
+<img src="memory-1.png" alt="Special memory 1">
+<figcaption>Little moments, big smiles 💕</figcaption>
+</figure>
+
+<figure class="memory-item">
+<img src="memory-2.png" alt="Special memory 2">
+<figcaption>A memory to treasure 🌸</figcaption>
+</figure>
+
+<figure class="memory-item">
+<img src="memory-3.jpg" alt="Special memory 3">
+<figcaption>Forever worth remembering ❤️</figcaption>
+</figure>
+
+</div>
+</section>
+
+<!-- ORIGINAL LETTER -->
+<section class="card hidden" id="letter">
+<div class="letter">
+<h2>For Shikha ❤️</h2>
+
+Happy Birthday, Shikha! 🎂💗
 
 Pata hai, aaj ka din mere liye bhi bahut special hai, kyunki aaj us insaan ka birthday hai jo meri life mein apni ek alag jagah rakhti hai.
 
@@ -85,27 +209,158 @@ Thank you meri life mein itni saari beautiful memories add karne ke liye.
 
 Hamesha khush rehna, खूब मुस्कुराना और अपने सपनों को पूरा करना।
 
-<div style="text-align:right;color:#a52e6b">With lots of wishes,<br>Tumhari taraf se ek special insaan ❤️</div></div></section>
+<div style="text-align:right;color:#a52e6b">
+With lots of wishes,<br>
+Tumhari taraf se ek special insaan ❤️
+</div>
+</div>
+</section>
 
-<section class="magic-surprise"><div style="font-size:40px">🎀🎁💖</div><h2>One Last Little Surprise!</h2><p style="font:15px Arial;line-height:1.7">Shikha, something special is waiting for you... Are you ready? ✨</p><button class="btn" onclick="openMagic()">🎁 Unlock Your Surprise</button></section>
+<!-- EXTRA SURPRISE -->
+<section class="magic-surprise">
+<div style="font-size:40px">🎀🎁💖</div>
+<h2>One Last Little Surprise!</h2>
+<p>Shikha, something special is waiting for you... Are you ready? ✨</p>
+<button class="btn" onclick="openMagic()">🎁 Unlock Your Surprise</button>
+</section>
+
 <div class="footer">Made with warm wishes, just for your birthday. 💗</div>
+
 </main>
 
-<div class="magic-modal" id="magicModal"><div class="magic-box"><div style="font-size:55px">🎂💖✨</div><h2>Hey Birthday Girl!</h2><p>You are a beautiful reason for someone's smile. May your life always be filled with love, laughter, happiness and endless magic. 💗</p><div style="font-size:35px">🌸🎈🎁</div><p><strong>Keep Smiling, Shikha! ❤️</strong></p><button class="magic-close" onclick="closeMagic()">Close with Love 💕</button></div></div>
+<!-- SURPRISE POPUP -->
+<div class="magic-modal" id="magicModal">
+<div class="magic-box">
+<div style="font-size:55px">🎂💖✨</div>
+<h2>Hey Birthday Girl!</h2>
+<p>You are a beautiful reason for someone's smile. May your life always be filled with love, laughter, happiness and endless magic. 💗</p>
+<div style="font-size:35px">🌸🎈🎁</div>
+<p><strong>Keep Smiling, Shikha! ❤️</strong></p>
+<button class="magic-close" onclick="closeMagic()">Close with Love 💕</button>
+</div>
+</div>
 
 <script>
-function unlock(){const p=document.getElementById('pin').value;if(p==='2311'){document.getElementById('lock').style.display='none';startMagic()}else{document.getElementById('error').textContent='That code did not match. Try again 💗';document.getElementById('pin').value=''}}
-document.getElementById('pin').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
-function showLetter(){document.getElementById('letter').classList.remove('hidden');document.getElementById('letter').scrollIntoView({behavior:'smooth'})}
-let ctx,osc=[],playing=false;
-function toggleMusic(){const b=document.getElementById('musicBtn');if(playing){osc.forEach(o=>{try{o.stop()}catch(e){}});osc=[];playing=false;b.textContent='🎵 Play birthday tune';if(ctx)ctx.close();return}const AC=window.AudioContext||window.webkitAudioContext;if(!AC){b.textContent='Music not supported in this browser';return}ctx=new AC();playing=true;b.textContent='⏸ Stop tune';const notes=[523.25,587.33,659.25,783.99,659.25,587.33,523.25,659.25,783.99,880,783.99,659.25];notes.forEach((n,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=n;g.gain.setValueAtTime(.0001,ctx.currentTime+i*.32);g.gain.exponentialRampToValueAtTime(.07,ctx.currentTime+i*.32+.03);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+i*.32+.27);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime+i*.32);o.stop(ctx.currentTime+i*.32+.29);osc.push(o)});setTimeout(()=>{playing=false;osc=[];b.textContent='🎵 Play birthday tune'},4300)}
+function unlock(){
+const p=document.getElementById('pin').value;
+if(p==='2311'){
+document.getElementById('lock').style.display='none';
+startMagic();
+}else{
+document.getElementById('error').textContent='That code did not match. Try again 💗';
+document.getElementById('pin').value='';
+}
+}
 
+document.getElementById('pin').addEventListener('keydown',e=>{
+if(e.key==='Enter')unlock();
+});
+
+function showLetter(){
+document.getElementById('letter').classList.remove('hidden');
+document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+}
+
+/* BIRTHDAY MUSIC */
+let ctx,osc=[],playing=false;
+
+function toggleMusic(){
+const b=document.getElementById('musicBtn');
+
+if(playing){
+osc.forEach(o=>{try{o.stop()}catch(e){}});
+osc=[];
+playing=false;
+b.textContent='🎵 Play birthday tune';
+if(ctx)ctx.close();
+return;
+}
+
+const AC=window.AudioContext||window.webkitAudioContext;
+if(!AC){
+b.textContent='Music not supported in this browser';
+return;
+}
+
+ctx=new AC();
+playing=true;
+b.textContent='⏸ Stop tune';
+
+const notes=[523.25,587.33,659.25,783.99,659.25,587.33,523.25,659.25,783.99,880,783.99,659.25];
+
+notes.forEach((n,i)=>{
+const o=ctx.createOscillator();
+const g=ctx.createGain();
+o.type='sine';
+o.frequency.value=n;
+g.gain.setValueAtTime(.0001,ctx.currentTime+i*.32);
+g.gain.exponentialRampToValueAtTime(.07,ctx.currentTime+i*.32+.03);
+g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+i*.32+.27);
+o.connect(g);
+g.connect(ctx.destination);
+o.start(ctx.currentTime+i*.32);
+o.stop(ctx.currentTime+i*.32+.29);
+osc.push(o);
+});
+
+setTimeout(()=>{
+playing=false;
+osc=[];
+b.textContent='🎵 Play birthday tune';
+},4300);
+}
+
+/* FLOATING HEARTS */
 let magicStarted=false;
-function startMagic(){if(magicStarted)return;magicStarted=true;const emojis=['💖','💕','💗','🌸','✨','💝','⭐'];setInterval(()=>{const el=document.createElement('div');el.className='magic-float';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];el.style.left=Math.random()*100+'vw';el.style.animationDuration=(5+Math.random()*4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),9500)},700)}
-function openMagic(){document.getElementById('magicModal').style.display='flex';makeConfetti()}
-function closeMagic(){document.getElementById('magicModal').style.display='none'}
-function makeConfetti(){const colors=['#ff4f9a','#ffd700','#a855f7','#50d8ff','#ff8050'];for(let i=0;i<65;i++){const el=document.createElement('div');el.className='magic-float';el.textContent='●';el.style.color=colors[Math.floor(Math.random()*colors.length)];el.style.left=Math.random()*100+'vw';el.style.fontSize=(8+Math.random()*12)+'px';el.style.animationDuration=(2+Math.random()*3)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),5500)}}
-document.getElementById('magicModal').addEventListener('click',e=>{if(e.target.id==='magicModal')closeMagic()});
+
+function startMagic(){
+if(magicStarted)return;
+magicStarted=true;
+
+const emojis=['💖','💕','💗','🌸','✨','💝','⭐'];
+
+setInterval(()=>{
+const el=document.createElement('div');
+el.className='magic-float';
+el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+el.style.left=Math.random()*100+'vw';
+el.style.animationDuration=(5+Math.random()*4)+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),9500);
+},700);
+}
+
+/* SURPRISE AND CONFETTI */
+function openMagic(){
+document.getElementById('magicModal').style.display='flex';
+makeConfetti();
+}
+
+function closeMagic(){
+document.getElementById('magicModal').style.display='none';
+}
+
+function makeConfetti(){
+const colors=['#ff4f9a','#ffd700','#a855f7','#50d8ff','#ff8050'];
+
+for(let i=0;i<65;i++){
+const el=document.createElement('div');
+el.className='magic-float';
+el.textContent='●';
+el.style.color=colors[Math.floor(Math.random()*colors.length)];
+el.style.left=Math.random()*100+'vw';
+el.style.fontSize=(8+Math.random()*12)+'px';
+el.style.animationDuration=(2+Math.random()*3)+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),5500);
+}
+}
+
+document.getElementById('magicModal').addEventListener('click',e=>{
+if(e.target.id==='magicModal')closeMagic();
+});
 </script>
+
 </body>
 </html>
+
