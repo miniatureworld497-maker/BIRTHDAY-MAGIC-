@@ -552,7 +552,7 @@ goMainSlide(2);
 document.getElementById('letter').scrollIntoView({behavior:'smooth'});
 }
 
-/* ROMANTIC SONG PLAYER */
+/* COMPACT ROMANTIC SONG PLAYER */
 let youtubePlayer=null;
 
 function toggleMusic(){
@@ -566,13 +566,14 @@ return;
 }
 
 const frame=document.createElement('iframe');
-frame.src='https://www.youtube-nocookie.com/embed/hlbTxlBuA-I?autoplay=1&playsinline=1&rel=0';
+frame.src='https://www.youtube-nocookie.com/embed/hlbTxlBuA-I?autoplay=1&playsinline=1&controls=1&rel=0';
 frame.title='Meri Banogi Kya - Rito Riba';
 frame.width='320';
-frame.height='200';
-frame.style.cssText='display:block;width:min(100%,360px);height:203px;margin:14px auto 0;border:0;border-radius:14px;';
+frame.height='180';
+frame.style.cssText='display:block;width:min(100%,320px);height:180px;margin:12px auto 0;border:0;border-radius:16px;box-shadow:0 8px 24px #9a426022;';
 frame.allow='autoplay; encrypted-media; picture-in-picture';
 frame.allowFullscreen=true;
+frame.loading='lazy';
 b.insertAdjacentElement('afterend',frame);
 youtubePlayer=frame;
 b.textContent='⏹ Stop song';
