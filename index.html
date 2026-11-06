@@ -1008,7 +1008,6 @@ function showLetter(){
 const letterSection=document.getElementById('letter');
 letterSection.classList.remove('hidden');
 goMainSlide(2);
-letterSection.scrollIntoView({behavior:'smooth'});
 typeLetterOneByOne();
 }
 
@@ -1080,7 +1079,7 @@ buttons[0].disabled=mainSlideIndex===0;
 buttons[1].textContent=mainSlideIndex===mainSlides.length-1?'Back to Start ↺':'Tap for Next →';
 }
 });
-document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'});
+mainSlides[mainSlideIndex].scrollIntoView({behavior:'smooth',block:'start'});
 }
 setupMainSlideshow();
 
