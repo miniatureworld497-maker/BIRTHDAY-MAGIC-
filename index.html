@@ -361,6 +361,44 @@ body:before{
 @keyframes tenFloat{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:480px){.love-ten-grid{grid-template-columns:1fr}.love-ten-card{padding:16px 14px 16px 50px}}
 
+
+/* ROMANTIC TEXT MOTION — additive polish */
+@keyframes loveTextRise {
+  from { opacity: 0; transform: translateY(16px); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes loveTitleGlow {
+  0%, 100% { text-shadow: 0 2px 12px rgba(214, 92, 145, .12); }
+  50% { text-shadow: 0 3px 22px rgba(214, 92, 145, .38); }
+}
+@keyframes loveWordShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.wrap > section.active h1,
+.wrap > section.active h2,
+.wrap > section.active h3 {
+  animation: loveTextRise .9s cubic-bezier(.2,.7,.2,1) both, loveTitleGlow 3.8s ease-in-out 1s infinite;
+}
+.wrap > section.active p,
+.wrap > section.active .letter,
+.wrap > section.active .message {
+  animation: loveTextRise .85s ease both;
+}
+.wrap > section.active p:nth-of-type(2) { animation-delay: .12s; }
+.wrap > section.active p:nth-of-type(3) { animation-delay: .22s; }
+.wrap > section.active p:nth-of-type(4) { animation-delay: .32s; }
+@media (prefers-reduced-motion: reduce) {
+  .wrap > section.active h1,
+  .wrap > section.active h2,
+  .wrap > section.active h3,
+  .wrap > section.active p,
+  .wrap > section.active .letter,
+  .wrap > section.active .message {
+    animation: none !important;
+  }
+}
+
 </style>
 </head>
 
