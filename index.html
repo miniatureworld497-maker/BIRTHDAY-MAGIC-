@@ -855,6 +855,22 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .claw-prize-result{display:none;max-width:420px;margin:12px auto;padding:15px;border-radius:17px;background:#fff;border:1px dashed #e4a4c5;color:#94436c;font:14px/1.65 Arial}
 .claw-prize-result.show{display:block;animation:bouquetPop .45s ease both}
 .claw-hint{font:12px/1.6 Arial;color:#9b6b83}
+
+
+/* FORTUNE COOKIE OF LOVE — new interactive page */
+.fortune-cookie-wrap{margin:20px auto 8px;padding:22px 14px;border:1px solid #f0c8dc;border-radius:22px;background:radial-gradient(circle at 50% 30%,#fff 0,#fff5fa 72%);box-shadow:inset 0 0 28px #e9b6cf22}
+.fortune-cookie{position:relative;display:block;margin:8px auto 12px;border:0;background:transparent;cursor:pointer;font-size:clamp(88px,24vw,132px);line-height:1.2;filter:drop-shadow(0 12px 12px #a65a7628);transition:transform .25s ease;touch-action:manipulation}
+.fortune-cookie:active{transform:scale(.92) rotate(-8deg)}
+.fortune-cookie:focus-visible{outline:3px solid #d879a7;outline-offset:5px;border-radius:20px}
+.fortune-cookie-top{display:inline-block;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.fortune-cookie.broken .fortune-cookie-top{transform:rotate(-18deg) scale(1.08)}
+.fortune-cookie-spark{position:absolute;right:-5px;top:4px;color:#d99a28;font-size:25px;animation:fortuneTwinkle 1.3s ease-in-out infinite alternate}
+.fortune-hint{font:13px/1.6 Arial,sans-serif;color:#96627d}
+.fortune-paper{display:none;max-width:390px;margin:16px auto;padding:18px 16px;border:1px dashed #d99ab8;border-radius:14px;background:linear-gradient(135deg,#fffdf1,#fff6fb);color:#854767;font:italic 17px/1.8 Georgia,serif;box-shadow:0 8px 22px #9a426018}
+.fortune-paper.show{display:block;animation:fortuneUnroll .65s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fortuneUnroll{from{opacity:0;transform:translateY(14px) scaleY(.2)}to{opacity:1;transform:translateY(0) scaleY(1)}}
+@keyframes fortuneTwinkle{from{transform:scale(.7) rotate(-15deg);opacity:.55}to{transform:scale(1.2) rotate(18deg);opacity:1}}
+@media(prefers-reduced-motion:reduce){.fortune-cookie-spark{animation:none}.fortune-paper.show{animation:none}}
 </style>
 </head>
 
@@ -1005,7 +1021,7 @@ Tumhari taraf se ek special insaan ❤️
 <div style="font-size:36px">💝✨🌹</div>
 <h2>A Little Journey for Shikha</h2>
 <p class="memory-intro">Har page par ek naya surprise. Aaram se enjoy karna! 💗</p>
-<div class="extra-progress" id="extraProgress">PAGE 1 OF 8 · A LITTLE LOVE NOTE</div>
+<div class="extra-progress" id="extraProgress">PAGE 1 OF 12 · A LITTLE LOVE NOTE</div>
 
 <div class="extra-page active" id="extraPage1">
 <div style="font-size:48px">💌</div><h3>Page 1 · Secret Love Letter</h3>
@@ -1133,10 +1149,24 @@ Tumhari taraf se ek special insaan ❤️
 </div>
 
 <div class="extra-page" id="extraPage11">
-<div style="font-size:48px">💋💗</div><h3>Page 11 · A Thousand Kisses</h3>
+<div style="font-size:48px">🥠💗</div><h3>Page 11 · Fortune Cookie of Love</h3>
+<p>Shikha, is little cookie ko tap karke todo… andar tumhare liye ek secret message chhupa hai! ✨</p>
+<div class="fortune-cookie-wrap">
+  <button class="fortune-cookie" id="fortuneCookie" type="button" onclick="breakFortuneCookie()" aria-label="Break the fortune cookie">
+    <span class="fortune-cookie-top">🥠</span><span class="fortune-cookie-spark">✦</span>
+  </button>
+  <p class="fortune-hint" id="fortuneHint">Tap the cookie to reveal your little fortune 💌</p>
+  <div class="fortune-paper" id="fortunePaper" aria-live="polite"></div>
+  <button class="btn alt" type="button" onclick="breakFortuneCookie()">Open another fortune ✨</button>
+</div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(10)">← Back</button><button class="btn" onclick="goExtraPage(12)">A Thousand Kisses 💋 →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage12">
+<div style="font-size:48px">💋💗</div><h3>Page 12 · A Thousand Kisses</h3>
 <p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
 <button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(10)">← Back</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(11)">← Back</button></div>
 </div>
 
 
@@ -1530,19 +1560,19 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
 page=Number(page);
-if(!Number.isInteger(page)||page<1||page>11)return;
+if(!Number.isInteger(page)||page<1||page>12)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
-for(let i=1;i<=11;i++){
+for(let i=1;i<=12;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','A THOUSAND KISSES'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES'];
 const progress=document.getElementById('extraProgress');
 if(progress)progress.textContent='PAGE '+page+' OF 11 · '+labels[page-1];
 const finished=document.getElementById('extraFinished');
-if(finished)finished.classList.toggle('show',page===11);
+if(finished)finished.classList.toggle('show',page===12);
 if(typeof hideKissWall==='function')hideKissWall();
 const journey=document.getElementById('extraJourney');
 if(journey)journey.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1595,6 +1625,36 @@ const wish=(input&&input.value.trim())||'May all my dreams come true';
 if(result){result.textContent='Your wish is on its way, Shikha. May life surprise you with beautiful things. 💗';result.classList.add('show');}
 if(sky){sky.classList.remove('show');void sky.offsetWidth;sky.classList.add('show');}
 }
+
+const loveFortunes=[
+"A beautiful surprise is quietly making its way into your life. Keep smiling, Shikha! 🌷",
+"Your dreams are closer than they look. Trust your little steps. ✨",
+"Someone is lucky to have your kindness in their world. 💗",
+"A new chapter will bring you laughter, courage and lovely memories. 📖",
+"Your smile is your magic. Never let the world dim it. 🦋",
+"A day full of tiny reasons to be happy is waiting for you. ☀️",
+"May the next place you visit become your favourite memory. ✈️",
+"Good things are growing for you, even when you cannot see them yet. 🌱",
+"You deserve a love that feels gentle, safe and full of respect. ❤️",
+"One of your little wishes may surprise you by coming true. 🌟",
+"Keep choosing yourself and the things that make your heart glow. 👑",
+"Your sweetest adventure is still ahead. Make room for wonder! 🎀"
+];
+let lastFortuneIndex=-1;
+function breakFortuneCookie(){
+const cookie=document.getElementById('fortuneCookie');
+const paper=document.getElementById('fortunePaper');
+const hint=document.getElementById('fortuneHint');
+if(!cookie||!paper||!hint)return;
+let next=Math.floor(Math.random()*loveFortunes.length);
+if(loveFortunes.length>1)while(next===lastFortuneIndex)next=Math.floor(Math.random()*loveFortunes.length);
+lastFortuneIndex=next;
+cookie.classList.remove('broken');void cookie.offsetWidth;cookie.classList.add('broken');
+paper.classList.remove('show');
+hint.textContent='Crack! Your little message is here… 💌';
+window.setTimeout(()=>{paper.textContent='“'+loveFortunes[next]+'”';paper.classList.add('show');},260);
+}
+
 const loveJarNotes=[
 "Shikha, tumhari smile kisi bhi din ko khoobsurat bana sakti hai. 😊",
 "Tum apne har sapne ko poora karne ki himmat rakhti ho. ✨",
