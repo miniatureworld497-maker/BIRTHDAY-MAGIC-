@@ -1466,7 +1466,7 @@ page=Number(page);
 if(!Number.isInteger(page)||page<1||page>9)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
-for(let i=1;i<=8;i++){
+for(let i=1;i<=9;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
