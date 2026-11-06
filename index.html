@@ -642,6 +642,12 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @media(max-width:360px){.bouquet-choices{gap:5px}.bouquet-choice b{font-size:11px}.bouquet-choice small{font-size:9px}}
 
 
+
+.bubu-after-arrow{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:18px;background:linear-gradient(145deg,#4b183bfa,#a34578f5);opacity:0}
+.bubu-after-arrow.show{display:grid;animation:extraPop .45s ease both;opacity:1}
+.bubu-after-card{width:min(100%,420px);padding:25px 18px;border-radius:26px;text-align:center;background:linear-gradient(145deg,#fff7fb,#f5e8ff);box-shadow:0 20px 60px #210b1c66}
+.bubu-after-card h2{color:#a52e6b;margin:12px 0 6px}
+.bubu-after-card p{color:#854466;line-height:1.7;margin:6px 0}
 /* BUBU & DUDU: A TINY CAKE-AND-KISS ANIMATION */
 .bubu-scene{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:8px;height:142px;margin:8px auto 18px;overflow:hidden;border-radius:20px;background:linear-gradient(180deg,#fff5fa,#fce7f2);border:1px solid #f5cadd}
 .bubu-bear{position:relative;font-size:66px;line-height:1;filter:drop-shadow(0 5px 3px #9b557522)}
@@ -679,6 +685,19 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 <div class="arrow-stage"><div class="stage-arrow" id="dragArrow" role="button" tabindex="0" aria-label="Pull the realistic arrow down and release it"><span class="real-arrow-tip"></span><span class="real-arrow-feathers"></span><span class="real-arrow-nock"></span></div><div class="arrow-heart" id="targetHeart">❤️</div><div class="arrow-spark">✦</div></div>
 <div class="arrow-intro-title">Straight to the heart</div>
 <div class="arrow-intro-subtitle" id="arrowHint">Teer ko peeche kheecho… phir chhod do 💗</div>
+</div>
+<div class="bubu-after-arrow" id="bubuAfterArrow" aria-hidden="true">
+  <div class="bubu-after-card">
+    <div style="font-size:30px">A LITTLE BIRTHDAY MOMENT 💗</div>
+    <div class="bubu-scene" role="img" aria-label="Dudu brings Bubu a birthday cake and gives her a kiss">
+  <span class="bubu-bear bubu-white" aria-hidden="true">🐻‍❄️</span>
+  <span class="bubu-bear bubu-brown" aria-hidden="true">🐻<span class="bubu-cake">🎂</span></span>
+  <span class="bubu-kiss" aria-hidden="true">💋💕</span>
+  <span class="bubu-scene-caption">Dudu brought a little cake for Bubu… then stole a kiss! 💗</span>
+</div>
+    <h2>Just for you, Shikha! 🥹</h2>
+    <p>Dudu has a cake, a kiss, and lots of love for Bubu. 🎂💋</p>
+  </div>
 </div>
 <main class="wrap">
 
@@ -870,12 +889,6 @@ Tumhari taraf se ek special insaan ❤️
 <div class="magic-modal" id="magicModal">
 <div class="magic-box">
 <div style="font-size:55px">🎂💖✨</div>
-<div class="bubu-scene" role="img" aria-label="Dudu brings Bubu a birthday cake and gives her a kiss">
-  <span class="bubu-bear bubu-white" aria-hidden="true">🐻‍❄️</span>
-  <span class="bubu-bear bubu-brown" aria-hidden="true">🐻<span class="bubu-cake">🎂</span></span>
-  <span class="bubu-kiss" aria-hidden="true">💋💕</span>
-  <span class="bubu-scene-caption">Dudu brought a little cake for Bubu… then stole a kiss! 💗</span>
-</div>
 <h2>Hey Birthday Girl!</h2>
 <p>You are a beautiful reason for someone's smile. May your life always be filled with love, laughter, happiness and endless magic. 💗</p>
 <div style="font-size:35px">🌸🎈🎁</div>
@@ -973,7 +986,12 @@ setTimeout(()=>{
 const intro=document.getElementById('arrowIntro');
 intro.classList.remove('play');
 intro.setAttribute('aria-hidden','true');
+const bubu=document.getElementById('bubuAfterArrow');
+if(bubu){bubu.classList.add('show');bubu.setAttribute('aria-hidden','false');}
 startMagic();
+setTimeout(()=>{
+if(bubu){bubu.classList.remove('show');bubu.setAttribute('aria-hidden','true');}
+},4200);
 },2350);
 }
 dragArrow.addEventListener('pointerup',releaseArrow);
