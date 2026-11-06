@@ -328,6 +328,18 @@ body:before{
  .memory-item{padding:8px 8px 14px}
 }
 
+
+/* LAST PAGE — animated flying-kiss cartoon */
+.kiss-scene{position:relative;overflow:hidden;margin:22px auto 4px;padding:22px 12px 18px;border:1px solid #f0c6d9;border-radius:22px;background:radial-gradient(circle at 50% 20%,#fff 0,#fff4f9 70%);min-height:220px}
+.kiss-buddy{display:inline-block;font-size:76px;line-height:1.2;transform-origin:50% 80%;animation:kissBuddy 1.5s ease-in-out infinite}
+.kiss-caption{font:italic 15px Georgia,serif;color:#9c4771;margin:7px 0 12px}
+.flying-kiss{position:absolute;left:calc(50% - 8px);top:92px;font-size:30px;opacity:0;animation:sendKiss 2.8s ease-in-out .6s infinite}
+.kiss-stamp{display:inline-block;margin:4px auto 0;padding:9px 16px;border:2px solid #e99ab9;border-radius:50%;background:#fff0f6;color:#d83d7e;font-size:30px;line-height:1;transform:rotate(-13deg);box-shadow:0 5px 15px #d83d7e24}
+.kiss-stamp span{display:block;font:10px Arial,sans-serif;letter-spacing:1.5px;margin-top:4px}
+@keyframes kissBuddy{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(5deg) translateY(-7px)}}
+@keyframes sendKiss{0%{opacity:0;transform:translate(0,12px) scale(.45)}15%{opacity:1}65%{opacity:1;transform:translate(78px,-34px) scale(1.15)}82%,100%{opacity:0;transform:translate(92px,-42px) scale(.9)}}
+@media(max-width:420px){.flying-kiss{animation-name:sendKissSmall}@keyframes sendKissSmall{0%{opacity:0;transform:translate(0,12px) scale(.45)}15%{opacity:1}65%{opacity:1;transform:translate(55px,-30px) scale(1.1)}82%,100%{opacity:0;transform:translate(65px,-36px) scale(.9)}}}
+
 </style>
 </head>
 
@@ -467,6 +479,13 @@ Tumhari taraf se ek special insaan ❤️
 <button class="btn" onclick="answerSpecial(true)">YES, HAMESHA! 💖</button>
 <button class="btn alt" type="button" disabled aria-disabled="true" title="Is button par click nahi hoga 😜">NO 🙈</button>
 <div class="extra-reveal extra-answer" id="extraAnswer"></div>
+<div class="kiss-scene" aria-label="A cute animated bear sending Shikha a flying kiss">
+  <div class="kiss-buddy" aria-hidden="true">🧸</div>
+  <div class="kiss-caption">A tiny flying kiss, just for you, Shikha! 💗</div>
+  <div class="flying-kiss" aria-hidden="true">💋</div>
+  <div class="kiss-stamp" aria-label="Permanent kiss mark">💋<span>SEALED WITH LOVE</span></div>
+  <p class="memory-intro">Ye pyaara sa kiss mark yahin rahega. ❤️</p>
+</div>
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button></div>
 </div>
 <div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
