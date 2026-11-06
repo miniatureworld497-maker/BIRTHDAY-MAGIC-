@@ -1070,15 +1070,23 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
+page=Number(page);
+if(!Number.isInteger(page)||page<1||page>7)return;
+const target=document.getElementById('extraPage'+page);
+if(!target)return;
 for(let i=1;i<=7;i++){
 const el=document.getElementById('extraPage'+i);
-if(el)el.classList.toggle('active',i===page);
+if(el)el.classList.remove('active');
 }
+target.classList.add('active');
 const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
-document.getElementById('extraProgress').textContent='PAGE '+page+' OF 7 · '+labels[page-1];
-if(page===7)document.getElementById('extraFinished').classList.add('show');
-hideKissWall();
-document.getElementById('extraJourney').scrollIntoView({behavior:'smooth',block:'start'});
+const progress=document.getElementById('extraProgress');
+if(progress)progress.textContent='PAGE '+page+' OF 7 · '+labels[page-1];
+const finished=document.getElementById('extraFinished');
+if(finished)finished.classList.toggle('show',page===7);
+if(typeof hideKissWall==='function')hideKissWall();
+const journey=document.getElementById('extraJourney');
+if(journey)journey.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function showKissWall(){
 const wall=document.getElementById('kissWall');
