@@ -921,6 +921,8 @@ setTimeout(()=>{
 arrowHeart.classList.add('hit');
 document.querySelector('.arrow-spark').classList.add('burst');
 arrowHint.textContent='Dil mein lag gaya! ❤️';
+// The song begins at the exact moment the arrow reaches the heart.
+if(!youtubePlayer)toggleMusic();
 },500);
 setTimeout(()=>{
 const intro=document.getElementById('arrowIntro');
