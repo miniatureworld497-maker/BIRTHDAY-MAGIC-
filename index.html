@@ -92,6 +92,49 @@ font:14px Georgia;color:#a34e79;padding-top:12px
 .memory-item img{height:auto;max-height:420px}
 }
 
+
+/* NEW INDEPENDENT SURPRISE INTERACTIONS */
+function revealExtra(id){
+const el=document.getElementById(id);
+if(el)el.classList.toggle('show');
+}
+
+function launchExtraHearts(){
+const symbols=['💖','💕','💗','💓','💘','❤️'];
+for(let i=0;i<32;i++){
+const el=document.createElement('div');
+el.className='extra-heart';
+el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+el.style.left=Math.random()*100+'vw';
+el.style.fontSize=(20+Math.random()*24)+'px';
+el.style.animationDuration=(2.5+Math.random()*2)+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),5000);
+}
+}
+
+function launchRoseRain(){
+for(let i=0;i<26;i++){
+const el=document.createElement('div');
+el.className='extra-heart';
+el.textContent=['🌹','🌸','💐'][Math.floor(Math.random()*3)];
+el.style.left=Math.random()*100+'vw';
+el.style.fontSize=(22+Math.random()*22)+'px';
+el.style.animationDuration=(3+Math.random()*2.5)+'s';
+el.style.animationDelay=(Math.random()*.8)+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),6500);
+}
+}
+
+function answerSpecial(yes){
+const el=document.getElementById('extraAnswer');
+el.textContent=yes
+?'Yay! Tumhari smile hamesha aise hi chamakti rahe. Sending you lots of love! ❤️✨'
+:'That is a promise worth keeping! Hamesha khush rehna, Shikha. 🌷💗';
+el.classList.add('show');
+}
+
 /* FLOATING HEARTS */
 .magic-float{
 position:fixed;bottom:-40px;z-index:20;
@@ -129,6 +172,24 @@ width:100%;max-width:360px
 background:#e83e8c;color:white;border:0;
 padding:12px 25px;border-radius:25px
 }
+
+/* ADDITIONAL LOVE SURPRISES - SEPARATE FROM ORIGINAL DESIGN */
+.extra-surprises{background:linear-gradient(145deg,#fffafd,#fff0f7);border:1px solid #efc4d8;border-radius:26px;padding:24px 16px;margin:22px auto;box-shadow:0 12px 32px #9a426018}
+.extra-surprises h2,.extra-surprises h3{color:#a52e6b}
+.extra-surprise-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.extra-surprise-tile{background:#fff;border:1px solid #f1c8dc;border-radius:18px;padding:16px 10px}
+.extra-surprise-tile p{font:13px Arial;line-height:1.6;color:#96627d}
+.extra-surprise-tile .btn{margin:5px 0;padding:11px 15px}
+.extra-reveal{display:none;background:#fff;border:1px dashed #e8a8c8;border-radius:16px;padding:16px;margin:14px auto 0;line-height:1.8;color:#793b60}
+.extra-reveal.show{display:block;animation:extraPop .45s ease both}
+.extra-gift{font-size:48px;cursor:pointer;display:inline-block;transition:transform .3s}
+.extra-gift:active{transform:scale(1.2) rotate(-8deg)}
+.extra-heart{position:fixed;bottom:-35px;z-index:120;pointer-events:none;animation:extraRise 3.5s ease-out forwards}
+@keyframes extraRise{0%{transform:translateY(0) scale(.5);opacity:0}15%{opacity:1}100%{transform:translateY(-105vh) scale(1.5) rotate(25deg);opacity:0}}
+@keyframes extraPop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.extra-answer{font-weight:bold;color:#a52e6b;line-height:1.7}
+@media(max-width:480px){.extra-surprise-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 
@@ -222,6 +283,50 @@ Tumhari taraf se ek special insaan ❤️
 <h2>One Last Little Surprise!</h2>
 <p>Shikha, something special is waiting for you... Are you ready? ✨</p>
 <button class="btn" onclick="openMagic()">🎁 Unlock Your Surprise</button>
+</section>
+
+
+<!-- FIVE NEW SURPRISES - ADDED WITHOUT CHANGING THE ORIGINAL SECTIONS -->
+<section class="extra-surprises">
+<div style="font-size:36px">💝✨🌹</div>
+<h2>Five More Little Surprises</h2>
+<p class="memory-intro">Har button ke peeche tumhare liye ek naya surprise chhupa hai, Shikha! 💗</p>
+<div class="extra-surprise-grid">
+<div class="extra-surprise-tile">
+<div style="font-size:30px">💌</div>
+<h3>Secret Love Letter</h3>
+<p>Ek chhota sa message, sirf tumhare liye.</p>
+<button class="btn" onclick="revealExtra('extraLetter')">Open Secret Letter</button>
+<div class="extra-reveal" id="extraLetter">Shikha, tumhari smile kisi bhi din ko special bana sakti hai. Bas hamesha aise hi muskurati rehna. Tum bahut precious ho. ❤️</div>
+</div>
+<div class="extra-surprise-tile">
+<div style="font-size:30px">💖</div>
+<h3>Heart Surprise</h3>
+<p>Tap karo aur screen ko hearts se bhar do.</p>
+<button class="btn" onclick="launchExtraHearts()">Send Some Love</button>
+</div>
+<div class="extra-surprise-tile">
+<div class="extra-gift" onclick="revealExtra('extraGift')">🎁</div>
+<h3>Mystery Gift Box</h3>
+<p>Gift box kholo aur apna surprise dekho.</p>
+<button class="btn" onclick="revealExtra('extraGift')">Unwrap Gift</button>
+<div class="extra-reveal" id="extraGift">🎀 Surprise! Tumhare liye ek lifetime supply of smiles, hugs aur endless happiness! 🌸💗</div>
+</div>
+<div class="extra-surprise-tile">
+<div style="font-size:30px">🌹</div>
+<h3>Rose Rain</h3>
+<p>Ek dreamy gulabon ki baarish.</p>
+<button class="btn" onclick="launchRoseRain()">Make It Rain Roses</button>
+</div>
+<div class="extra-surprise-tile" style="grid-column:1/-1">
+<div style="font-size:30px">💕</div>
+<h3>One Special Question</h3>
+<p>Shikha, will you keep smiling and stay this amazing always?</p>
+<button class="btn" onclick="answerSpecial(true)">YES 💖</button>
+<button class="btn alt" onclick="answerSpecial(false)">Always try 🌷</button>
+<div class="extra-reveal extra-answer" id="extraAnswer"></div>
+</div>
+</div>
 </section>
 
 <div class="footer">Made with warm wishes, just for your birthday. 💗</div>
