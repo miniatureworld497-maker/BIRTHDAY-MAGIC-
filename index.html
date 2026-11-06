@@ -340,6 +340,16 @@ body:before{
 @keyframes sendKiss{0%{opacity:0;transform:translate(0,12px) scale(.45)}15%{opacity:1}65%{opacity:1;transform:translate(78px,-34px) scale(1.15)}82%,100%{opacity:0;transform:translate(92px,-42px) scale(.9)}}
 @media(max-width:420px){.flying-kiss{animation-name:sendKissSmall}@keyframes sendKissSmall{0%{opacity:0;transform:translate(0,12px) scale(.45)}15%{opacity:1}65%{opacity:1;transform:translate(55px,-30px) scale(1.1)}82%,100%{opacity:0;transform:translate(65px,-36px) scale(.9)}}}
 
+
+/* FULL-SCREEN KISS SHOWER PAGE */
+.kiss-wall{display:none;position:fixed;inset:0;z-index:150;overflow:hidden;background:radial-gradient(circle at 50% 45%,#fff8fc 0%,#ffe5f0 55%,#f7cadd 100%);align-items:center;justify-content:center}
+.kiss-wall.show{display:flex;animation:extraPop .45s ease both}
+.kiss-wall-title{position:absolute;top:7%;left:12px;right:12px;text-align:center;color:#a52e6b;font:italic clamp(22px,6vw,34px) Georgia,serif;text-shadow:0 2px 12px #fff}
+.kiss-wall-heart{position:absolute;left:var(--x);top:var(--y);font-size:var(--s);transform:rotate(var(--r));animation:kissPulse var(--d) ease-in-out infinite alternate;filter:drop-shadow(0 4px 5px #d66b9828)}
+.kiss-wall-close{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);white-space:nowrap;box-shadow:0 8px 25px #a52e6b30}
+@keyframes kissPulse{from{scale:.88;opacity:.78}to{scale:1.12;opacity:1}}
+@media(prefers-reduced-motion:reduce){.kiss-wall-heart{animation:none}}
+
 </style>
 </head>
 
@@ -486,7 +496,14 @@ Tumhari taraf se ek special insaan ❤️
   <div class="kiss-stamp" aria-label="Permanent kiss mark">💋<span>SEALED WITH LOVE</span></div>
   <p class="memory-intro">Ye pyaara sa kiss mark yahin rahega. ❤️</p>
 </div>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button><button class="btn" onclick="goExtraPage(6)">Kiss Shower 💋 →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage6">
+<div style="font-size:48px">💋💗</div><h3>Page 6 · A Thousand Kisses</h3>
+<p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
+<button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button></div>
 </div>
 <div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
 </section>
@@ -494,6 +511,12 @@ Tumhari taraf se ek special insaan ❤️
 <div class="footer">Made with warm wishes, just for your birthday. 💗</div>
 
 </main>
+
+
+<div class="kiss-wall" id="kissWall" aria-label="A screen filled with permanent kiss marks">
+<div class="kiss-wall-title">All these kisses are just for you, Shikha! 💋❤️</div>
+<button class="btn kiss-wall-close" onclick="hideKissWall()">Back to Surprise 💗</button>
+</div>
 
 <!-- SURPRISE POPUP -->
 <div class="magic-modal" id="magicModal">
@@ -602,15 +625,36 @@ setupMainSlideshow();
 
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
-for(let i=1;i<=5;i++){
+for(let i=1;i<=6;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.toggle('active',i===page);
 }
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','A SHOWER OF ROSES','ONE LAST QUESTION'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
 document.getElementById('extraProgress').textContent='PAGE '+page+' OF 5 · '+labels[page-1];
 if(page===5)document.getElementById('extraFinished').classList.add('show');
+hideKissWall();
 document.getElementById('extraJourney').scrollIntoView({behavior:'smooth',block:'start'});
 }
+function showKissWall(){
+const wall=document.getElementById('kissWall');
+if(!wall.dataset.filled){
+const symbols=['💋','😘','💗','💋','💕','💖'];
+for(let i=0;i<76;i++){
+const mark=document.createElement('span');
+mark.className='kiss-wall-heart';
+mark.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+mark.style.setProperty('--x',(Math.random()*94)+'%');
+mark.style.setProperty('--y',(13+Math.random()*77)+'%');
+mark.style.setProperty('--s',(22+Math.random()*27)+'px');
+mark.style.setProperty('--r',(Math.random()*50-25)+'deg');
+mark.style.setProperty('--d',(1.1+Math.random()*1.8)+'s');
+wall.appendChild(mark);
+}
+wall.dataset.filled='yes';
+}
+wall.classList.add('show');
+}
+function hideKissWall(){document.getElementById('kissWall').classList.remove('show');}
 function revealPageMessage(id){
 const el=document.getElementById(id);
 if(el)el.classList.add('show');
