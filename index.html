@@ -890,6 +890,27 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @media(max-width:480px){.cinema-photo{height:220px}.cinema-card{padding:12px}}
 @media(prefers-reduced-motion:reduce){.cinema-photo{transition:none}}
 
+
+/* OUR LITTLE UNIVERSE — interactive starry memory sky */
+.universe-card{position:relative;max-width:480px;min-height:430px;margin:18px auto;padding:18px 14px 20px;border-radius:25px;overflow:hidden;color:#fff;background:radial-gradient(ellipse at 50% 95%,#734b83 0%,#35254f 42%,#17172f 100%);box-shadow:0 18px 45px #30204738}
+.universe-card:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.6;background-image:radial-gradient(2px 2px at 12% 17%,#fff 45%,transparent 55%),radial-gradient(1px 1px at 72% 13%,#fff 45%,transparent 55%),radial-gradient(2px 2px at 88% 39%,#ffe2f1 45%,transparent 55%),radial-gradient(1px 1px at 28% 64%,#fff 45%,transparent 55%),radial-gradient(2px 2px at 57% 77%,#fff 45%,transparent 55%),radial-gradient(1px 1px at 8% 86%,#fff 45%,transparent 55%);background-size:100% 100%}
+.universe-heading{position:relative;text-align:center;color:#ffe2f1;font:12px Arial;letter-spacing:3px;margin:3px 0 7px}
+.universe-subtitle{position:relative;text-align:center;color:#ead7f4;font:13px/1.7 Arial;margin:0 auto 10px}
+.universe-sky{position:relative;height:265px;border-radius:18px;border:1px solid #ffffff25;background:radial-gradient(ellipse at center,#ffffff0c,transparent 72%);overflow:hidden}
+.universe-star{position:absolute;display:grid;place-items:center;width:48px;height:48px;padding:0;border:0;border-radius:50%;background:transparent;color:#fff5bd;font-size:27px;text-shadow:0 0 8px #fff,0 0 18px #f7b9ef;cursor:pointer;animation:universeTwinkle 2s ease-in-out infinite alternate;transition:transform .2s}
+.universe-star:active{transform:scale(1.35)}
+.universe-star:nth-child(2n){animation-delay:.7s;color:#f8d9ff}
+.universe-star:nth-child(3n){animation-delay:1.2s;color:#d9eaff}
+.universe-star:focus-visible{outline:2px solid #fff;border-radius:50%}
+@keyframes universeTwinkle{from{opacity:.65;filter:brightness(.9)}to{opacity:1;filter:brightness(1.5)}}
+.universe-orbit{position:absolute;width:190px;height:190px;border:1px solid #f6d8ff20;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-22deg)}
+.universe-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:42px;filter:drop-shadow(0 0 15px #ffc5ed)}
+.universe-note{position:relative;display:none;margin:14px 2px 0;padding:15px;border-radius:16px;background:#fff1fa;color:#74345f;text-align:center;font:14px/1.8 Georgia,serif;box-shadow:0 7px 24px #0b071b35}
+.universe-note.show{display:block;animation:extraPop .45s ease both}
+.universe-note strong{display:block;font:12px Arial;letter-spacing:2px;color:#aa4f85;margin-bottom:6px}
+.universe-count{position:relative;text-align:center;color:#e9d7f3;font:11px Arial;letter-spacing:1.5px;margin-top:12px}
+@media(prefers-reduced-motion:reduce){.universe-star{animation:none}}
+
 </style>
 </head>
 
@@ -1209,7 +1230,30 @@ Tumhari taraf se ek special insaan ❤️
   <div class="cinema-playstate" id="cinemaPlayState" aria-live="polite">A FILM MADE OF LITTLE MEMORIES</div>
 </div>
 <p style="font-size:13px;color:#98627c">Har photo ek scene hai… aur har scene ke saath ek pyaari si wish. 🌷</p>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(12)">← Back</button><button class="btn" onclick="openMagic()">The End · One Last Surprise 🎁</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(12)">← Back</button><button class="btn" onclick="goExtraPage(14)">Our Little Universe 🌌 →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage14">
+<div style="font-size:48px">🌌💫</div><h3>Page 14 · Our Little Universe</h3>
+<p>Is chhote se universe mein har chamakta sitara tumhare liye ek pyaara message chhupaye hai. Shikha, stars ko tap karke dekho! 💗</p>
+<div class="universe-card">
+  <div class="universe-heading">A SKY FULL OF LITTLE WONDERS</div>
+  <p class="universe-subtitle">Choose a shining star… it has a little message for you ✨</p>
+  <div class="universe-sky" id="universeSky">
+    <div class="universe-orbit"></div><div class="universe-core">💗</div>
+    <button class="universe-star" style="left:9%;top:13%" onclick="revealUniverseStar(0)" aria-label="Open star one">✦</button>
+    <button class="universe-star" style="left:69%;top:8%" onclick="revealUniverseStar(1)" aria-label="Open star two">✧</button>
+    <button class="universe-star" style="left:38%;top:23%" onclick="revealUniverseStar(2)" aria-label="Open star three">★</button>
+    <button class="universe-star" style="left:80%;top:42%" onclick="revealUniverseStar(3)" aria-label="Open star four">✦</button>
+    <button class="universe-star" style="left:15%;top:55%" onclick="revealUniverseStar(4)" aria-label="Open star five">✧</button>
+    <button class="universe-star" style="left:60%;top:68%" onclick="revealUniverseStar(5)" aria-label="Open star six">★</button>
+    <button class="universe-star" style="left:34%;top:79%" onclick="revealUniverseStar(6)" aria-label="Open star seven">✦</button>
+  </div>
+  <div class="universe-note" id="universeNote" aria-live="polite"><strong>A LITTLE NOTE FROM THE STARS</strong><span id="universeMessage">Your message will appear here…</span></div>
+  <div class="universe-count" id="universeCount">7 LITTLE STARS · TAP TO DISCOVER</div>
+</div>
+<p style="font-size:13px;color:#98627c">Chahe tum kitni bhi door travel karo, tumhare sapno ka aasman hamesha tumhara hai. ✈️💗</p>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(13)">← Back</button><button class="btn" onclick="openMagic()">The End · One Last Surprise 🎁</button></div>
 </div>
 
 
@@ -1603,19 +1647,19 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
 page=Number(page);
-if(!Number.isInteger(page)||page<1||page>13)return;
+if(!Number.isInteger(page)||page<1||page>14)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
-for(let i=1;i<=13;i++){
+for(let i=1;i<=14;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA','OUR LITTLE UNIVERSE'];
 const progress=document.getElementById('extraProgress');
-if(progress)progress.textContent='PAGE '+page+' OF 13 · '+labels[page-1];
+if(progress)progress.textContent='PAGE '+page+' OF 14 · '+labels[page-1];
 const finished=document.getElementById('extraFinished');
-if(finished)finished.classList.toggle('show',page===13);
+if(finished)finished.classList.toggle('show',page===14);
 if(page!==13&&typeof stopCinemaPlay==='function')stopCinemaPlay();
 if(typeof hideKissWall==='function')hideKissWall();
 const journey=document.getElementById('extraJourney');
@@ -1730,6 +1774,30 @@ const message=loveJarNotes[loveJarIndex];
 note.textContent='💌 '+message;
 loveJarIndex=(loveJarIndex+1)%loveJarNotes.length;
 count.textContent=(loveJarIndex===0?'ALL 20 NOTES OPENED · START AGAIN':'NOTE '+loveJarIndex+' OF 20 · '+(20-loveJarIndex)+' MORE WAITING');
+}
+
+
+/* OUR LITTLE UNIVERSE — seven tap-to-reveal star messages */
+const universeMessages=[
+"Shikha, tumhari smile raat ke aasman mein sabse bright star jaisi hai. Kabhi ise khona mat. 💗",
+"Chahe tum duniya ke kisi bhi kone mein jao, tumhare dreams tumhare saath travel karein. ✈️",
+"Har naya din tumhare liye ek naya constellation banaye—hope, courage aur khushiyon se bhara. ✨",
+"Tumhari kindness chhoti nahi; woh kisi ke poore din ko roshan kar sakti hai. 🌷",
+"Apne sapno ke peeche bina dare jaana. Tumhara universe possibilities se bhara hai. 🌌",
+"Jab kabhi raasta mushkil lage, yaad rakhna: stars bhi andhere mein hi chamakte hain. ⭐",
+"Is universe ka sabse special star? Woh tum ho, Shikha. Keep glowing! 👑"
+];
+const universeOpened=new Set();
+function revealUniverseStar(index){
+const message=universeMessages[index];
+const note=document.getElementById('universeNote');
+const output=document.getElementById('universeMessage');
+const count=document.getElementById('universeCount');
+if(!message||!note||!output)return;
+universeOpened.add(index);
+output.textContent=message;
+note.classList.remove('show');void note.offsetWidth;note.classList.add('show');
+if(count)count.textContent=universeOpened.size===7?'ALL 7 STARS DISCOVERED · YOU ARE THE BRIGHTEST ONE 💗':universeOpened.size+' OF 7 STARS DISCOVERED · KEEP EXPLORING';
 }
 
 /* OUR LITTLE CINEMA — uses the photos already present in the gallery */
