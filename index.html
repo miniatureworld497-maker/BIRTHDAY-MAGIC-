@@ -137,7 +137,11 @@ padding:12px 25px;border-radius:25px
 .extra-surprises{background:linear-gradient(145deg,#fffafd,#fff0f7);border:1px solid #efc4d8;border-radius:26px;padding:24px 16px;margin:22px auto;box-shadow:0 12px 32px #9a426018}
 .extra-surprises h2,.extra-surprises h3{color:#a52e6b}
 .extra-surprise-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
-.extra-surprise-tile{background:#fff;border:1px solid #f1c8dc;border-radius:18px;padding:16px 10px}
+.extra-surprise-tile{background:#fff;border:1px solid #f1c8dc;border-radius:18px;padding:16px 10px;display:none}
+.extra-surprise-tile.active{display:block;animation:extraPop .5s ease both}
+.extra-progress{font:13px Arial;color:#a34e79;margin:12px auto}
+.extra-finished{display:none;background:#fff;border:1px solid #edbfd5;border-radius:18px;padding:18px;margin-top:16px;color:#a52e6b;line-height:1.8}
+.extra-finished.show{display:block;animation:extraPop .5s ease both}
 .extra-surprise-tile p{font:13px Arial;line-height:1.6;color:#96627d}
 .extra-surprise-tile .btn{margin:5px 0;padding:11px 15px}
 .extra-reveal{display:none;background:#fff;border:1px dashed #e8a8c8;border-radius:16px;padding:16px;margin:14px auto 0;line-height:1.8;color:#793b60}
@@ -250,9 +254,10 @@ Tumhari taraf se ek special insaan ❤️
 <section class="extra-surprises">
 <div style="font-size:36px">💝✨🌹</div>
 <h2>Five More Little Surprises</h2>
-<p class="memory-intro">Har button ke peeche tumhare liye ek naya surprise chhupa hai, Shikha! 💗</p>
+<p class="memory-intro">Har surprise ek-ek karke unlock hoga. Pehle ko kholo, phir agla saamne aayega! 💗</p>
+<div class="extra-progress" id="extraProgress">Surprise 1 of 5 · A little journey of love</div>
 <div class="extra-surprise-grid">
-<div class="extra-surprise-tile">
+<div class="extra-surprise-tile active">
 <div style="font-size:30px">💌</div>
 <h3>Secret Love Letter</h3>
 <p>Ek chhota sa message, sirf tumhare liye.</p>
@@ -287,6 +292,7 @@ Tumhari taraf se ek special insaan ❤️
 <div class="extra-reveal extra-answer" id="extraAnswer"></div>
 </div>
 </div>
+<div class="extra-finished" id="extraFinished">🎉 Tumne saare surprises unlock kar liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
 </section>
 
 <div class="footer">Made with warm wishes, just for your birthday. 💗</div>
@@ -353,12 +359,34 @@ b.textContent='⏹ Stop song';
 }
 
 /* NEW INDEPENDENT SURPRISE INTERACTIONS */
+function advanceExtraStep(currentTile){
+const tiles=[...document.querySelectorAll('.extra-surprise-tile')];
+const current=tiles[currentTile];
+if(!current || current.dataset.completed==='yes')return;
+current.dataset.completed='yes';
+const next=tiles[currentTile+1];
+if(next){
+next.classList.add('active');
+document.getElementById('extraProgress').textContent='Surprise '+(currentTile+2)+' of 5 · Keep going, Shikha! ✨';
+setTimeout(()=>next.scrollIntoView({behavior:'smooth',block:'center'}),250);
+}else{
+document.getElementById('extraProgress').textContent='All 5 surprises unlocked! 💖';
+document.getElementById('extraFinished').classList.add('show');
+}
+}
+
 function revealExtra(id){
 const el=document.getElementById(id);
-if(el)el.classList.toggle('show');
+if(el){
+const opening=!el.classList.contains('show');
+el.classList.toggle('show');
+if(opening && id==='extraLetter')advanceExtraStep(0);
+if(opening && id==='extraGift')advanceExtraStep(2);
+}
 }
 
 function launchExtraHearts(){
+advanceExtraStep(1);
 const symbols=['💖','💕','💗','💓','💘','❤️'];
 for(let i=0;i<32;i++){
 const el=document.createElement('div');
@@ -373,6 +401,7 @@ setTimeout(()=>el.remove(),5000);
 }
 
 function launchRoseRain(){
+advanceExtraStep(3);
 for(let i=0;i<26;i++){
 const el=document.createElement('div');
 el.className='extra-heart';
@@ -387,6 +416,7 @@ setTimeout(()=>el.remove(),6500);
 }
 
 function answerSpecial(yes){
+advanceExtraStep(4);
 const el=document.getElementById('extraAnswer');
 el.textContent=yes
 ?'Yay! Tumhari smile hamesha aise hi chamakti rahe. Sending you lots of love! ❤️✨'
