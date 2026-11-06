@@ -793,15 +793,27 @@ Tumhari taraf se ek special insaan ❤️
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(2)">← Back</button><button class="btn" onclick="goExtraPage(4)">Next Surprise →</button></div>
 </div>
 
-<div class="extra-page" id="extraPage4">
-<div style="font-size:48px">🌹</div><h3>Page 4 · Rose Rain</h3>
-<p>Ek dreamy gulabon ki baarish tumhare liye.</p>
-<button class="btn" onclick="launchRoseRain()">Make It Rain Roses 🌹</button>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(3)">← Back</button><button class="btn" onclick="goExtraPage(5)">Final Surprise →</button></div>
+<div class="extra-page" id="extraPage7">
+<div style="font-size:48px">💐</div><h3>Page 4 · A Little Flower Boutique</h3>
+<p>Shikha, apna favourite virtual bouquet choose karo. Har bouquet ke saath ek chhota sa message hai. 🌷</p>
+<div class="bouquet-choices">
+<button class="bouquet-choice" onclick="chooseBouquet('🌷🌷🌷','Tumhari tarah soft, graceful aur khoobsurat. Hamesha aise hi khilti rehna, Shikha! 💗')"><span>🌷</span><b>Pink Tulips</b><small>For your gentle smile</small></button>
+<button class="bouquet-choice" onclick="chooseBouquet('🌹🌹🌹','Har rose ke saath ek wish: tumhari life pyaar, khushi aur beautiful moments se bhari rahe. ❤️')"><span>🌹</span><b>Classic Roses</b><small>For a heart full of love</small></button>
+<button class="bouquet-choice" onclick="chooseBouquet('🌻🌻🌻','Tumhari hasi bilkul sunshine jaisi hai. Jahan raho, wahan khushiyan failati raho! ☀️')"><span>🌻</span><b>Sunflowers</b><small>For your sunshine energy</small></button>
+</div>
+<div class="bouquet-result" id="bouquetResult" aria-live="polite"><div class="bouquet-flowers" id="bouquetFlowers">💐</div><p id="bouquetMessage">Choose a bouquet to reveal your little note. 💌</p></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(3)">← Back</button><button class="btn" onclick="goExtraPage(5)">Next Surprise →</button></div>
 </div>
 
 <div class="extra-page" id="extraPage5">
-<div style="font-size:48px">💕</div><h3>Page 5 · Dil Se Ek Sawaal</h3>
+<div style="font-size:48px">🌹</div><h3>Page 5 · Rose Rain</h3>
+<p>Ek dreamy gulabon ki baarish tumhare liye.</p>
+<button class="btn" onclick="launchRoseRain()">Make It Rain Roses 🌹</button>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button><button class="btn" onclick="goExtraPage(6)">Next Surprise →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage5">
+<div style="font-size:48px">💕</div><h3>Page 6 · Dil Se Ek Sawaal</h3>
 <p>Shikha, ek baat poochun? ❤️<br><strong>Kya tum meri zindagi ka ek hamesha wala, sabse khoobsurat hissa banogi?</strong></p>
 <button class="btn" onclick="answerSpecial(true)">YES, HAMESHA! 💖</button>
 <button class="btn alt" type="button" disabled aria-disabled="true" title="Is button par click nahi hoga 😜">NO 🙈</button>
@@ -813,27 +825,17 @@ Tumhari taraf se ek special insaan ❤️
   <div class="kiss-stamp" aria-label="Permanent kiss mark">💋<span>SEALED WITH LOVE</span></div>
   <p class="memory-intro">Ye pyaara sa kiss mark yahin rahega. ❤️</p>
 </div>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button><button class="btn" onclick="goExtraPage(6)">Kiss Shower 💋 →</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button><button class="btn" onclick="goExtraPage(7)">Kiss Shower 💋 →</button></div>
 </div>
 
 <div class="extra-page" id="extraPage6">
-<div style="font-size:48px">💋💗</div><h3>Page 6 · A Thousand Kisses</h3>
+<div style="font-size:48px">💋💗</div><h3>Page 7 · A Thousand Kisses</h3>
 <p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
 <button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button><button class="btn" onclick="goExtraPage(7)">One More Surprise 🌷 →</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button></button></div>
 </div>
 
-<div class="extra-page" id="extraPage7">
-<div style="font-size:48px">💐</div><h3>Page 7 · A Little Flower Boutique</h3>
-<p>Shikha, apna favourite virtual bouquet choose karo. Har bouquet ke saath ek chhota sa message hai. 🌷</p>
-<div class="bouquet-choices">
-<button class="bouquet-choice" onclick="chooseBouquet('🌷🌷🌷','Tumhari tarah soft, graceful aur khoobsurat. Hamesha aise hi khilti rehna, Shikha! 💗')"><span>🌷</span><b>Pink Tulips</b><small>For your gentle smile</small></button>
-<button class="bouquet-choice" onclick="chooseBouquet('🌹🌹🌹','Har rose ke saath ek wish: tumhari life pyaar, khushi aur beautiful moments se bhari rahe. ❤️')"><span>🌹</span><b>Classic Roses</b><small>For a heart full of love</small></button>
-<button class="bouquet-choice" onclick="chooseBouquet('🌻🌻🌻','Tumhari hasi bilkul sunshine jaisi hai. Jahan raho, wahan khushiyan failati raho! ☀️')"><span>🌻</span><b>Sunflowers</b><small>For your sunshine energy</small></button>
-</div>
-<div class="bouquet-result" id="bouquetResult" aria-live="polite"><div class="bouquet-flowers" id="bouquetFlowers">💐</div><p id="bouquetMessage">Choose a bouquet to reveal your little note. 💌</p></div>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button></div>
-</div>
+
 <div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
 </section>
 
@@ -1070,7 +1072,7 @@ for(let i=1;i<=7;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.toggle('active',i===page);
 }
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES','YOUR LITTLE FLOWER BOUTIQUE'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
 document.getElementById('extraProgress').textContent='PAGE '+page+' OF 7 · '+labels[page-1];
 if(page===7)document.getElementById('extraFinished').classList.add('show');
 hideKissWall();
