@@ -694,19 +694,6 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 <div class="arrow-intro-title">Straight to the heart</div>
 <div class="arrow-intro-subtitle" id="arrowHint">Teer ko peeche kheecho… phir chhod do 💗</div>
 </div>
-<div class="bubu-after-arrow" id="bubuAfterArrow" aria-hidden="true">
-  <div class="bubu-after-card">
-    <div style="font-size:30px">A LITTLE BIRTHDAY MOMENT 💗</div>
-    <div class="bubu-scene" role="img" aria-label="Dudu brings Bubu a birthday cake and gives her a kiss">
-  <div class="bubu-bear bubu-white" aria-hidden="true"><span class="bear-ear"></span><span class="bear-face"><i></i><i></i><b></b></span><span class="bear-blush"></span></div>
-  <div class="bubu-bear bubu-brown" aria-hidden="true"><span class="bear-ear"></span><span class="bear-face"><i></i><i></i><b></b></span><span class="bear-blush"></span><span class="bubu-cake">🎂</span></div>
-  <span class="bubu-kiss" aria-hidden="true">💋💕</span>
-  <span class="bubu-scene-caption">Dudu brought a little cake for Bubu… then stole a kiss! 💗</span>
-</div>
-    <h2>Just for you, Shikha! 🥹</h2>
-    <p>Dudu has a cake, a kiss, and lots of love for Bubu. 🎂💋</p>
-  </div>
-</div>
 <main class="wrap">
 
 <div class="tag">A SPECIAL SURPRISE FOR YOU</div>
@@ -927,6 +914,20 @@ Tumhari taraf se ek special insaan ❤️
 </div>
 </div>
 
+<div class="bubu-after-arrow" id="bubuAfterArrow" aria-hidden="true">
+  <div class="bubu-after-card">
+    <div style="font-size:30px">A LITTLE BIRTHDAY MOMENT 💗</div>
+    <div class="bubu-scene" role="img" aria-label="Dudu brings Bubu a birthday cake and gives her a kiss">
+  <div class="bubu-bear bubu-white" aria-hidden="true"><span class="bear-ear"></span><span class="bear-face"><i></i><i></i><b></b></span><span class="bear-blush"></span></div>
+  <div class="bubu-bear bubu-brown" aria-hidden="true"><span class="bear-ear"></span><span class="bear-face"><i></i><i></i><b></b></span><span class="bear-blush"></span><span class="bubu-cake">🎂</span></div>
+  <span class="bubu-kiss" aria-hidden="true">💋💕</span>
+  <span class="bubu-scene-caption">Dudu brought a little cake for Bubu… then stole a kiss! 💗</span>
+</div>
+    <h2>Just for you, Shikha! 🥹</h2>
+    <p>Dudu has a cake, a kiss, and lots of love for Bubu. 🎂💋</p>
+  </div>
+</div>
+
 <script>
 function unlock(){
 const p=document.getElementById('pin').value;
@@ -994,12 +995,7 @@ setTimeout(()=>{
 const intro=document.getElementById('arrowIntro');
 intro.classList.remove('play');
 intro.setAttribute('aria-hidden','true');
-const bubu=document.getElementById('bubuAfterArrow');
-if(bubu){bubu.classList.add('show');bubu.setAttribute('aria-hidden','false');}
 startMagic();
-setTimeout(()=>{
-if(bubu){bubu.classList.remove('show');bubu.setAttribute('aria-hidden','true');}
-},4200);
 },2350);
 }
 dragArrow.addEventListener('pointerup',releaseArrow);
@@ -1257,6 +1253,15 @@ setTimeout(()=>el.remove(),9500);
 /* SURPRISE AND CONFETTI */
 function openMagic(){
 document.getElementById('magicModal').style.display='flex';
+const bubu=document.getElementById('bubuAfterArrow');
+if(bubu){
+bubu.classList.add('show');
+bubu.setAttribute('aria-hidden','false');
+setTimeout(()=>{
+bubu.classList.remove('show');
+bubu.setAttribute('aria-hidden','true');
+},4200);
+}
 makeConfetti();
 }
 
