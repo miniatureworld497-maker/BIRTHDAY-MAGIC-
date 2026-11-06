@@ -853,7 +853,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .claw-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
 .claw-controls .btn{min-width:94px}
 .claw-prize-result{display:none;max-width:420px;margin:12px auto;padding:15px;border-radius:17px;background:#fff;border:1px dashed #e4a4c5;color:#94436c;font:14px/1.65 Arial}
-.claw-prize-result.show{display:block;animation:bouquetPop .45s ease both}
+.claw-prize-result.show{display:block;animation:extraPop .45s ease both}
 .claw-hint{font:12px/1.6 Arial;color:#9b6b83}
 
 
@@ -909,7 +909,13 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .universe-note.show{display:block;animation:extraPop .45s ease both}
 .universe-note strong{display:block;font:12px Arial;letter-spacing:2px;color:#aa4f85;margin-bottom:6px}
 .universe-count{position:relative;text-align:center;color:#e9d7f3;font:11px Arial;letter-spacing:1.5px;margin-top:12px}
-@media(prefers-reduced-motion:reduce){.universe-star{animation:none}}
+.final-love-card{position:relative;max-width:500px;margin:20px auto;padding:38px 18px;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 35%,#fff 0,#fff1f8 48%,#f7d8e9 100%);border:1px solid #efbad4;box-shadow:0 18px 45px #b34f8425}
+.final-love-sparkles{color:#d77aa8;letter-spacing:5px;font-size:18px;animation:finalLovePulse 2s ease-in-out infinite}
+.final-love-glow{margin:20px auto;color:#c23f80;font-family:Georgia,serif;font-size:clamp(35px,9vw,58px);font-weight:bold;line-height:1.2;text-shadow:0 0 7px #fff,0 0 16px #ff9bc9,0 0 30px #f06ba9;animation:finalLovePulse 1.8s ease-in-out infinite}
+.final-love-hearts{font-size:30px;letter-spacing:7px;filter:drop-shadow(0 0 9px #f39bc5)}
+.final-love-card p{color:#94506f;font:15px/1.8 Georgia,serif;margin:20px auto 0;max-width:360px}
+@keyframes finalLovePulse{0%,100%{opacity:.86;transform:scale(1);filter:brightness(1)}50%{opacity:1;transform:scale(1.035);filter:brightness(1.22)}}
+@media(prefers-reduced-motion:reduce){.universe-star,.final-love-glow,.final-love-sparkles{animation:none}}
 
 </style>
 </head>
@@ -1060,7 +1066,7 @@ Tumhari taraf se ek special insaan ❤️
 <div style="font-size:36px">💝✨🌹</div>
 <h2>A Little Journey for Shikha</h2>
 <p class="memory-intro">Har page par ek naya surprise. Aaram se enjoy karna! 💗</p>
-<div class="extra-progress" id="extraProgress">PAGE 1 OF 13 · A LITTLE LOVE NOTE</div>
+<div class="extra-progress" id="extraProgress">PAGE 1 OF 15 · A LITTLE LOVE NOTE</div>
 
 <div class="extra-page active" id="extraPage1">
 <div style="font-size:48px">💌</div><h3>Page 1 · Secret Love Letter</h3>
@@ -1253,9 +1259,20 @@ Tumhari taraf se ek special insaan ❤️
   <div class="universe-count" id="universeCount">7 LITTLE STARS · TAP TO DISCOVER</div>
 </div>
 <p style="font-size:13px;color:#98627c">Chahe tum kitni bhi door travel karo, tumhare sapno ka aasman hamesha tumhara hai. ✈️💗</p>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(13)">← Back</button><button class="btn" onclick="openMagic()">The End · One Last Surprise 🎁</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(13)">← Back</button><button class="btn" onclick="goExtraPage(15)">One Last Page 💗 →</button></div>
 </div>
 
+<div class="extra-page" id="extraPage15">
+  <div style="font-size:48px">💗✨💗</div>
+  <h3>Page 15 · A Little Something From My Heart</h3>
+  <div class="final-love-card">
+    <div class="final-love-sparkles">✦　♡　✧　♡　✦</div>
+    <div class="final-love-glow">I love uhh<br>so much yaar</div>
+    <div class="final-love-hearts">💗 💖 💞</div>
+    <p>Bas itna sa kehna tha… tum bahut special ho. Hamesha khush rehna, Shikha. ❤️</p>
+  </div>
+  <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(14)">← Back</button><button class="btn" onclick="openMagic()">One Last Surprise 🎁</button></div>
+</div>
 
 <div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
 </section>
@@ -1647,19 +1664,19 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
 page=Number(page);
-if(!Number.isInteger(page)||page<1||page>14)return;
+if(!Number.isInteger(page)||page<1||page>15)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
-for(let i=1;i<=14;i++){
+for(let i=1;i<=15;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA','OUR LITTLE UNIVERSE'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA','OUR LITTLE UNIVERSE','I LOVE YOU SO MUCH'];
 const progress=document.getElementById('extraProgress');
-if(progress)progress.textContent='PAGE '+page+' OF 14 · '+labels[page-1];
+if(progress)progress.textContent='PAGE '+page+' OF 15 · '+labels[page-1];
 const finished=document.getElementById('extraFinished');
-if(finished)finished.classList.toggle('show',page===14);
+if(finished)finished.classList.toggle('show',page===15);
 if(page!==13&&typeof stopCinemaPlay==='function')stopCinemaPlay();
 if(typeof hideKissWall==='function')hideKissWall();
 const journey=document.getElementById('extraJourney');
@@ -1710,7 +1727,7 @@ const input=document.getElementById('wishInput');
 const sky=document.getElementById('wishSky');
 const result=document.getElementById('wishResult');
 const wish=(input&&input.value.trim())||'May all my dreams come true';
-if(result){result.textContent='Your wish is on its way, Shikha. May life surprise you with beautiful things. 💗';result.classList.add('show');}
+if(result){result.textContent='Your wish “'+wish+'” is on its way, Shikha. May life surprise you with beautiful things. 💗';result.classList.add('show');}
 if(sky){sky.classList.remove('show');void sky.offsetWidth;sky.classList.add('show');}
 }
 
