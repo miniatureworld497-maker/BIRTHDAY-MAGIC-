@@ -671,6 +671,47 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .magic-modal{overflow-y:auto;align-items:flex-start}
 .magic-box{margin:auto;max-height:calc(100vh - 36px);overflow-y:auto}
 @media(prefers-reduced-motion:reduce){.bubu-white,.bubu-brown,.bubu-cake,.bubu-kiss{animation:none}}
+
+/* TWO NEW BIRTHDAY PAGES AFTER THE ARROW */
+.birthday-interstitial{position:fixed;inset:0;z-index:95;display:none;place-items:center;overflow-y:auto;padding:18px;background:radial-gradient(circle at 50% 25%,#fff2f7,#f5dce9 52%,#e9d8f5);opacity:0}
+.birthday-interstitial.show{display:grid;opacity:1;animation:birthdayPageIn .65s ease both}
+.cake-card{width:min(100%,480px);padding:24px 18px 28px;border:1px solid #ffffffc9;border-radius:30px;text-align:center;background:linear-gradient(145deg,#fffdfd,#fff0f5);box-shadow:0 22px 70px #75314b30}
+.cake-kicker{font:700 11px Arial,sans-serif;letter-spacing:3px;color:#a64d76}
+.cake-card h1{margin:9px 0 0;color:#71334c;font:700 clamp(25px,7vw,36px) Georgia,serif}
+.choco-cake{position:relative;width:min(86vw,340px);height:245px;margin:14px auto 8px;transition:transform .7s ease}
+.cake-plate{position:absolute;bottom:7px;left:4%;width:92%;height:22px;border-radius:50%;background:linear-gradient(#fff,#d8b9ca);box-shadow:0 8px 15px #68354c30}
+.cake-layer{position:absolute;left:12%;width:76%;border-radius:15px 15px 22px 22px;background:repeating-linear-gradient(0deg,#4b201d 0 12px,#6b3026 12px 17px);box-shadow:inset 0 7px 0 #9b5a48, inset 0 -8px 0 #321512,0 8px 13px #49201d35}
+.cake-layer-top{bottom:78px;height:77px}
+.cake-layer-bottom{bottom:24px;height:65px;width:82%;left:9%;background:repeating-linear-gradient(0deg,#55231e 0 13px,#793b2c 13px 19px)}
+.cake-top{position:absolute;z-index:2;left:12%;bottom:140px;width:76%;height:38px;border-radius:50%;background:radial-gradient(ellipse,#a75b45 0 55%,#6c3027 57% 100%);border:4px solid #f4d8d1;box-shadow:0 0 18px #d58b9d88}
+.cake-cream{font-size:20px;color:#ffe8e7}
+.cake-icing{position:absolute;z-index:3;bottom:90px;left:0;right:0;font-size:23px;filter:drop-shadow(0 2px 2px #2c1111)}
+.cake-candle{position:absolute;z-index:5;left:calc(50% - 5px);bottom:174px;width:10px;height:47px;border-radius:5px 5px 2px 2px;background:repeating-linear-gradient(135deg,#fff 0 7px,#e77d9d 7px 13px);box-shadow:0 0 9px #e99bb7}
+.candle-flame{position:absolute;left:0;top:-22px;width:10px;height:19px;border-radius:80% 15% 70% 20%;transform:rotate(45deg);background:radial-gradient(circle at 65% 65%,#fff8b8 0 18%,#ffb52e 42%,#ff6a37 75%);box-shadow:0 0 18px 7px #ffad4380;animation:flameDance .55s ease-in-out infinite alternate;transform-origin:bottom}
+.choco-cake.blown .candle-flame{display:none}
+.choco-cake.cake-cut{animation:cakeCut .9s ease forwards}
+.choco-cake.cake-cut .cake-layer-top,.choco-cake.cake-cut .cake-layer-bottom{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.cake-card p{color:#8e526b;line-height:1.6}
+.cake-action,.birthday-enter-btn{border:0;border-radius:999px;padding:13px 23px;background:linear-gradient(110deg,#e65f98,#a64ec0);color:white;font-weight:700;font-size:15px;box-shadow:0 8px 22px #b44f8538}
+.cake-cut-message{min-height:24px;font-weight:700}
+.cake-next{display:none;margin:6px auto 0}
+.cake-next.show{display:inline-block;animation:birthdayPageIn .45s ease both}
+.birthday-glow-page{position:fixed;inset:0;z-index:96;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:25px;text-align:center;overflow:hidden;background:radial-gradient(ellipse at center,#55214f 0,#24102f 52%,#100d25 100%);color:white}
+.birthday-glow-page.show{display:flex;animation:birthdayPageIn .8s ease both}
+.birthday-glow-stars{color:#ffd9f0;font-size:clamp(20px,5vw,30px);letter-spacing:5px;text-shadow:0 0 18px #ff8bc9;animation:starTwinkle 2s ease-in-out infinite alternate}
+.birthday-glow-small{font:700 11px Arial,sans-serif;letter-spacing:5px;color:#f8c5e2}
+.birthday-glow-title{display:flex;flex-direction:column;gap:3px;margin:0;font-family:Georgia,serif;font-size:clamp(42px,12vw,76px);line-height:1.03;letter-spacing:2px;color:#fff4fb;text-shadow:0 0 8px #fff,0 0 22px #ff8acb,0 0 48px #fa4db2,0 0 80px #bd60ff;animation:titleGlow 1.8s ease-in-out infinite alternate}
+.birthday-glow-title .birthday-name{font-size:1.08em;color:#ffd7ed}
+.birthday-glow-line{width:min(70%,260px);height:2px;background:linear-gradient(90deg,transparent,#ffc8e6,transparent);box-shadow:0 0 16px #ff9bd7}
+.birthday-glow-page p{max-width:310px;color:#f8d8e9;line-height:1.7}
+.birthday-enter-btn{margin-top:8px;background:linear-gradient(110deg,#ff8aba,#bd79ed);box-shadow:0 0 25px #ff80c477}
+@keyframes birthdayPageIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes flameDance{from{transform:rotate(40deg) scale(.92)}to{transform:rotate(50deg) scale(1.08)}}
+@keyframes cakeCut{0%{transform:scale(1)}35%{transform:scale(1.04) rotate(-2deg)}65%{transform:scale(1.04) rotate(2deg)}100%{transform:scale(.96)}}
+@keyframes titleGlow{from{filter:brightness(.9);text-shadow:0 0 8px #fff,0 0 18px #ff8acb,0 0 38px #fa4db2}to{filter:brightness(1.25);text-shadow:0 0 12px #fff,0 0 30px #ff8acb,0 0 65px #fa4db2,0 0 95px #bd60ff}}
+@keyframes starTwinkle{from{opacity:.55;transform:scale(.96)}to{opacity:1;transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.candle-flame,.birthday-glow-stars,.birthday-glow-title{animation:none}}
+
 </style>
 </head>
 
@@ -694,6 +735,35 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 <div class="arrow-intro-title">Straight to the heart</div>
 <div class="arrow-intro-subtitle" id="arrowHint">Teer ko peeche kheecho… phir chhod do 💗</div>
 </div>
+
+<div class="birthday-interstitial" id="cakePage" aria-hidden="true">
+  <div class="cake-card">
+    <div class="cake-kicker">MAKE A WISH, SHIKHA ✨</div>
+    <h1>A Cake Made With Love</h1>
+    <div class="choco-cake" id="chocoCake" aria-label="A large chocolate birthday cake">
+      <div class="cake-candle"><span class="candle-flame" id="candleFlame"></span></div>
+      <div class="cake-top"><span class="cake-cream">✦　♡　✦</span></div>
+      <div class="cake-layer cake-layer-top"></div>
+      <div class="cake-layer cake-layer-bottom"></div>
+      <div class="cake-icing">🍓　🍫　🍓</div>
+      <div class="cake-plate"></div>
+    </div>
+    <p id="cakeWishText">Dil se ek wish maango… phir candle bujha do! 🕯️</p>
+    <button class="cake-action" id="blowCandleBtn" onclick="blowBirthdayCandle()">Phook maaro 💨</button>
+    <p class="cake-cut-message" id="cakeCutMessage" aria-live="polite"></p>
+    <button class="cake-action cake-next" id="cakeNextBtn" onclick="showBirthdayGlow()">Cake cut ho gaya! Aage chalo 💗</button>
+  </div>
+</div>
+<div class="birthday-glow-page" id="birthdayGlowPage" aria-hidden="true">
+  <div class="birthday-glow-stars">✦　✧　♡　✧　✦</div>
+  <div class="birthday-glow-small">TODAY IS YOUR DAY</div>
+  <h1 class="birthday-glow-title"><span>HAPPY</span><span>BIRTHDAY</span><span class="birthday-name">SHIKHA!</span></h1>
+  <div class="birthday-glow-line"></div>
+  <p>May every little wish of your heart come true. 💖</p>
+  <div class="birthday-glow-stars">🎂　✨　🌸　✨　🎂</div>
+  <button class="birthday-enter-btn" onclick="enterBirthdayWebsite()">Open Your Birthday World 💕</button>
+</div>
+
 <main class="wrap">
 
 <div class="tag">A SPECIAL SURPRISE FOR YOU</div>
@@ -929,6 +999,30 @@ Tumhari taraf se ek special insaan ❤️
 </div>
 
 <script>
+
+function blowBirthdayCandle(){
+const cake=document.getElementById('chocoCake');
+if(cake.classList.contains('blown'))return;
+cake.classList.add('blown');
+document.getElementById('cakeWishText').textContent='Yay! Candle bujh gayi… ab cake kaat te hain! 🎉';
+document.getElementById('blowCandleBtn').style.display='none';
+setTimeout(()=>{
+cake.classList.add('cake-cut');
+document.getElementById('cakeCutMessage').textContent='Cutting the sweetest cake for you! 🍰💗';
+document.getElementById('cakeNextBtn').classList.add('show');
+},900);
+}
+function showBirthdayGlow(){
+document.getElementById('cakePage').classList.remove('show');
+document.getElementById('cakePage').setAttribute('aria-hidden','true');
+document.getElementById('birthdayGlowPage').classList.add('show');
+document.getElementById('birthdayGlowPage').setAttribute('aria-hidden','false');
+}
+function enterBirthdayWebsite(){
+document.getElementById('birthdayGlowPage').classList.remove('show');
+document.getElementById('birthdayGlowPage').setAttribute('aria-hidden','true');
+}
+
 function unlock(){
 const p=document.getElementById('pin').value;
 if(p==='2311'){
@@ -995,6 +1089,8 @@ setTimeout(()=>{
 const intro=document.getElementById('arrowIntro');
 intro.classList.remove('play');
 intro.setAttribute('aria-hidden','true');
+document.getElementById('cakePage').classList.add('show');
+document.getElementById('cakePage').setAttribute('aria-hidden','false');
 startMagic();
 },2350);
 }
