@@ -161,7 +161,7 @@ padding:12px 25px;border-radius:25px
 <p class="heart">You deserve all the happiness in the world. ❤️</p>
 
 <button class="btn" onclick="showLetter()">💌 Open your letter</button>
-<button class="btn alt" onclick="toggleMusic()" id="musicBtn">🎵 Play birthday tune</button>
+<button class="btn alt" onclick="toggleMusic()" id="musicBtn">🎵 Play Meri Banogi Kya</button>
 </section>
 
 <!-- NEW PHOTO GALLERY -->
@@ -261,53 +261,30 @@ document.getElementById('letter').classList.remove('hidden');
 document.getElementById('letter').scrollIntoView({behavior:'smooth'});
 }
 
-/* BIRTHDAY MUSIC */
-let ctx,osc=[],playing=false;
+/* ROMANTIC SONG PLAYER */
+let youtubePlayer=null;
 
 function toggleMusic(){
 const b=document.getElementById('musicBtn');
 
-if(playing){
-osc.forEach(o=>{try{o.stop()}catch(e){}});
-osc=[];
-playing=false;
-b.textContent='🎵 Play birthday tune';
-if(ctx)ctx.close();
+if(youtubePlayer){
+youtubePlayer.remove();
+youtubePlayer=null;
+b.textContent='🎵 Play Meri Banogi Kya';
 return;
 }
 
-const AC=window.AudioContext||window.webkitAudioContext;
-if(!AC){
-b.textContent='Music not supported in this browser';
-return;
-}
-
-ctx=new AC();
-playing=true;
-b.textContent='⏸ Stop tune';
-
-const notes=[523.25,587.33,659.25,783.99,659.25,587.33,523.25,659.25,783.99,880,783.99,659.25];
-
-notes.forEach((n,i)=>{
-const o=ctx.createOscillator();
-const g=ctx.createGain();
-o.type='sine';
-o.frequency.value=n;
-g.gain.setValueAtTime(.0001,ctx.currentTime+i*.32);
-g.gain.exponentialRampToValueAtTime(.07,ctx.currentTime+i*.32+.03);
-g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+i*.32+.27);
-o.connect(g);
-g.connect(ctx.destination);
-o.start(ctx.currentTime+i*.32);
-o.stop(ctx.currentTime+i*.32+.29);
-osc.push(o);
-});
-
-setTimeout(()=>{
-playing=false;
-osc=[];
-b.textContent='🎵 Play birthday tune';
-},4300);
+const frame=document.createElement('iframe');
+frame.src='https://www.youtube-nocookie.com/embed/hlbTxlBuA-I?autoplay=1&playsinline=1&rel=0';
+frame.title='Meri Banogi Kya - Rito Riba';
+frame.width='320';
+frame.height='200';
+frame.style.cssText='display:block;width:min(100%,360px);height:203px;margin:14px auto 0;border:0;border-radius:14px;';
+frame.allow='autoplay; encrypted-media; picture-in-picture';
+frame.allowFullscreen=true;
+b.insertAdjacentElement('afterend',frame);
+youtubePlayer=frame;
+b.textContent='⏹ Stop song';
 }
 
 /* FLOATING HEARTS */
