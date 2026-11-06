@@ -625,6 +625,18 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .stage-arrow.pulling{filter:drop-shadow(0 0 9px #d84c91) drop-shadow(0 2px 2px #65371f)}
 .stage-arrow.shooting{animation:shootArrow .62s cubic-bezier(.15,.7,.2,1) forwards;pointer-events:none}
 @media(max-width:480px){.stage-arrow{height:clamp(84px,18vh,104px)}}
+
+/* Little flower boutique — added surprise page */
+.bouquet-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}
+.bouquet-choice{min-width:0;border:1px solid #edc7d9;border-radius:17px;padding:13px 5px;background:linear-gradient(150deg,#fff,#fff1f7);color:#934368;cursor:pointer;box-shadow:0 6px 18px #a34e7910;transition:transform .2s,box-shadow .2s}
+.bouquet-choice:active{transform:scale(.96)}
+.bouquet-choice span{display:block;font-size:30px;margin-bottom:7px}
+.bouquet-choice b{display:block;font:600 12px Georgia,serif}
+.bouquet-choice small{display:block;font:10px/1.4 Arial,sans-serif;color:#a0788d;margin-top:5px}
+.bouquet-result{margin:14px 0 4px;padding:17px 12px;border:1px dashed #e5afc8;border-radius:17px;background:radial-gradient(circle,#fff 0%,#fff2f8 100%);min-height:110px}
+.bouquet-flowers{font-size:34px;letter-spacing:4px;min-height:40px}
+.bouquet-result p{font:italic 14px/1.7 Georgia,serif;color:#92506f;margin:8px 0 0}
+@media(max-width:360px){.bouquet-choices{gap:5px}.bouquet-choice b{font-size:11px}.bouquet-choice small{font-size:9px}}
 </style>
 </head>
 
@@ -805,7 +817,19 @@ Tumhari taraf se ek special insaan ❤️
 <div style="font-size:48px">💋💗</div><h3>Page 6 · A Thousand Kisses</h3>
 <p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
 <button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button><button class="btn" onclick="goExtraPage(7)">One More Surprise 🌷 →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage7">
+<div style="font-size:48px">💐</div><h3>Page 7 · A Little Flower Boutique</h3>
+<p>Shikha, apna favourite virtual bouquet choose karo. Har bouquet ke saath ek chhota sa message hai. 🌷</p>
+<div class="bouquet-choices">
+<button class="bouquet-choice" onclick="chooseBouquet('🌷🌷🌷','Tumhari tarah soft, graceful aur khoobsurat. Hamesha aise hi khilti rehna, Shikha! 💗')"><span>🌷</span><b>Pink Tulips</b><small>For your gentle smile</small></button>
+<button class="bouquet-choice" onclick="chooseBouquet('🌹🌹🌹','Har rose ke saath ek wish: tumhari life pyaar, khushi aur beautiful moments se bhari rahe. ❤️')"><span>🌹</span><b>Classic Roses</b><small>For a heart full of love</small></button>
+<button class="bouquet-choice" onclick="chooseBouquet('🌻🌻🌻','Tumhari hasi bilkul sunshine jaisi hai. Jahan raho, wahan khushiyan failati raho! ☀️')"><span>🌻</span><b>Sunflowers</b><small>For your sunshine energy</small></button>
+</div>
+<div class="bouquet-result" id="bouquetResult" aria-live="polite"><div class="bouquet-flowers" id="bouquetFlowers">💐</div><p id="bouquetMessage">Choose a bouquet to reveal your little note. 💌</p></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button></div>
 </div>
 <div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
 </section>
@@ -1039,13 +1063,13 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
-for(let i=1;i<=6;i++){
+for(let i=1;i<=7;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.toggle('active',i===page);
 }
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
-document.getElementById('extraProgress').textContent='PAGE '+page+' OF 5 · '+labels[page-1];
-if(page===5)document.getElementById('extraFinished').classList.add('show');
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES','YOUR LITTLE FLOWER BOUTIQUE'];
+document.getElementById('extraProgress').textContent='PAGE '+page+' OF 7 · '+labels[page-1];
+if(page===7)document.getElementById('extraFinished').classList.add('show');
 hideKissWall();
 document.getElementById('extraJourney').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -1098,6 +1122,13 @@ el.style.animationDelay=(Math.random()*.8)+'s';
 document.body.appendChild(el);
 setTimeout(()=>el.remove(),6500);
 }
+}
+function chooseBouquet(flowers,message){
+document.getElementById('bouquetFlowers').textContent=flowers;
+document.getElementById('bouquetMessage').textContent=message;
+document.getElementById('bouquetResult').classList.remove('bouquet-pop');
+void document.getElementById('bouquetResult').offsetWidth;
+document.getElementById('bouquetResult').classList.add('bouquet-pop');
 }
 function answerSpecial(yes){
 const el=document.getElementById('extraAnswer');
