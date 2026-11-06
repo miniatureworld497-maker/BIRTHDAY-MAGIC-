@@ -399,6 +399,20 @@ body:before{
   }
 }
 
+
+/* ORIGINAL LETTER — LETTER-BY--LETTER TYPEWRITER */
+@keyframes letterCaretBlink { 50% { opacity: 0; } }
+#letter .letter-typing::after {
+ content: "▍";
+ display: inline-block;
+ margin-left: 2px;
+ color: #c34d86;
+ animation: letterCaretBlink .75s steps(1,end) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+ #letter .letter-typing::after { animation: none; }
+}
+
 </style>
 </head>
 
@@ -616,10 +630,42 @@ document.getElementById('pin').addEventListener('keydown',e=>{
 if(e.key==='Enter')unlock();
 });
 
+let letterTypingTimer=null;
+function typeLetterOneByOne(){
+const letter=document.querySelector('#letter .letter');
+if(!letter || letter.dataset.typed==='true')return;
+if(letterTypingTimer)clearInterval(letterTypingTimer);
+letter.dataset.typed='true';
+const walker=document.createTreeWalker(letter,NodeFilter.SHOW_TEXT);
+const nodes=[];
+while(walker.nextNode()){
+const node=walker.currentNode;
+if(node.nodeValue.length){
+nodes.push({node,text:node.nodeValue});
+node.nodeValue='';
+}
+}
+letter.classList.add('letter-typing');
+let nodeIndex=0,charIndex=0;
+letterTypingTimer=setInterval(()=>{
+if(nodeIndex>=nodes.length){
+clearInterval(letterTypingTimer);
+letterTypingTimer=null;
+letter.classList.remove('letter-typing');
+return;
+}
+const item=nodes[nodeIndex];
+item.node.nodeValue+=item.text.charAt(charIndex);
+charIndex++;
+if(charIndex>=item.text.length){nodeIndex++;charIndex=0;}
+},18);
+}
 function showLetter(){
-document.getElementById('letter').classList.remove('hidden');
+const letterSection=document.getElementById('letter');
+letterSection.classList.remove('hidden');
 goMainSlide(2);
-document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+letterSection.scrollIntoView({behavior:'smooth'});
+typeLetterOneByOne();
 }
 
 /* COMPACT ROMANTIC SONG PLAYER */
