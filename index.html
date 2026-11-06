@@ -712,6 +712,21 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @keyframes starTwinkle{from{opacity:.55;transform:scale(.96)}to{opacity:1;transform:scale(1.04)}}
 @media(prefers-reduced-motion:reduce){.candle-flame,.birthday-glow-stars,.birthday-glow-title{animation:none}}
 
+
+/* REAL MIC BLOW + FINGER CAKE CUT */
+.cake-fallback{display:block;margin:9px auto 0;padding:10px 16px;font-size:12px;background:linear-gradient(110deg,#9d769e,#c17caa)}
+.cake-cut-overlay{position:absolute;inset:0;width:100%;height:100%;z-index:8;overflow:visible;pointer-events:none}
+.cake-cut-overlay path{fill:none;stroke:#fff2d7;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:300;stroke-dashoffset:300;filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 8px #ff8dbb)}
+.choco-cake.cut-drawn .cake-cut-overlay path{animation:drawCakeCut .65s ease forwards}
+.choco-cake.cut-drawn .cake-layer-top{transform:translateX(-9px) rotate(-3deg)}
+.choco-cake.cut-drawn .cake-layer-bottom{transform:translateX(-6px) rotate(-2deg)}
+.choco-cake.cut-drawn .cake-top{transform:translateX(-8px) rotate(-4deg)}
+.choco-cake.cut-drawn .cake-icing{transform:translateX(-7px)}
+.cake-layer,.cake-top,.cake-icing{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.choco-cake.cut-drawn:after{content:'🍰';position:absolute;z-index:9;right:4%;top:70px;font-size:44px;animation:cakeSlicePop .8s ease both;filter:drop-shadow(0 5px 6px #5b263344)}
+@keyframes drawCakeCut{to{stroke-dashoffset:0}}
+@keyframes cakeSlicePop{from{opacity:0;transform:translate(0,15px) rotate(-12deg) scale(.5)}to{opacity:1;transform:translate(0,0) rotate(8deg) scale(1)}}
+
 </style>
 </head>
 
@@ -747,10 +762,12 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
       <div class="cake-layer cake-layer-bottom"></div>
       <div class="cake-icing">🍓　🍫　🍓</div>
       <div class="cake-plate"></div>
+      <svg class="cake-cut-overlay" id="cakeCutOverlay" viewBox="0 0 340 245" aria-hidden="true"><path id="cakeCutPath" d="" /></svg>
     </div>
-    <p id="cakeWishText">Dil se ek wish maango… phir candle bujha do! 🕯️</p>
-    <button class="cake-action" id="blowCandleBtn" onclick="blowBirthdayCandle()">Phook maaro 💨</button>
-    <p class="cake-cut-message" id="cakeCutMessage" aria-live="polite"></p>
+    <p id="cakeWishText">Dil se ek wish maango… ab asli mein candle par phook maaro! 🕯️</p>
+    <button class="cake-action" id="blowCandleBtn" onclick="startBlowDetection()">🎙️ Mic se phook maaro</button>
+    <button class="cake-action cake-fallback" id="blowFallbackBtn" onclick="blowBirthdayCandle()">Mic kaam na kare? Yahan tap karo 💨</button>
+    <p class="cake-cut-message" id="cakeCutMessage" aria-live="polite">Microphone allow karke candle par phoonk maaro.</p>
     <button class="cake-action cake-next" id="cakeNextBtn" onclick="showBirthdayGlow()">Cake cut ho gaya! Aage chalo 💗</button>
   </div>
 </div>
@@ -1000,17 +1017,102 @@ Tumhari taraf se ek special insaan ❤️
 
 <script>
 
+
+let birthdayMicStream=null,birthdayMicFrame=null,birthdayMicContext=null;
+let cakeCutStart=null,cakeCutPath='',cakeCutLast=null,cakeCutDistance=0;
+async function startBlowDetection(){
+const status=document.getElementById('cakeCutMessage');
+const button=document.getElementById('blowCandleBtn');
+if(document.getElementById('chocoCake').classList.contains('blown'))return;
+if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+status.textContent='Is browser mein mic available nahi. Neeche wala button use kar lo.';
+return;
+}
+button.disabled=true;button.textContent='Mic sun raha hai… 🎙️';
+status.textContent='Microphone allow karo, phir candle ki taraf zor se phoonk maaro! 💨';
+try{
+birthdayMicStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+const AudioCtx=window.AudioContext||window.webkitAudioContext;
+if(!AudioCtx)throw new Error('Audio analysis unavailable');
+birthdayMicContext=new AudioCtx();
+await birthdayMicContext.resume();
+const source=birthdayMicContext.createMediaStreamSource(birthdayMicStream);
+const analyser=birthdayMicContext.createAnalyser();
+analyser.fftSize=1024;analyser.smoothingTimeConstant=.25;source.connect(analyser);
+const samples=new Uint8Array(analyser.fftSize);
+let baseline=0,blowFrames=0,frames=0;
+function listenForBlow(){
+if(!birthdayMicStream||document.getElementById('chocoCake').classList.contains('blown'))return;
+analyser.getByteTimeDomainData(samples);
+let sum=0;for(let i=0;i<samples.length;i++){const v=(samples[i]-128)/128;sum+=v*v;}
+const rms=Math.sqrt(sum/samples.length);
+frames++;if(frames<12)baseline=baseline*.8+rms*.2;
+const threshold=Math.max(.075,baseline*2.8);
+if(rms>threshold)blowFrames++;else blowFrames=Math.max(0,blowFrames-1);
+if(blowFrames>=5){blowBirthdayCandle();return;}
+birthdayMicFrame=requestAnimationFrame(listenForBlow);
+}
+birthdayMicFrame=requestAnimationFrame(listenForBlow);
+}catch(err){
+status.textContent='Mic permission nahi mili ya available nahi. Neeche tap karke candle bujha sakti ho.';
+button.disabled=false;button.textContent='🎙️ Mic se phook maaro';
+stopBirthdayMic();
+}
+}
+function stopBirthdayMic(){
+if(birthdayMicFrame)cancelAnimationFrame(birthdayMicFrame);
+birthdayMicFrame=null;
+if(birthdayMicStream){birthdayMicStream.getTracks().forEach(t=>t.stop());birthdayMicStream=null;}
+if(birthdayMicContext){birthdayMicContext.close().catch(()=>{});birthdayMicContext=null;}
+}
 function blowBirthdayCandle(){
 const cake=document.getElementById('chocoCake');
 if(cake.classList.contains('blown'))return;
 cake.classList.add('blown');
-document.getElementById('cakeWishText').textContent='Yay! Candle bujh gayi… ab cake kaat te hain! 🎉';
+stopBirthdayMic();
+document.getElementById('cakeWishText').textContent='Wish granted! Tumhari phoonk se candle bujh gayi! 🥹💗';
 document.getElementById('blowCandleBtn').style.display='none';
-setTimeout(()=>{
-cake.classList.add('cake-cut');
-document.getElementById('cakeCutMessage').textContent='Cutting the sweetest cake for you! 🍰💗';
+document.getElementById('blowFallbackBtn').style.display='none';
+document.getElementById('cakeCutMessage').textContent='Ab cake par apni ungli se ek seedhi line kheenchkar kaato! 👆';
+cake.style.touchAction='none';
+cake.addEventListener('pointerdown',startCakeCut);
+cake.addEventListener('pointermove',moveCakeCut);
+cake.addEventListener('pointerup',endCakeCut);
+cake.addEventListener('pointercancel',endCakeCut);
+}
+function startCakeCut(e){
+const cake=document.getElementById('chocoCake');
+if(!cake.classList.contains('blown')||cake.classList.contains('cut-drawn'))return;
+const rect=cake.getBoundingClientRect();
+cakeCutStart={x:e.clientX,y:e.clientY,rect};
+cakeCutLast={x:e.clientX,y:e.clientY};cakeCutDistance=0;
+cakeCutPath='M '+((e.clientX-rect.left)/rect.width*340).toFixed(1)+' '+((e.clientY-rect.top)/rect.height*245).toFixed(1);
+cake.setPointerCapture(e.pointerId);
+e.preventDefault();
+}
+function moveCakeCut(e){
+if(!cakeCutStart)return;
+const rect=cakeCutStart.rect;
+const x=e.clientX,y=e.clientY;
+cakeCutDistance+=Math.hypot(x-cakeCutLast.x,y-cakeCutLast.y);
+cakeCutLast={x,y};
+cakeCutPath+=' L '+((x-rect.left)/rect.width*340).toFixed(1)+' '+((y-rect.top)/rect.height*245).toFixed(1);
+document.getElementById('cakeCutPath').setAttribute('d',cakeCutPath);
+e.preventDefault();
+}
+function endCakeCut(){
+if(!cakeCutStart)return;
+const distance=cakeCutDistance;
+cakeCutStart=null;
+if(distance<45){document.getElementById('cakeCutPath').setAttribute('d','');return;}
+const cake=document.getElementById('chocoCake');
+cake.classList.add('cut-drawn','cake-cut');
+document.getElementById('cakeCutMessage').textContent='Yay! Shikha ne apne haathon se cake kaata! 🍰💗';
 document.getElementById('cakeNextBtn').classList.add('show');
-},900);
+cake.removeEventListener('pointerdown',startCakeCut);
+cake.removeEventListener('pointermove',moveCakeCut);
+cake.removeEventListener('pointerup',endCakeCut);
+cake.removeEventListener('pointercancel',endCakeCut);
 }
 function showBirthdayGlow(){
 document.getElementById('cakePage').classList.remove('show');
