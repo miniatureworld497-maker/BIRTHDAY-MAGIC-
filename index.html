@@ -857,6 +857,17 @@ Tumhari taraf se ek special insaan ❤️
 <p>You are a beautiful reason for someone's smile. May your life always be filled with love, laughter, happiness and endless magic. 💗</p>
 <div style="font-size:35px">🌸🎈🎁</div>
 <p><strong>Keep Smiling, Shikha! ❤️</strong></p>
+<div style="margin:18px auto 12px;padding:17px 16px;border-radius:20px;background:linear-gradient(135deg,#fff0f7,#f5edff);border:1px solid #f4cfe2;box-shadow:0 8px 24px #bd6a9620">
+  <div style="font-size:30px">👑✨</div>
+  <h3 style="margin:7px 0;color:#a52e6b">A Little Crown Moment</h3>
+  <p style="margin:0 0 12px">Because you deserve to feel special—not just today, but every single day.</p>
+  <button class="btn" type="button" onclick="revealShikhaReminder()">A reminder just for me 💗</button>
+  <div id="shikhaReminder" hidden style="margin-top:14px;padding:14px;border-radius:15px;background:#ffffffc9;color:#87365e;line-height:1.8">
+    Shikha, tum kisi ki kahaani ka sirf ek hissa nahi ho—tum apni kahaani ki heroine ho. 🌷<br>
+    Tumhari dreams important hain. Tumhari awaaz important hai. Tumhari khushi important hai.<br>
+    Kabhi khud ko kam mat samajhna. You are enough, exactly as you are. ❤️
+  </div>
+</div>
 <button class="magic-close" onclick="closeMagic()">Close with Love 💕</button>
 </div>
 </div>
@@ -1108,6 +1119,10 @@ wall.dataset.filled='yes';
 wall.classList.add('show');
 }
 function hideKissWall(){document.getElementById('kissWall').classList.remove('show');}
+function revealShikhaReminder(){
+ const note=document.getElementById('shikhaReminder');
+ if(note)note.hidden=false;
+}
 function revealPageMessage(id){
 const el=document.getElementById(id);
 if(el)el.classList.add('show');
