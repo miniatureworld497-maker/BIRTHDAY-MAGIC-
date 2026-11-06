@@ -626,6 +626,9 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .stage-arrow.shooting{animation:shootArrow .62s cubic-bezier(.15,.7,.2,1) forwards;pointer-events:none}
 @media(max-width:480px){.stage-arrow{height:clamp(84px,18vh,104px)}}
 
+.bouquet-result.bouquet-pop .bouquet-flowers{animation:bouquetBloom .75s cubic-bezier(.2,.8,.2,1) both}
+.bouquet-result.bouquet-pop p{animation:bouquetBloom .65s ease .12s both}
+@keyframes bouquetBloom{0%{opacity:0;transform:translateY(12px) scale(.72)}65%{opacity:1;transform:translateY(-3px) scale(1.08)}100%{opacity:1;transform:translateY(0) scale(1)}}
 /* Little flower boutique — added surprise page */
 .bouquet-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}
 .bouquet-choice{min-width:0;border:1px solid #edc7d9;border-radius:17px;padding:13px 5px;background:linear-gradient(150deg,#fff,#fff1f7);color:#934368;cursor:pointer;box-shadow:0 6px 18px #a34e7910;transition:transform .2s,box-shadow .2s}
