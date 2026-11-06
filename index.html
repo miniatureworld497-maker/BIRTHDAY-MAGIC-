@@ -94,47 +94,6 @@ font:14px Georgia;color:#a34e79;padding-top:12px
 
 
 
-/* NEW INDEPENDENT SURPRISE INTERACTIONS */
-function revealExtra(id){
-const el=document.getElementById(id);
-if(el)el.classList.toggle('show');
-}
-
-function launchExtraHearts(){
-const symbols=['💖','💕','💗','💓','💘','❤️'];
-for(let i=0;i<32;i++){
-const el=document.createElement('div');
-el.className='extra-heart';
-el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-el.style.left=Math.random()*100+'vw';
-el.style.fontSize=(20+Math.random()*24)+'px';
-el.style.animationDuration=(2.5+Math.random()*2)+'s';
-document.body.appendChild(el);
-setTimeout(()=>el.remove(),5000);
-}
-}
-
-function launchRoseRain(){
-for(let i=0;i<26;i++){
-const el=document.createElement('div');
-el.className='extra-heart';
-el.textContent=['🌹','🌸','💐'][Math.floor(Math.random()*3)];
-el.style.left=Math.random()*100+'vw';
-el.style.fontSize=(22+Math.random()*22)+'px';
-el.style.animationDuration=(3+Math.random()*2.5)+'s';
-el.style.animationDelay=(Math.random()*.8)+'s';
-document.body.appendChild(el);
-setTimeout(()=>el.remove(),6500);
-}
-}
-
-function answerSpecial(yes){
-const el=document.getElementById('extraAnswer');
-el.textContent=yes
-?'Yay! Tumhari smile hamesha aise hi chamakti rahe. Sending you lots of love! ❤️✨'
-:'That is a promise worth keeping! Hamesha khush rehna, Shikha. 🌷💗';
-el.classList.add('show');
-}
 
 /* FLOATING HEARTS */
 .magic-float{
@@ -391,6 +350,48 @@ frame.allowFullscreen=true;
 b.insertAdjacentElement('afterend',frame);
 youtubePlayer=frame;
 b.textContent='⏹ Stop song';
+}
+
+/* NEW INDEPENDENT SURPRISE INTERACTIONS */
+function revealExtra(id){
+const el=document.getElementById(id);
+if(el)el.classList.toggle('show');
+}
+
+function launchExtraHearts(){
+const symbols=['💖','💕','💗','💓','💘','❤️'];
+for(let i=0;i<32;i++){
+const el=document.createElement('div');
+el.className='extra-heart';
+el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+el.style.left=Math.random()*100+'vw';
+el.style.fontSize=(20+Math.random()*24)+'px';
+el.style.animationDuration=(2.5+Math.random()*2)+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),5000);
+}
+}
+
+function launchRoseRain(){
+for(let i=0;i<26;i++){
+const el=document.createElement('div');
+el.className='extra-heart';
+el.textContent=['🌹','🌸','💐'][Math.floor(Math.random()*3)];
+el.style.left=Math.random()*100+'vw';
+el.style.fontSize=(22+Math.random()*22)+'px';
+el.style.animationDuration=(3+Math.random()*2.5)+'s';
+el.style.animationDelay=(Math.random()*.8)+'s';
+document.body.appendChild(el);
+setTimeout(()=>el.remove(),6500);
+}
+}
+
+function answerSpecial(yes){
+const el=document.getElementById('extraAnswer');
+el.textContent=yes
+?'Yay! Tumhari smile hamesha aise hi chamakti rahe. Sending you lots of love! ❤️✨'
+:'That is a promise worth keeping! Hamesha khush rehna, Shikha. 🌷💗';
+el.classList.add('show');
 }
 
 /* FLOATING HEARTS */
