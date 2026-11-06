@@ -600,6 +600,20 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @keyframes heartReceive{0%{transform:translateY(-50%) scale(.82);filter:drop-shadow(0 12px 18px #b1366933)}35%{transform:translateY(-50%) scale(1.2);filter:drop-shadow(0 0 38px #dc417ddd)}65%{transform:translateY(-50%) scale(1.02);filter:drop-shadow(0 0 28px #dc417dcc)}100%{transform:translateY(-50%) scale(1.12);filter:drop-shadow(0 0 36px #dc417ddd)}}
 @keyframes heartSpark{0%{opacity:0;transform:scale(.3) rotate(0)}35%{opacity:1;transform:scale(1.5) rotate(55deg)}100%{opacity:0;transform:scale(2.1) rotate(90deg)}}
 @media(prefers-reduced-motion:reduce){.arrow-intro.play,.arrow-intro.play *{animation-duration:.01ms!important;animation-delay:0ms!important}}
+
+/* Minimal vertical arrow interaction: heart above, arrow at mobile bottom */
+.arrow-stage{width:min(92vw,420px);height:min(62vh,390px);min-height:285px;margin:16px auto 10px;touch-action:none;overflow:visible}
+.stage-bow{display:none!important}
+.stage-arrow{left:50%;top:auto;bottom:9%;width:5px;height:clamp(76px,18vh,105px);transform:translateX(-50%);border-radius:8px;background:linear-gradient(180deg,#f2c7d8,#8e315f 58%,#dba3ba);box-shadow:0 0 14px #d98bad55;cursor:grab;touch-action:none}
+.stage-arrow span{right:auto;left:50%;top:-30px;transform:translateX(-50%) rotate(-90deg);font-family:Georgia,serif;font-size:48px;line-height:1;color:#9b426c;filter:drop-shadow(0 4px 5px #9b426044)}
+.stage-arrow.pulling{filter:drop-shadow(0 0 10px #d84c91)}
+.stage-arrow.shooting{animation:shootArrow .62s cubic-bezier(.15,.7,.2,1) forwards;pointer-events:none}
+.arrow-heart{left:50%;right:auto;top:2%;transform:translate(-50%,0) scale(.82);font-size:clamp(86px,22vw,126px);z-index:2}
+.arrow-heart.hit{animation:heartReceiveVertical 1.15s cubic-bezier(.2,.8,.2,1) both}
+.arrow-spark{left:50%;right:auto;top:10%;transform:translateX(55px)}
+@keyframes shootArrow{0%{bottom:var(--shoot-from);opacity:1}75%{opacity:1}100%{bottom:68%;opacity:0}}
+@keyframes heartReceiveVertical{0%{transform:translate(-50%,0) scale(.82);filter:drop-shadow(0 12px 18px #b1366933)}35%{transform:translate(-50%,0) scale(1.22);filter:drop-shadow(0 0 30px #ff4f9e)}100%{transform:translate(-50%,0) scale(1);filter:drop-shadow(0 0 22px #ff4f9e)}}
+@media(max-width:480px){.arrow-stage{height:58vh;min-height:280px;max-height:360px}.arrow-intro-title{margin-top:2px}}
 </style>
 </head>
 
@@ -619,7 +633,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 
 <div class="arrow-intro" id="arrowIntro" aria-hidden="true">
 <div class="arrow-intro-kicker">A LITTLE MAGIC FOR YOU</div>
-<div class="arrow-stage"><div class="stage-bow">🏹</div><div class="stage-arrow" id="dragArrow" role="button" tabindex="0" aria-label="Pull the arrow back and release it"><span>➶</span></div><div class="arrow-heart" id="targetHeart">❤️</div><div class="arrow-spark">✦</div></div>
+<div class="arrow-stage"><div class="stage-arrow" id="dragArrow" role="button" tabindex="0" aria-label="Pull the arrow down and release it"><span>➶</span></div><div class="arrow-heart" id="targetHeart">❤️</div><div class="arrow-spark">✦</div></div>
 <div class="arrow-intro-title">Straight to the heart</div>
 <div class="arrow-intro-subtitle" id="arrowHint">Teer ko peeche kheecho… phir chhod do 💗</div>
 </div>
@@ -823,21 +837,21 @@ document.getElementById('pin').value='';
 }
 }
 
-let arrowPullStartX=0,arrowCurrentPull=0,arrowIsDragging=false,arrowFinished=false;
+let arrowPullStartY=0,arrowCurrentPull=0,arrowIsDragging=false,arrowFinished=false;
 const dragArrow=document.getElementById('dragArrow');
 const arrowStage=document.querySelector('.arrow-stage');
 const arrowHeart=document.getElementById('targetHeart');
 const arrowHint=document.getElementById('arrowHint');
 function resetPulledArrow(){
 dragArrow.classList.remove('pulling');
-dragArrow.style.left='36%';
+dragArrow.style.bottom='9%';
 dragArrow.style.removeProperty('--shoot-from');
 arrowCurrentPull=0;
 }
 dragArrow.addEventListener('pointerdown',e=>{
 if(arrowFinished||dragArrow.classList.contains('shooting'))return;
 arrowIsDragging=true;
-arrowPullStartX=e.clientX;
+arrowPullStartY=e.clientY;
 arrowCurrentPull=0;
 dragArrow.setPointerCapture(e.pointerId);
 dragArrow.classList.add('pulling');
@@ -845,22 +859,22 @@ e.preventDefault();
 });
 dragArrow.addEventListener('pointermove',e=>{
 if(!arrowIsDragging)return;
-arrowCurrentPull=Math.max(0,Math.min(105,arrowPullStartX-e.clientX));
-const stageWidth=arrowStage.getBoundingClientRect().width;
-const left=36-(arrowCurrentPull/stageWidth*100);
-dragArrow.style.left=left+'%';
+arrowCurrentPull=Math.max(0,Math.min(125,e.clientY-arrowPullStartY));
+const stageHeight=arrowStage.getBoundingClientRect().height;
+const bottom=9-(arrowCurrentPull/stageHeight*100);
+dragArrow.style.bottom=bottom+'%';
 });
 function releaseArrow(){
 if(!arrowIsDragging)return;
 arrowIsDragging=false;
 dragArrow.classList.remove('pulling');
-if(arrowCurrentPull<35){
+if(arrowCurrentPull<30){
 resetPulledArrow();
 return;
 }
 arrowFinished=true;
-const currentLeft=dragArrow.style.left||'36%';
-dragArrow.style.setProperty('--shoot-from',currentLeft);
+const currentBottom=dragArrow.style.bottom||'9%';
+dragArrow.style.setProperty('--shoot-from',currentBottom);
 dragArrow.classList.add('shooting');
 arrowHint.textContent='💘 Pyaar seedha dil tak…';
 setTimeout(()=>{
@@ -882,7 +896,7 @@ if(e.key==='Enter'||e.key===' '){
 e.preventDefault();
 if(!arrowFinished){
 arrowCurrentPull=75;
-dragArrow.style.left='27%';
+dragArrow.style.bottom='-12%';
 releaseArrowFromKeyboard();
 }
 }
