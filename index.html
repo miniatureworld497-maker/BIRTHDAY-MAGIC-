@@ -944,7 +944,7 @@ Tumhari taraf se ek special insaan ❤️
 <div style="font-size:36px">💝✨🌹</div>
 <h2>A Little Journey for Shikha</h2>
 <p class="memory-intro">Har page par ek naya surprise. Aaram se enjoy karna! 💗</p>
-<div class="extra-progress" id="extraProgress">PAGE 1 OF 7 · A LITTLE LOVE NOTE</div>
+<div class="extra-progress" id="extraProgress">PAGE 1 OF 8 · A LITTLE LOVE NOTE</div>
 
 <div class="extra-page active" id="extraPage1">
 <div style="font-size:48px">💌</div><h3>Page 1 · Secret Love Letter</h3>
@@ -970,7 +970,24 @@ Tumhari taraf se ek special insaan ❤️
 </div>
 
 <div class="extra-page" id="extraPage4">
-<div style="font-size:48px">💐</div><h3>Page 4 · A Little Flower Boutique</h3>
+<div class="travel-passport">
+  <div class="passport-stamp">✈️ <span>DREAM PASSPORT</span></div>
+  <div class="travel-sky">☁️　✦　☁️　✧　☁️</div>
+  <h3>Page 4 · Shikha's Travel Dreams 🌍</h3>
+  <p>Har jagah ki apni kahaani hoti hai… tum apni next dream destination choose karo! 💗</p>
+  <div class="travel-destinations">
+    <button class="travel-destination" onclick="chooseTravel('🇨🇭','Switzerland','Snowy mountains, pretty little villages aur dreamy views — tumhari har photo postcard jaisi lage!')"><span>🇨🇭</span><b>Switzerland</b><small>Mountains & magic</small></button>
+    <button class="travel-destination" onclick="chooseTravel('🇯🇵','Japan','Cherry blossoms, glowing streets aur cute little cafés — har mod par ek nayi memory!')"><span>🇯🇵</span><b>Japan</b><small>Blossoms & wonder</small></button>
+    <button class="travel-destination" onclick="chooseTravel('🇮🇩','Bali','Blue water, green views aur sunset skies — bas sukoon, sunshine aur khushiyan!')"><span>🇮🇩</span><b>Bali</b><small>Beaches & sunsets</small></button>
+    <button class="travel-destination" onclick="chooseTravel('🇫🇷','Paris','Pretty streets, twinkling lights aur warm cafés — ek bilkul fairytale jaisa trip!')"><span>🇫🇷</span><b>Paris</b><small>Lights & romance</small></button>
+  </div>
+  <div class="travel-ticket" id="travelTicket" aria-live="polite"><span id="travelFlag">🎫</span><b id="travelPlace">Your next stamp is waiting</b><p id="travelMessage">Choose a destination to stamp your dream passport. ✨</p></div>
+</div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(3)">← Back</button><button class="btn" onclick="goExtraPage(5)">Next Surprise →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage4">
+<div style="font-size:48px">💐</div><h3>Page 5 · A Little Flower Boutique</h3>
 <p>Shikha, apna favourite virtual bouquet choose karo. Har bouquet ke saath ek chhota sa message hai. 🌷</p>
 <div class="bouquet-choices">
 <button class="bouquet-choice" onclick="chooseBouquet('🌷🌷🌷','Tumhari tarah soft, graceful aur khoobsurat. Hamesha aise hi khilti rehna, Shikha! 💗')"><span>🌷</span><b>Pink Tulips</b><small>For your gentle smile</small></button>
@@ -978,18 +995,18 @@ Tumhari taraf se ek special insaan ❤️
 <button class="bouquet-choice" onclick="chooseBouquet('🌻🌻🌻','Tumhari hasi bilkul sunshine jaisi hai. Jahan raho, wahan khushiyan failati raho! ☀️')"><span>🌻</span><b>Sunflowers</b><small>For your sunshine energy</small></button>
 </div>
 <div class="bouquet-result" id="bouquetResult" aria-live="polite"><div class="bouquet-flowers" id="bouquetFlowers">💐</div><p id="bouquetMessage">Choose a bouquet to reveal your little note. 💌</p></div>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(3)">← Back</button><button class="btn" onclick="goExtraPage(5)">Next Surprise →</button></div>
-</div>
-
-<div class="extra-page" id="extraPage5">
-<div style="font-size:48px">🌹</div><h3>Page 5 · Rose Rain</h3>
-<p>Ek dreamy gulabon ki baarish tumhare liye.</p>
-<button class="btn" onclick="launchRoseRain()">Make It Rain Roses 🌹</button>
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button><button class="btn" onclick="goExtraPage(6)">Next Surprise →</button></div>
 </div>
 
+<div class="extra-page" id="extraPage5">
+<div style="font-size:48px">🌹</div><h3>Page 6 · Rose Rain</h3>
+<p>Ek dreamy gulabon ki baarish tumhare liye.</p>
+<button class="btn" onclick="launchRoseRain()">Make It Rain Roses 🌹</button>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button><button class="btn" onclick="goExtraPage(7)">Next Surprise →</button></div>
+</div>
+
 <div class="extra-page" id="extraPage6">
-<div style="font-size:48px">💕</div><h3>Page 6 · Dil Se Ek Sawaal</h3>
+<div style="font-size:48px">💕</div><h3>Page 7 · Dil Se Ek Sawaal</h3>
 <p>Shikha, ek baat poochun? ❤️<br><strong>Kya tum meri zindagi ka ek hamesha wala, sabse khoobsurat hissa banogi?</strong></p>
 <button class="btn" onclick="answerSpecial(true)">YES, HAMESHA! 💖</button>
 <button class="btn alt" type="button" disabled aria-disabled="true" title="Is button par click nahi hoga 😜">NO 🙈</button>
@@ -1001,14 +1018,14 @@ Tumhari taraf se ek special insaan ❤️
   <div class="kiss-stamp" aria-label="Permanent kiss mark">💋<span>SEALED WITH LOVE</span></div>
   <p class="memory-intro">Ye pyaara sa kiss mark yahin rahega. ❤️</p>
 </div>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button><button class="btn" onclick="goExtraPage(7)">Kiss Shower 💋 →</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button><button class="btn" onclick="goExtraPage(8)">Kiss Shower 💋 →</button></div>
 </div>
 
 <div class="extra-page" id="extraPage7">
-<div style="font-size:48px">💋💗</div><h3>Page 7 · A Thousand Kisses</h3>
+<div style="font-size:48px">💋💗</div><h3>Page 8 · A Thousand Kisses</h3>
 <p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
 <button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(7)">← Back</button></div>
 </div>
 
 
@@ -1399,10 +1416,27 @@ card.classList.toggle('is-open',opening);
 card.setAttribute('aria-expanded',opening?'true':'false');
 }
 
+/* SHIKHA'S DREAM PASSPORT */
+.travel-passport{position:relative;overflow:hidden;padding:20px 14px;border:1px solid #e8c7d9;border-radius:24px;background:linear-gradient(145deg,#fffdf8,#fff0f7 58%,#f0edff);box-shadow:inset 0 0 0 5px #ffffffa6,0 12px 32px #9a42601c}
+.passport-stamp{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px dashed #bd7196;border-radius:10px;color:#985079;font:700 10px Arial;letter-spacing:2px;transform:rotate(-3deg)}
+.travel-sky{margin:12px 0 2px;color:#b88aa8;font-size:23px}
+.travel-passport h3{margin:8px 0;color:#7e3d64}
+.travel-destinations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.travel-destination{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:112px;padding:12px 6px;border:1px solid #f0cfe0;border-radius:17px;background:#ffffffd9;color:#793b60;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.travel-destination:active{transform:scale(.96)}
+.travel-destination span{font-size:32px}
+.travel-destination b{font:700 14px Georgia,serif}
+.travel-destination small{font:11px Arial;color:#a36b88}
+.travel-ticket{min-height:118px;padding:14px;border:1px dashed #c58aa8;border-radius:16px;background:#fffafc;color:#804366}
+.travel-ticket span{display:block;font-size:28px}
+.travel-ticket b{display:block;margin:5px 0;font:700 17px Georgia,serif}
+.travel-ticket p{margin:4px 0;font:13px/1.6 Arial}
+@media(max-width:360px){.travel-destinations{gap:7px}.travel-destination{min-height:104px}}
+
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
 page=Number(page);
-if(!Number.isInteger(page)||page<1||page>7)return;
+if(!Number.isInteger(page)||page<1||page>8)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
 for(let i=1;i<=7;i++){
@@ -1410,11 +1444,11 @@ const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
 const progress=document.getElementById('extraProgress');
 if(progress)progress.textContent='PAGE '+page+' OF 7 · '+labels[page-1];
 const finished=document.getElementById('extraFinished');
-if(finished)finished.classList.toggle('show',page===7);
+if(finished)finished.classList.toggle('show',page===8);
 if(typeof hideKissWall==='function')hideKissWall();
 const journey=document.getElementById('extraJourney');
 if(journey)journey.scrollIntoView({behavior:'smooth',block:'start'});
@@ -1481,6 +1515,14 @@ el.style.animationDelay=(Math.random()*.8)+'s';
 document.body.appendChild(el);
 setTimeout(()=>el.remove(),6500);
 }
+}
+function chooseTravel(flag,place,message){
+document.getElementById('travelFlag').textContent=flag;
+document.getElementById('travelPlace').textContent=place+' · PASSPORT STAMP';
+document.getElementById('travelMessage').textContent=message;
+document.getElementById('travelTicket').classList.remove('bouquet-pop');
+void document.getElementById('travelTicket').offsetWidth;
+document.getElementById('travelTicket').classList.add('bouquet-pop');
 }
 function chooseBouquet(flowers,message){
 document.getElementById('bouquetFlowers').textContent=flowers;
