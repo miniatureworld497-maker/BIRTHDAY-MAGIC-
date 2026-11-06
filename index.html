@@ -794,6 +794,24 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 }
 @media(max-width:380px){.choco-cake{transform:scale(.96);transform-origin:center center}}
 
+/* SHIKHA'S DREAM PASSPORT */
+.travel-passport{position:relative;overflow:hidden;padding:20px 14px;border:1px solid #e8c7d9;border-radius:24px;background:linear-gradient(145deg,#fffdf8,#fff0f7 58%,#f0edff);box-shadow:inset 0 0 0 5px #ffffffa6,0 12px 32px #9a42601c}
+.passport-stamp{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px dashed #bd7196;border-radius:10px;color:#985079;font:700 10px Arial;letter-spacing:2px;transform:rotate(-3deg)}
+.travel-sky{margin:12px 0 2px;color:#b88aa8;font-size:23px}
+.travel-passport h3{margin:8px 0;color:#7e3d64}
+.travel-destinations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.travel-destination{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:112px;padding:12px 6px;border:1px solid #f0cfe0;border-radius:17px;background:#ffffffd9;color:#793b60;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.travel-destination:active{transform:scale(.96)}
+.travel-destination span{font-size:32px}
+.travel-destination b{font:700 14px Georgia,serif}
+.travel-destination small{font:11px Arial;color:#a36b88}
+.travel-ticket{min-height:118px;padding:14px;border:1px dashed #c58aa8;border-radius:16px;background:#fffafc;color:#804366}
+.travel-ticket span{display:block;font-size:28px}
+.travel-ticket b{display:block;margin:5px 0;font:700 17px Georgia,serif}
+.travel-ticket p{margin:4px 0;font:13px/1.6 Arial}
+@media(max-width:360px){.travel-destinations{gap:7px}.travel-destination{min-height:104px}}
+
+
 </style>
 </head>
 
@@ -986,7 +1004,7 @@ Tumhari taraf se ek special insaan ❤️
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(3)">← Back</button><button class="btn" onclick="goExtraPage(5)">Next Surprise →</button></div>
 </div>
 
-<div class="extra-page" id="extraPage4">
+<div class="extra-page" id="extraPage5">
 <div style="font-size:48px">💐</div><h3>Page 5 · A Little Flower Boutique</h3>
 <p>Shikha, apna favourite virtual bouquet choose karo. Har bouquet ke saath ek chhota sa message hai. 🌷</p>
 <div class="bouquet-choices">
@@ -998,14 +1016,14 @@ Tumhari taraf se ek special insaan ❤️
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(4)">← Back</button><button class="btn" onclick="goExtraPage(6)">Next Surprise →</button></div>
 </div>
 
-<div class="extra-page" id="extraPage5">
+<div class="extra-page" id="extraPage6">
 <div style="font-size:48px">🌹</div><h3>Page 6 · Rose Rain</h3>
 <p>Ek dreamy gulabon ki baarish tumhare liye.</p>
 <button class="btn" onclick="launchRoseRain()">Make It Rain Roses 🌹</button>
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(5)">← Back</button><button class="btn" onclick="goExtraPage(7)">Next Surprise →</button></div>
 </div>
 
-<div class="extra-page" id="extraPage6">
+<div class="extra-page" id="extraPage7">
 <div style="font-size:48px">💕</div><h3>Page 7 · Dil Se Ek Sawaal</h3>
 <p>Shikha, ek baat poochun? ❤️<br><strong>Kya tum meri zindagi ka ek hamesha wala, sabse khoobsurat hissa banogi?</strong></p>
 <button class="btn" onclick="answerSpecial(true)">YES, HAMESHA! 💖</button>
@@ -1021,7 +1039,7 @@ Tumhari taraf se ek special insaan ❤️
 <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button><button class="btn" onclick="goExtraPage(8)">Kiss Shower 💋 →</button></div>
 </div>
 
-<div class="extra-page" id="extraPage7">
+<div class="extra-page" id="extraPage8">
 <div style="font-size:48px">💋💗</div><h3>Page 8 · A Thousand Kisses</h3>
 <p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
 <button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
@@ -1415,23 +1433,6 @@ const opening=!card.classList.contains('is-open');
 card.classList.toggle('is-open',opening);
 card.setAttribute('aria-expanded',opening?'true':'false');
 }
-
-/* SHIKHA'S DREAM PASSPORT */
-.travel-passport{position:relative;overflow:hidden;padding:20px 14px;border:1px solid #e8c7d9;border-radius:24px;background:linear-gradient(145deg,#fffdf8,#fff0f7 58%,#f0edff);box-shadow:inset 0 0 0 5px #ffffffa6,0 12px 32px #9a42601c}
-.passport-stamp{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px dashed #bd7196;border-radius:10px;color:#985079;font:700 10px Arial;letter-spacing:2px;transform:rotate(-3deg)}
-.travel-sky{margin:12px 0 2px;color:#b88aa8;font-size:23px}
-.travel-passport h3{margin:8px 0;color:#7e3d64}
-.travel-destinations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
-.travel-destination{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:112px;padding:12px 6px;border:1px solid #f0cfe0;border-radius:17px;background:#ffffffd9;color:#793b60;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.travel-destination:active{transform:scale(.96)}
-.travel-destination span{font-size:32px}
-.travel-destination b{font:700 14px Georgia,serif}
-.travel-destination small{font:11px Arial;color:#a36b88}
-.travel-ticket{min-height:118px;padding:14px;border:1px dashed #c58aa8;border-radius:16px;background:#fffafc;color:#804366}
-.travel-ticket span{display:block;font-size:28px}
-.travel-ticket b{display:block;margin:5px 0;font:700 17px Georgia,serif}
-.travel-ticket p{margin:4px 0;font:13px/1.6 Arial}
-@media(max-width:360px){.travel-destinations{gap:7px}.travel-destination{min-height:104px}}
 
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
