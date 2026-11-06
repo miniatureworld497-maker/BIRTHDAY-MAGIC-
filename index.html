@@ -812,6 +812,18 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @media(max-width:360px){.travel-destinations{gap:7px}.travel-destination{min-height:104px}}
 
 
+
+/* MAKE A WISH */
+.wish-card{max-width:560px;margin:18px auto;padding:24px 18px;border:1px solid #f3c0d8;border-radius:26px;background:linear-gradient(145deg,#fffafd,#fff0f7);box-shadow:0 14px 38px #a842701c}
+.wish-input{width:100%;max-width:420px;padding:15px 17px;border:1px solid #e8a9c7;border-radius:16px;background:#fff;font:15px Arial;color:#713451;outline:none;text-align:center}
+.wish-input:focus{border-color:#d85d98;box-shadow:0 0 0 4px #f9d6e7}
+.wish-sky{height:155px;position:relative;overflow:hidden;margin:16px auto 0;border-radius:20px;background:radial-gradient(ellipse at 50% 110%,#f8c8df,#8f5b91 65%,#30254f);display:none}
+.wish-sky.show{display:block}
+.wish-lantern{position:absolute;left:50%;bottom:-55px;font-size:48px;filter:drop-shadow(0 0 14px #ffe7a1);transform:translateX(-50%);animation:wishFloat 3.6s ease-out forwards}
+.wish-glow{position:absolute;left:50%;bottom:20px;width:65px;height:65px;border-radius:50%;background:#ffd58b66;filter:blur(18px);transform:translateX(-50%)}
+@keyframes wishFloat{0%{bottom:-55px;opacity:0;transform:translateX(-50%) scale(.7)}15%{opacity:1}100%{bottom:175px;opacity:0;transform:translateX(-50%) scale(1.15)}}
+.wish-result{display:none;margin:14px auto 0;padding:13px;border-radius:15px;background:#fff;color:#9b4771;font:14px/1.6 Arial;overflow-wrap:anywhere}
+.wish-result.show{display:block}
 </style>
 </head>
 
@@ -1036,14 +1048,28 @@ Tumhari taraf se ek special insaan ❤️
   <div class="kiss-stamp" aria-label="Permanent kiss mark">💋<span>SEALED WITH LOVE</span></div>
   <p class="memory-intro">Ye pyaara sa kiss mark yahin rahega. ❤️</p>
 </div>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button><button class="btn" onclick="goExtraPage(8)">Kiss Shower 💋 →</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(6)">← Back</button><button class="btn" onclick="goExtraPage(8)">Make a Wish ✨ →</button></div>
 </div>
 
 <div class="extra-page" id="extraPage8">
-<div style="font-size:48px">💋💗</div><h3>Page 8 · A Thousand Kisses</h3>
+<div style="font-size:48px">🏮✨</div><h3>Page 8 · Make a Wish</h3>
+<p>Shikha, apni dil ki ek pyaari si wish likho... phir use ek roshni bhari lantern ke saath aasman mein bhej do. 💗</p>
+<div class="wish-card">
+  <div style="font-size:34px">🌙⭐🌷</div>
+  <p style="font:14px/1.7 Arial;color:#98627c">May every little dream find its way to you.</p>
+  <input class="wish-input" id="wishInput" type="text" maxlength="120" placeholder="Write your little wish here..." aria-label="Write your wish">
+  <br><button class="btn" onclick="releaseWish()">Release My Wish 🏮</button>
+  <div class="wish-sky" id="wishSky"><div class="wish-glow"></div><div class="wish-lantern">🏮</div></div>
+  <div class="wish-result" id="wishResult" aria-live="polite"></div>
+</div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(7)">← Back</button><button class="btn" onclick="goExtraPage(9)">One More Surprise 💋 →</button></div>
+</div>
+
+<div class="extra-page" id="extraPage9">
+<div style="font-size:48px">💋💗</div><h3>Page 9 · A Thousand Kisses</h3>
 <p>Tap below and let the whole screen fill with kisses for you, Shikha! 😘</p>
 <button class="btn" onclick="showKissWall()">Fill My Screen With Kisses 💋</button>
-<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(7)">← Back</button></div>
+<div class="extra-nav"><button class="btn alt" onclick="goExtraPage(8)">← Back</button></div>
 </div>
 
 
@@ -1437,22 +1463,30 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
 page=Number(page);
-if(!Number.isInteger(page)||page<1||page>8)return;
+if(!Number.isInteger(page)||page<1||page>9)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
-for(let i=1;i<=7;i++){
+for(let i=1;i<=8;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
 const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','A THOUSAND KISSES'];
 const progress=document.getElementById('extraProgress');
-if(progress)progress.textContent='PAGE '+page+' OF 7 · '+labels[page-1];
+if(progress)progress.textContent='PAGE '+page+' OF 9 · '+labels[page-1];
 const finished=document.getElementById('extraFinished');
-if(finished)finished.classList.toggle('show',page===8);
+if(finished)finished.classList.toggle('show',page===9);
 if(typeof hideKissWall==='function')hideKissWall();
 const journey=document.getElementById('extraJourney');
 if(journey)journey.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function releaseWish(){
+const input=document.getElementById('wishInput');
+const sky=document.getElementById('wishSky');
+const result=document.getElementById('wishResult');
+const wish=(input&&input.value.trim())||'May all my dreams come true';
+if(result){result.textContent='Your wish is on its way, Shikha. May life surprise you with beautiful things. 💗';result.classList.add('show');}
+if(sky){sky.classList.remove('show');void sky.offsetWidth;sky.classList.add('show');}
 }
 function showKissWall(){
 const wall=document.getElementById('kissWall');
