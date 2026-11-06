@@ -640,6 +640,23 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .bouquet-flowers{font-size:34px;letter-spacing:4px;min-height:40px}
 .bouquet-result p{font:italic 14px/1.7 Georgia,serif;color:#92506f;margin:8px 0 0}
 @media(max-width:360px){.bouquet-choices{gap:5px}.bouquet-choice b{font-size:11px}.bouquet-choice small{font-size:9px}}
+
+
+/* BUBU & DUDU: A TINY CAKE-AND-KISS ANIMATION */
+.bubu-scene{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:8px;height:142px;margin:8px auto 18px;overflow:hidden;border-radius:20px;background:linear-gradient(180deg,#fff5fa,#fce7f2);border:1px solid #f5cadd}
+.bubu-bear{position:relative;font-size:66px;line-height:1;filter:drop-shadow(0 5px 3px #9b557522)}
+.bubu-white{animation:bubuLean 2.8s ease-in-out infinite;transform-origin:bottom center}
+.bubu-brown{animation:duduArrive 2.8s ease-in-out infinite;transform-origin:bottom center}
+.bubu-cake{position:absolute;font-size:30px;left:-5px;top:20px;animation:cakeOffer 2.8s ease-in-out infinite;z-index:2}
+.bubu-kiss{position:absolute;left:50%;top:12px;font-size:25px;opacity:0;animation:kissPop 2.8s ease-in-out infinite;z-index:3}
+.bubu-scene-caption{position:absolute;bottom:7px;left:0;right:0;font:italic 12px Georgia,serif;color:#a34e79}
+@keyframes duduArrive{0%,12%{transform:translateX(42px)}35%,75%{transform:translateX(0)}100%{transform:translateX(42px)}}
+@keyframes bubuLean{0%,38%,100%{transform:rotate(0)}52%,72%{transform:rotate(12deg) translateX(4px)}}
+@keyframes cakeOffer{0%,15%{transform:translate(24px,8px) scale(.75);opacity:0}38%,72%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(24px,8px) scale(.75);opacity:0}}
+@keyframes kissPop{0%,48%,100%{opacity:0;transform:translate(-5px,10px) scale(.4)}58%,78%{opacity:1;transform:translate(10px,-7px) scale(1.2)}}
+.magic-modal{overflow-y:auto;align-items:flex-start}
+.magic-box{margin:auto;max-height:calc(100vh - 36px);overflow-y:auto}
+@media(prefers-reduced-motion:reduce){.bubu-white,.bubu-brown,.bubu-cake,.bubu-kiss{animation:none}}
 </style>
 </head>
 
@@ -853,6 +870,12 @@ Tumhari taraf se ek special insaan ❤️
 <div class="magic-modal" id="magicModal">
 <div class="magic-box">
 <div style="font-size:55px">🎂💖✨</div>
+<div class="bubu-scene" role="img" aria-label="Dudu brings Bubu a birthday cake and gives her a kiss">
+  <span class="bubu-bear bubu-white" aria-hidden="true">🐻‍❄️</span>
+  <span class="bubu-bear bubu-brown" aria-hidden="true">🐻<span class="bubu-cake">🎂</span></span>
+  <span class="bubu-kiss" aria-hidden="true">💋💕</span>
+  <span class="bubu-scene-caption">Dudu brought a little cake for Bubu… then stole a kiss! 💗</span>
+</div>
 <h2>Hey Birthday Girl!</h2>
 <p>You are a beautiful reason for someone's smile. May your life always be filled with love, laughter, happiness and endless magic. 💗</p>
 <div style="font-size:35px">🌸🎈🎁</div>
