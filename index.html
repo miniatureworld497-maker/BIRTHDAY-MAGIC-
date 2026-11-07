@@ -1612,31 +1612,42 @@ goMainSlide(2);
 typeLetterOneByOne();
 }
 
-/* COMPACT ROMANTIC SONG PLAYER */
-let youtubePlayer=null;
+/* ROMANTIC MP3 PLAYER — locally hosted in this GitHub Pages site */
+let websiteAudio=null;
 
 function toggleMusic(){
 const b=document.getElementById('musicBtn');
+if(!b)return;
 
-if(youtubePlayer){
-youtubePlayer.remove();
-youtubePlayer=null;
+if(websiteAudio&&!websiteAudio.paused){
+websiteAudio.pause();
 b.textContent='🎵 Play Meri Banogi Kya';
 return;
 }
 
-const frame=document.createElement('iframe');
-frame.src='https://www.youtube-nocookie.com/embed/hlbTxlBuA-I?autoplay=1&playsinline=1&controls=1&rel=0';
-frame.title='Meri Banogi Kya - Rito Riba';
-frame.width='320';
-frame.height='180';
-frame.style.cssText='display:block;width:min(100%,320px);height:180px;margin:12px auto 0;border:0;border-radius:16px;box-shadow:0 8px 24px #9a426022;';
-frame.allow='autoplay; encrypted-media; picture-in-picture';
-frame.allowFullscreen=true;
-frame.loading='lazy';
-b.insertAdjacentElement('afterend',frame);
-youtubePlayer=frame;
-b.textContent='⏹ Stop song';
+if(!websiteAudio){
+websiteAudio=document.createElement('audio');
+websiteAudio.src='Meri%20Banogi%20Kya%20Rito%20Riba%20128%20Kbps.mp3';
+websiteAudio.preload='metadata';
+websiteAudio.controls=true;
+websiteAudio.setAttribute('aria-label','Meri Banogi Kya by Rito Riba');
+websiteAudio.style.cssText='display:block;width:min(100%,360px);height:42px;margin:12px auto 0;border-radius:18px;';
+websiteAudio.addEventListener('ended',()=>{
+b.textContent='🎵 Play Meri Banogi Kya';
+});
+websiteAudio.addEventListener('error',()=>{
+b.textContent='⚠️ Audio unavailable — tap to retry';
+});
+b.insertAdjacentElement('afterend',websiteAudio);
+}
+
+const playAttempt=websiteAudio.play();
+if(playAttempt&&typeof playAttempt.then==='function'){
+playAttempt.then(()=>{b.textContent='⏸ Pause song';})
+.catch(()=>{b.textContent='▶️ Tap to play song';});
+}else{
+b.textContent='⏸ Pause song';
+}
 }
 
 /* MAIN SITE TAP-TO-ADVANCE SLIDESHOW */
