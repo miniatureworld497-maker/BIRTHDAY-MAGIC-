@@ -1580,6 +1580,17 @@ resetPulledArrow();
 return;
 }
 arrowFinished=true;
+// Start the MP3 directly inside the arrow-release gesture so mobile browsers
+// allow autoplay; keep it muted until the arrow reaches the heart.
+if(!websiteAudio||websiteAudio.paused){
+toggleMusic();
+if(websiteAudio){
+websiteAudio.volume=0;
+setTimeout(()=>{
+if(websiteAudio&&!websiteAudio.paused)websiteAudio.volume=1;
+},500);
+}
+}
 const currentBottom=dragArrow.style.bottom||'9%';
 dragArrow.style.setProperty('--shoot-from',currentBottom);
 dragArrow.classList.add('shooting');
@@ -1588,8 +1599,7 @@ setTimeout(()=>{
 arrowHeart.classList.add('hit');
 document.querySelector('.arrow-spark').classList.add('burst');
 arrowHint.textContent='Dil mein lag gaya! ❤️';
-// The song begins at the exact moment the arrow reaches the heart.
-if(!youtubePlayer)toggleMusic();
+// The song becomes audible as the arrow reaches the heart.
 },500);
 setTimeout(()=>{
 const intro=document.getElementById('arrowIntro');
