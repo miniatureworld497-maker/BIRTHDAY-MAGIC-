@@ -976,6 +976,21 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @keyframes balloonBurst{0%{transform:scale(1);opacity:1}45%{transform:scale(1.25);opacity:.85}100%{transform:scale(.08);opacity:0}}
 @keyframes balloonSpark{0%{transform:scale(.4);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(1.4);opacity:0}}
 @media(prefers-reduced-motion:reduce){.love-balloon,.balloon-shape{transition:none;animation:none}.love-balloon.popped .balloon-shape{opacity:0}}
+
+
+/* REALISTIC PAGE-TURN TRANSITION FOR BOTH SLIDESHOWS */
+.main-slide,.extra-page{transform-style:preserve-3d;backface-visibility:hidden}
+.main-slide.page-turn-out-next,.main-slide.page-turn-out-prev,.extra-page.page-turn-out-next,.extra-page.page-turn-out-prev{display:block;position:relative;z-index:4;transform-origin:left center;pointer-events:none;backface-visibility:hidden}
+.main-slide.page-turn-out-next,.extra-page.page-turn-out-next{animation:pageTurnOutNext .58s cubic-bezier(.55,.05,.8,.35) forwards}
+.main-slide.page-turn-out-prev,.extra-page.page-turn-out-prev{transform-origin:right center;animation:pageTurnOutPrev .58s cubic-bezier(.55,.05,.8,.35) forwards}
+.main-slide.page-turn-in-next,.extra-page.page-turn-in-next{animation:pageTurnInNext .62s cubic-bezier(.2,.7,.25,1) both;transform-origin:right center;backface-visibility:hidden}
+.main-slide.page-turn-in-prev,.extra-page.page-turn-in-prev{animation:pageTurnInPrev .62s cubic-bezier(.2,.7,.25,1) both;transform-origin:left center;backface-visibility:hidden}
+@keyframes pageTurnOutNext{0%{transform:perspective(1400px) rotateY(0);filter:brightness(1)}100%{transform:perspective(1400px) rotateY(-78deg);filter:brightness(.72)}}
+@keyframes pageTurnOutPrev{0%{transform:perspective(1400px) rotateY(0);filter:brightness(1)}100%{transform:perspective(1400px) rotateY(78deg);filter:brightness(.72)}}
+@keyframes pageTurnInNext{0%{transform:perspective(1400px) rotateY(72deg);filter:brightness(.78)}100%{transform:perspective(1400px) rotateY(0);filter:brightness(1)}}
+@keyframes pageTurnInPrev{0%{transform:perspective(1400px) rotateY(-72deg);filter:brightness(.78)}100%{transform:perspective(1400px) rotateY(0);filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.main-slide.page-turn-out-next,.main-slide.page-turn-out-prev,.main-slide.page-turn-in-next,.main-slide.page-turn-in-prev,.extra-page.page-turn-out-next,.extra-page.page-turn-out-prev,.extra-page.page-turn-in-next,.extra-page.page-turn-in-prev{animation-duration:.01ms}}
+
 </style>
 </head>
 
@@ -1776,7 +1791,13 @@ slide.appendChild(nav);
 }
 function goMainSlide(index){
 if(!mainSlides.length)return;
-mainSlideIndex=Math.max(0,Math.min(index,mainSlides.length-1));
+const nextIndex=Math.max(0,Math.min(index,mainSlides.length-1));
+if(nextIndex===mainSlideIndex)return;
+const previous=mainSlides[mainSlideIndex];
+const next=mainSlides[nextIndex];
+const direction=nextIndex>mainSlideIndex?'next':'prev';
+previous.classList.add('page-turn-out-'+direction);
+mainSlideIndex=nextIndex;
 mainSlides.forEach((slide,i)=>{
 slide.classList.toggle('active',i===mainSlideIndex);
 const nav=slide.querySelector('.main-slide-nav');
@@ -1786,7 +1807,12 @@ buttons[0].disabled=mainSlideIndex===0;
 buttons[1].textContent=mainSlideIndex===mainSlides.length-1?'Back to Start ↺':'Tap for Next →';
 }
 });
-mainSlides[mainSlideIndex].scrollIntoView({behavior:'smooth',block:'start'});
+next.classList.add('page-turn-in-'+direction);
+window.setTimeout(()=>{
+previous.classList.remove('page-turn-out-next','page-turn-out-prev');
+next.classList.remove('page-turn-in-next','page-turn-in-prev');
+},680);
+next.scrollIntoView({behavior:'smooth',block:'start'});
 }
 setupMainSlideshow();
 
@@ -1802,11 +1828,19 @@ page=Number(page);
 if(!Number.isInteger(page)||page<1||page>16)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
+const current=document.querySelector('.extra-page.active');
+const direction=current&&page>Number(current.id.replace('extraPage',''))?'next':'prev';
+if(current&&current!==target)current.classList.add('page-turn-out-'+direction);
 for(let i=1;i<=16;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
+target.classList.add('page-turn-in-'+direction);
+window.setTimeout(()=>{
+if(current)current.classList.remove('page-turn-out-next','page-turn-out-prev');
+target.classList.remove('page-turn-in-next','page-turn-in-prev');
+},680);
 const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT',"SHIKHA'S DREAM PASSPORT",'YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA','OUR LITTLE UNIVERSE','POP THE LOVE BALLOONS','I LOVE YOU SO MUCH'];
 const progress=document.getElementById('extraProgress');
 if(progress)progress.textContent='PAGE '+page+' OF 16 · '+labels[page-1];
