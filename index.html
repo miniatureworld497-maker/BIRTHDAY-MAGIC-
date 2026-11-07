@@ -1311,12 +1311,12 @@ Tumhari taraf se ek special insaan ❤️
 </div>
 </section>
 
-<!-- FIVE PAGE-BY-PAGE SURPRISES -->
+<!-- SIXTEEN PAGE-BY-PAGE SURPRISES -->
 <section class="extra-surprises" id="extraJourney">
 <div style="font-size:36px">💝✨🌹</div>
 <h2>A Little Journey for Shikha</h2>
 <p class="memory-intro">Har page par ek naya surprise. Aaram se enjoy karna! 💗</p>
-<div class="extra-progress" id="extraProgress">PAGE 1 OF 15 · A LITTLE LOVE NOTE</div>
+<div class="extra-progress" id="extraProgress">PAGE 1 OF 16 · A LITTLE LOVE NOTE</div>
 
 <div class="extra-page active" id="extraPage1">
 <div style="font-size:48px">💌</div><h3>Page 1 · Secret Love Letter</h3>
@@ -2425,7 +2425,7 @@ if(status)status.textContent='Pairs: '+shikhaPairMatches+' / 4 · Moves: '+shikh
   if(raf)return;
   raf=requestAnimationFrame(()=>{
    const target=e.target instanceof Element?e.target.closest(cards):null;
-   document.querySelectorAll(cards.split(',').map(s=>s+'.dream-tilting').join(',')).forEach(el=>{if(el!==target){el.classList.remove('dream-tilting');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');}});
+   document.querySelectorAll(cards.split(',').map(s=>s+'.dream-tilting').join(',')).forEach(el=>{if(el!==target){el.classList.remove('dream-tilting');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');el.style.removeProperty('transform');}});
    if(target){
     const r=target.getBoundingClientRect(),px=(lastX-r.left)/r.width,py=(lastY-r.top)/r.height;
     target.classList.add('dream-tilting');
@@ -2436,8 +2436,8 @@ if(status)status.textContent='Pairs: '+shikhaPairMatches+' / 4 · Moves: '+shikh
    raf=0;
   });
  },{passive:true});
- document.addEventListener('pointerleave',()=>{document.body.classList.remove('dream-pointer-on');document.querySelectorAll('.dream-tilting').forEach(el=>{el.classList.remove('dream-tilting');el.style.removeProperty('transform');});});
- document.addEventListener('pointerout',e=>{if(e.relatedTarget===null){document.querySelectorAll('.dream-tilting').forEach(el=>{el.classList.remove('dream-tilting');el.style.removeProperty('transform');});}});
+ document.addEventListener('pointerleave',()=>{document.body.classList.remove('dream-pointer-on');document.querySelectorAll('.dream-tilting').forEach(el=>{el.classList.remove('dream-tilting');el.style.removeProperty('transform');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');});});
+ document.addEventListener('pointerout',e=>{if(e.relatedTarget===null){document.querySelectorAll('.dream-tilting').forEach(el=>{el.classList.remove('dream-tilting');el.style.removeProperty('transform');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');});}});
 })();
 
 </script>
