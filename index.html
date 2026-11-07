@@ -2292,7 +2292,7 @@ if(status)status.textContent='Pairs: '+shikhaPairMatches+' / 4 · Moves: '+shikh
   if(raf)return;
   raf=requestAnimationFrame(()=>{
    const target=e.target instanceof Element?e.target.closest(cards):null;
-   document.querySelectorAll(cards+'.dream-tilting').forEach(el=>{if(el!==target){el.classList.remove('dream-tilting');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');}});
+   document.querySelectorAll(cards.split(',').map(s=>s+'.dream-tilting').join(',')).forEach(el=>{if(el!==target){el.classList.remove('dream-tilting');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');}});
    if(target){
     const r=target.getBoundingClientRect(),px=(lastX-r.left)/r.width,py=(lastY-r.top)/r.height;
     target.classList.add('dream-tilting');
