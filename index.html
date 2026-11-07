@@ -698,6 +698,19 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .cake-next.show{display:inline-block;animation:birthdayPageIn .45s ease both}
 .birthday-glow-page{position:fixed;inset:0;z-index:96;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:25px;text-align:center;overflow:hidden;background:radial-gradient(ellipse at center,#55214f 0,#24102f 52%,#100d25 100%);color:white}
 .birthday-glow-page.show{display:flex;animation:birthdayPageIn .8s ease both}
+
+/* AFTER-CAKE WISH MOMENT */
+.wish-interlude{position:fixed;inset:0;z-index:97;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:24px;text-align:center;overflow:auto;background:radial-gradient(ellipse at 50% 35%,#fff8fd 0,#fce5f1 48%,#e8d9fb 100%);color:#8e3d69}
+.wish-interlude.show{display:flex;animation:birthdayPageIn .65s ease both}
+.wish-orb{width:112px;height:112px;display:grid;place-items:center;border-radius:50%;font-size:54px;background:radial-gradient(circle,#fff 0 22%,#ffd7ec 55%,#e9b5e1 100%);box-shadow:0 0 25px #ef9bca,0 0 65px #d9a4ed;animation:wishFloat 2.8s ease-in-out infinite}
+.wish-interlude h1{margin:0;font:clamp(32px,8vw,48px) Georgia,serif;color:#a52e6b;text-shadow:0 3px 18px #f3c5df}
+.wish-interlude p{max-width:330px;line-height:1.7;color:#94617d}
+.wish-interlude textarea{width:min(100%,340px);min-height:100px;resize:vertical;border:1px solid #e9b5d0;border-radius:18px;padding:15px;background:#ffffffd9;color:#854263;font:16px Georgia;outline:none;box-shadow:0 8px 25px #a64e7820}
+.wish-interlude textarea:focus{border-color:#d879a7;box-shadow:0 0 0 3px #eab4d133}
+.wish-reveal{display:none;width:min(100%,340px);padding:16px;border:1px solid #efc5dc;border-radius:18px;background:#fff9fd;color:#9a4772;line-height:1.7;box-shadow:0 10px 30px #a64e7820;overflow-wrap:anywhere}
+.wish-reveal.show{display:block;animation:birthdayPageIn .5s ease both}
+@keyframes wishFloat{50%{transform:translateY(-9px) scale(1.04)}}
+
 .birthday-glow-stars{color:#ffd9f0;font-size:clamp(20px,5vw,30px);letter-spacing:5px;text-shadow:0 0 18px #ff8bc9;animation:starTwinkle 2s ease-in-out infinite alternate}
 .birthday-glow-small{font:700 11px Arial,sans-serif;letter-spacing:5px;color:#f8c5e2}
 .birthday-glow-title{display:flex;flex-direction:column;gap:3px;margin:0;font-family:Georgia,serif;font-size:clamp(42px,12vw,76px);line-height:1.03;letter-spacing:2px;color:#fff4fb;text-shadow:0 0 8px #fff,0 0 22px #ff8acb,0 0 48px #fa4db2,0 0 80px #bd60ff;animation:titleGlow 1.8s ease-in-out infinite alternate}
@@ -1004,8 +1017,18 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
     <button class="cake-action" id="blowCandleBtn" onclick="startBlowDetection()">🎙️ Mic se phook maaro</button>
     <button class="cake-action cake-fallback" id="blowFallbackBtn" onclick="blowBirthdayCandle()">Mic kaam na kare? Yahan tap karo 💨</button>
     <p class="cake-cut-message" id="cakeCutMessage" aria-live="polite">Microphone allow karke candle par phoonk maaro.</p>
-    <button class="cake-action cake-next" id="cakeNextBtn" onclick="showBirthdayGlow()">Cake cut ho gaya! Aage chalo 💗</button>
+    <button class="cake-action cake-next" id="cakeNextBtn" onclick="showWishPage()">Cake cut ho gaya! Make a wish ✨</button>
   </div>
+</div>
+<div class="wish-interlude" id="wishInterlude" aria-hidden="true">
+  <div class="wish-orb">🌟</div>
+  <div class="birthday-glow-small">A LITTLE MOMENT JUST FOR YOU</div>
+  <h1>Make a Wish, Shikha</h1>
+  <p>Ab aankhein band karo, dil se ek pyaari si wish maango… aur use yahan likh do. ✨</p>
+  <textarea id="shikhaWishInput" maxlength="240" placeholder="My little wish is… 💗" aria-label="Write your birthday wish"></textarea>
+  <button class="birthday-enter-btn" id="releaseWishBtn" onclick="releaseShikhaWish()">Send My Wish to the Universe ✨</button>
+  <div class="wish-reveal" id="wishReveal" aria-live="polite"></div>
+  <button class="birthday-enter-btn" id="wishContinueBtn" style="display:none" onclick="showBirthdayGlow()">Continue to Your Birthday Surprise 💕</button>
 </div>
 <div class="birthday-glow-page" id="birthdayGlowPage" aria-hidden="true">
   <div class="birthday-glow-stars">✦　✧　♡　✧　✦</div>
@@ -1518,9 +1541,25 @@ cake.removeEventListener('pointermove',moveCakeCut);
 cake.removeEventListener('pointerup',endCakeCut);
 cake.removeEventListener('pointercancel',endCakeCut);
 }
-function showBirthdayGlow(){
+function showWishPage(){
 document.getElementById('cakePage').classList.remove('show');
 document.getElementById('cakePage').setAttribute('aria-hidden','true');
+document.getElementById('wishInterlude').classList.add('show');
+document.getElementById('wishInterlude').setAttribute('aria-hidden','false');
+}
+function releaseShikhaWish(){
+const input=document.getElementById('shikhaWishInput');
+const wish=input.value.trim();
+const reveal=document.getElementById('wishReveal');
+reveal.textContent=wish ? 'Your wish: “'+wish+'” ✨\nMay the universe fill your days with reasons to smile. 💗' : 'Your silent wish has been sent with all the love in the world. May it come true, Shikha! 💗✨';
+reveal.classList.add('show');
+document.getElementById('releaseWishBtn').style.display='none';
+input.style.display='none';
+document.getElementById('wishContinueBtn').style.display='inline-block';
+}
+function showBirthdayGlow(){
+document.getElementById('wishInterlude').classList.remove('show');
+document.getElementById('wishInterlude').setAttribute('aria-hidden','true');
 document.getElementById('birthdayGlowPage').classList.add('show');
 document.getElementById('birthdayGlowPage').setAttribute('aria-hidden','false');
 }
