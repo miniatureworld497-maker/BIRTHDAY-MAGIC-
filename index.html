@@ -937,6 +937,32 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 .shikha-pair-result.show{display:block;animation:extraPop .45s ease both}
 @media(max-width:380px){.shikha-pair-game{padding:17px 10px}.shikha-pair-grid{gap:7px}.shikha-pair-card{min-height:60px;font-size:25px}}
 @media(prefers-reduced-motion:reduce){.shikha-pair-card,.shikha-pair-card .pair-face{transition:none;animation:none}}
+/* FOUR LITTLE LOVE BALLOONS */
+.balloon-page{max-width:650px;margin:18px auto;padding:24px 18px;border-radius:25px;background:radial-gradient(circle at 50% 0%,#fff 0,#fff1f8 48%,#f8eaff 100%);box-shadow:0 12px 35px #a75c821c;text-align:center;overflow:hidden}
+.balloon-kicker{font-size:10px;letter-spacing:3px;color:#b56b91;font-weight:800}
+.balloon-page h4{font:clamp(23px,5vw,30px) Georgia,serif;color:#9c426f;margin:10px 0}
+.balloon-page .balloon-intro{font-size:13px;line-height:1.8;color:#91647b}
+.balloon-stage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px;max-width:390px;margin:24px auto 16px}
+.love-balloon{position:relative;min-height:145px;border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#a85b82}
+.balloon-shape{position:relative;width:83px;height:103px;border-radius:52% 48% 48% 52% / 57% 56% 44% 43%;display:grid;place-items:center;color:#fff;font-size:31px;text-shadow:0 2px 5px #8a426455;box-shadow:inset -10px -9px 18px #8c3c3822,inset 8px 8px 14px #ffffff66,0 9px 17px #a75b8222;transition:transform .25s,opacity .25s}
+.balloon-shape:before{content:"";position:absolute;left:17px;top:13px;width:15px;height:34px;border-radius:50%;background:#ffffff8a;transform:rotate(22deg)}
+.balloon-shape:after{content:"";position:absolute;bottom:-7px;left:calc(50% - 6px);border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid var(--balloon-color)}
+.balloon-string{width:1px;height:25px;background:#c78eaa;margin-top:-7px}
+.balloon-label{font-size:11px;letter-spacing:1px;font-weight:800}
+.love-balloon:nth-child(1) .balloon-shape{background:linear-gradient(145deg,#ff9bc6,#ec4e91);--balloon-color:#ec4e91}
+.love-balloon:nth-child(2) .balloon-shape{background:linear-gradient(145deg,#b8a4ff,#8870df);--balloon-color:#8870df}
+.love-balloon:nth-child(3) .balloon-shape{background:linear-gradient(145deg,#ffcf8b,#f59c55);--balloon-color:#f59c55}
+.love-balloon:nth-child(4) .balloon-shape{background:linear-gradient(145deg,#8edfd4,#42b9b0);--balloon-color:#42b9b0}
+.love-balloon:not(.popped):hover .balloon-shape{transform:translateY(-5px) rotate(-4deg)}
+.love-balloon.popped .balloon-shape{animation:balloonBurst .42s ease forwards}
+.love-balloon.popped .balloon-string,.love-balloon.popped .balloon-label{opacity:0}
+.balloon-spark{position:absolute;font-size:18px;pointer-events:none;animation:balloonSpark .6s ease-out forwards}
+.balloon-note{display:none;margin:0 auto;padding:15px 17px;max-width:410px;border:1px solid #f1c8dc;border-radius:17px;background:#ffffffd9;color:#8e456a;font:italic 15px/1.75 Georgia,serif;box-shadow:0 7px 20px #bd7c9c1c}
+.balloon-note.show{display:block;animation:extraPop .4s ease both}
+.balloon-count{margin-top:14px;color:#b06d90;font-size:10px;letter-spacing:1.5px;font-weight:800}
+@keyframes balloonBurst{0%{transform:scale(1);opacity:1}45%{transform:scale(1.25);opacity:.85}100%{transform:scale(.08);opacity:0}}
+@keyframes balloonSpark{0%{transform:scale(.4);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(1.4);opacity:0}}
+@media(prefers-reduced-motion:reduce){.love-balloon,.balloon-shape{transition:none;animation:none}.love-balloon.popped .balloon-shape{opacity:0}}
 </style>
 </head>
 
@@ -1300,7 +1326,27 @@ Tumhari taraf se ek special insaan ❤️
     <div class="final-love-hearts">💗 💖 💞</div>
     <p>Bas itna sa kehna tha… tum bahut special ho. Hamesha khush rehna, Shikha. ❤️</p>
   </div>
-  <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(14)">← Back</button><button class="btn" onclick="openMagic()">One Last Surprise 🎁</button></div>
+  <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(14)">← Back</button><button class="btn" onclick="goExtraPage(16)">Pop the Balloons 🎈 →</button><button class="btn alt" onclick="openMagic()">One Last Surprise 🎁</button></div>
+</div>
+
+<div class="extra-page" id="extraPage16">
+  <div style="font-size:48px">🎈💗✨</div>
+  <h3>Page 16 · Pop the Love Balloons</h3>
+  <div class="balloon-page">
+    <div class="balloon-kicker">FOUR LITTLE THOUGHTS, JUST FOR YOU</div>
+    <h4>A tiny pop of happiness 🎈</h4>
+    <p class="balloon-intro">Har balloon ke andar ek baat chhupi hai. Shikha, ek-ek karke tap karo aur apne messages discover karo! 💗</p>
+    <div class="balloon-stage">
+      <button class="love-balloon" type="button" onclick="popLoveBalloon(0,this)" aria-label="Pop pink balloon"><span class="balloon-shape">♡</span><span class="balloon-string"></span><span class="balloon-label">POP ME</span></button>
+      <button class="love-balloon" type="button" onclick="popLoveBalloon(1,this)" aria-label="Pop purple balloon"><span class="balloon-shape">✦</span><span class="balloon-string"></span><span class="balloon-label">POP ME</span></button>
+      <button class="love-balloon" type="button" onclick="popLoveBalloon(2,this)" aria-label="Pop peach balloon"><span class="balloon-shape">♡</span><span class="balloon-string"></span><span class="balloon-label">POP ME</span></button>
+      <button class="love-balloon" type="button" onclick="popLoveBalloon(3,this)" aria-label="Pop mint balloon"><span class="balloon-shape">✧</span><span class="balloon-string"></span><span class="balloon-label">POP ME</span></button>
+    </div>
+    <div class="balloon-note" id="balloonNote" aria-live="polite">Your little message will appear here…</div>
+    <div class="balloon-count" id="balloonCount">4 BALLOONS WAITING · TAP TO POP</div>
+  </div>
+  <p style="font-size:13px;color:#98627c">Chaar balloons, chaar chhoti si baatein… aur dher saara pyaar. 💞</p>
+  <div class="extra-nav"><button class="btn alt" onclick="goExtraPage(15)">← Back</button><button class="btn" onclick="openMagic()">Finish with a Surprise 🎁</button></div>
 </div>
 
 <div class="extra-finished" id="extraFinished">🎉 Tumne saare pages dekh liye, Shikha! Tumhari smile hi sabse khoobsurat surprise hai. ❤️🌹</div>
@@ -1704,19 +1750,19 @@ card.setAttribute('aria-expanded',opening?'true':'false');
 /* PAGE-BY-PAGE SURPRISE JOURNEY */
 function goExtraPage(page){
 page=Number(page);
-if(!Number.isInteger(page)||page<1||page>15)return;
+if(!Number.isInteger(page)||page<1||page>16)return;
 const target=document.getElementById('extraPage'+page);
 if(!target)return;
-for(let i=1;i<=15;i++){
+for(let i=1;i<=16;i++){
 const el=document.getElementById('extraPage'+i);
 if(el)el.classList.remove('active');
 }
 target.classList.add('active');
-const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT','SHIKHA\'S DREAM PASSPORT','YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA','OUR LITTLE UNIVERSE','I LOVE YOU SO MUCH'];
+const labels=['A LITTLE LOVE NOTE','HEARTS FOR YOU','A MYSTERY GIFT',"SHIKHA'S DREAM PASSPORT",'YOUR LITTLE FLOWER BOUTIQUE','A SHOWER OF ROSES','ONE LAST QUESTION','MAKE A WISH','LOVE CLAW MACHINE','A JAR FULL OF LOVE','FORTUNE COOKIE OF LOVE','A THOUSAND KISSES','OUR LITTLE CINEMA','OUR LITTLE UNIVERSE','I LOVE YOU SO MUCH','POP THE LOVE BALLOONS'];
 const progress=document.getElementById('extraProgress');
-if(progress)progress.textContent='PAGE '+page+' OF 15 · '+labels[page-1];
+if(progress)progress.textContent='PAGE '+page+' OF 16 · '+labels[page-1];
 const finished=document.getElementById('extraFinished');
-if(finished)finished.classList.toggle('show',page===15);
+if(finished)finished.classList.toggle('show',page===16);
 if(page!==13&&typeof stopCinemaPlay==='function')stopCinemaPlay();
 if(typeof hideKissWall==='function')hideKissWall();
 const journey=document.getElementById('extraJourney');
@@ -1833,6 +1879,23 @@ loveJarIndex=(loveJarIndex+1)%loveJarNotes.length;
 count.textContent=(loveJarIndex===0?'ALL 20 NOTES OPENED · START AGAIN':'NOTE '+loveJarIndex+' OF 20 · '+(20-loveJarIndex)+' MORE WAITING');
 }
 
+
+/* FOUR LITTLE LOVE BALLOONS */
+const loveBalloonMessages=[
+"Shikha, tumhe har waqt sab kuch achieve karne ki zaroorat nahi. Kabhi bas ruk kar saans lena bhi ek beautiful choice hai. 🤍",
+"I hope tum apni life mein hamesha woh chhoti cheezein karti raho jo sirf tumhe khushi deti hain—without needing any reason. 🌷",
+"Kuch log bina kuch kahe bhi jagah ko special bana dete hain. Tum unhi logon mein se ek ho. 💗",
+"Jab duniya thodi noisy lage, meri wish hai tumhe hamesha ek aisi jagah mile jahan tumhara dil sukoon se muskura sake. 🌙"
+];
+const poppedLoveBalloons=new Set();
+function popLoveBalloon(index,button){
+if(!button||poppedLoveBalloons.has(index))return;
+poppedLoveBalloons.add(index);button.classList.add('popped');button.disabled=true;
+const note=document.getElementById('balloonNote'),count=document.getElementById('balloonCount');
+if(note){note.textContent=loveBalloonMessages[index];note.classList.remove('show');void note.offsetWidth;note.classList.add('show');}
+if(count)count.textContent=poppedLoveBalloons.size===4?'ALL 4 BALLOONS POPPED · KEEP THIS LITTLE HAPPINESS 💗':(4-poppedLoveBalloons.size)+' BALLOONS LEFT · '+poppedLoveBalloons.size+' LITTLE NOTES FOUND';
+for(let i=0;i<6;i++){const spark=document.createElement('span');spark.className='balloon-spark';spark.textContent=['✨','💗','✦','💕'][i%4];spark.style.left='50%';spark.style.top='35%';spark.style.setProperty('--sx',(Math.random()*100-50)+'px');spark.style.setProperty('--sy',(Math.random()*-90-15)+'px');button.appendChild(spark);window.setTimeout(()=>spark.remove(),650);}
+}
 
 /* OUR LITTLE UNIVERSE — seven tap-to-reveal star messages */
 const universeMessages=[
