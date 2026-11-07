@@ -991,10 +991,43 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @keyframes pageTurnInPrev{0%{transform:perspective(1400px) rotateY(-72deg);filter:brightness(.78)}100%{transform:perspective(1400px) rotateY(0);filter:brightness(1)}}
 @media(prefers-reduced-motion:reduce){.main-slide.page-turn-out-next,.main-slide.page-turn-out-prev,.main-slide.page-turn-in-next,.main-slide.page-turn-in-prev,.extra-page.page-turn-out-next,.extra-page.page-turn-out-prev,.extra-page.page-turn-in-next,.extra-page.page-turn-in-prev{animation-duration:.01ms}}
 
+
+/* SHIKHA FULL 3D DREAM WORLD */
+:root{--dream-pink:#ff8fc4;--dream-lilac:#b9a4ff;--dream-glow:rgba(255,139,198,.32)}
+html{scroll-behavior:smooth}
+body{isolation:isolate;background:radial-gradient(ellipse at 12% 8%,rgba(255,185,218,.72),transparent 34%),radial-gradient(ellipse at 88% 22%,rgba(190,174,255,.48),transparent 32%),radial-gradient(ellipse at 50% 95%,rgba(255,220,236,.72),transparent 42%),linear-gradient(145deg,#fff5fa,#f8f1ff 52%,#fff8fb);background-attachment:fixed}
+body:before,body:after{content:"";position:fixed;inset:-15%;pointer-events:none;z-index:-1;transform:translateZ(0)}
+body:before{background:radial-gradient(circle at 18% 25%,rgba(255,255,255,.9) 0 2px,transparent 3px),radial-gradient(circle at 76% 18%,rgba(255,255,255,.85) 0 2px,transparent 3px),radial-gradient(circle at 62% 72%,rgba(255,255,255,.8) 0 2px,transparent 3px),radial-gradient(circle at 30% 82%,rgba(255,255,255,.9) 0 2px,transparent 3px);background-size:260px 260px;opacity:.7;animation:dreamSparkle 18s linear infinite}
+body:after{background:radial-gradient(ellipse at center,transparent 42%,rgba(115,65,115,.07));}
+@keyframes dreamSparkle{to{background-position:260px 260px, -260px 180px,180px -260px,-180px 260px}}
+.dream-atmosphere{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;perspective:1000px}
+.dream-orb{position:absolute;width:clamp(100px,18vw,230px);aspect-ratio:1;border-radius:50%;filter:blur(2px);opacity:.19;background:radial-gradient(circle at 30% 28%,#fff 0 5%,#ffc0df 24%,#c5a9ff 62%,transparent 72%);box-shadow:inset -18px -22px 42px rgba(117,70,151,.12),0 0 65px rgba(255,159,211,.22);animation:dreamFloat 13s ease-in-out infinite}
+.dream-orb:nth-child(1){left:-4%;top:18%}.dream-orb:nth-child(2){right:-5%;top:54%;width:clamp(130px,22vw,290px);animation-delay:-5s}.dream-orb:nth-child(3){left:42%;top:78%;width:clamp(70px,12vw,160px);animation-delay:-9s}
+@keyframes dreamFloat{0%,100%{transform:translate3d(0,0,-80px) rotate(0)}50%{transform:translate3d(22px,-32px,40px) rotate(16deg)}}
+.wrap,.main-slide,.extra-page{transform-style:preserve-3d}
+.main-slide,.extra-page{backface-visibility:hidden;transform-style:preserve-3d}
+.main-slide.active,.extra-page.active{filter:drop-shadow(0 18px 24px rgba(112,65,105,.08))}
+.card,.letter,.hero,.gallery,.surprise-card,.claw-card,.love-jar-card,.universe-card,.balloon-page,.cinema-card,.fortune-cookie-wrap,.wish-interlude,.cake-page,.birthday-glow,.lock-card,.love-ten-grid>*,.main-slide>div,.extra-page>div{transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.75,.25,1),box-shadow .45s ease,filter .45s ease}
+.card,.letter,.hero,.gallery,.surprise-card,.claw-card,.love-jar-card,.universe-card,.balloon-page,.cinema-card,.fortune-cookie-wrap,.wish-interlude,.cake-page,.lock-card{box-shadow:0 18px 38px rgba(112,70,112,.11),0 4px 12px rgba(255,255,255,.7),inset 0 1px 0 rgba(255,255,255,.9)}
+button,.btn,.nav-btn,.music-btn{transform:translateZ(0);transition:transform .22s ease,box-shadow .22s ease,filter .22s ease}
+button:hover,.btn:hover,.nav-btn:hover,.music-btn:hover{transform:translateY(-3px) translateZ(12px);filter:saturate(1.12);box-shadow:0 12px 24px rgba(194,105,157,.22)}
+button:active,.btn:active,.nav-btn:active,.music-btn:active{transform:translateY(1px) scale(.98)}
+img{filter:drop-shadow(0 10px 14px rgba(93,54,88,.12))}
+.dream-depth{transform:translateZ(24px)}
+.dream-pointer-glow{position:fixed;left:0;top:0;width:190px;height:190px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(255,177,216,.13),transparent 68%);transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;transition:opacity .3s}
+body.dream-pointer-on .dream-pointer-glow{opacity:1}
+@media(hover:hover) and (pointer:fine){
+.card:hover,.letter:hover,.hero:hover,.gallery:hover,.surprise-card:hover,.claw-card:hover,.love-jar-card:hover,.universe-card:hover,.balloon-page:hover,.cinema-card:hover,.fortune-cookie-wrap:hover,.wish-interlude:hover,.cake-page:hover,.lock-card:hover{box-shadow:0 28px 55px rgba(112,70,112,.17),0 8px 18px rgba(255,255,255,.8),inset 0 1px 0 #fff}
+}
+@media(max-width:700px){body{background-attachment:scroll}.dream-orb{opacity:.12}.dream-pointer-glow{display:none}}
+@media(prefers-reduced-motion:reduce){body:before,.dream-orb{animation:none!important}*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
 </style>
 </head>
 
 <body>
+<div class="dream-atmosphere" aria-hidden="true"><span class="dream-orb"></span><span class="dream-orb"></span><span class="dream-orb"></span></div><div class="dream-pointer-glow" aria-hidden="true"></div>
+
 
 <!-- PASSWORD SCREEN -->
 <div class="lock" id="lock">
@@ -2244,6 +2277,37 @@ if(status)status.textContent='Pairs: '+shikhaPairMatches+' / 4 · Moves: '+shikh
 }
 </script>
 
+<script>
+
+/* Full 3D dream-world pointer depth; additive and safe for touch devices */
+(()=>{
+ const finePointer=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+ const glow=document.querySelector('.dream-pointer-glow');
+ if(!finePointer)return;
+ let raf=0,lastX=0,lastY=0;
+ const cards='.card,.letter,.hero,.gallery,.surprise-card,.claw-card,.love-jar-card,.universe-card,.balloon-page,.cinema-card,.fortune-cookie-wrap,.wish-interlude,.cake-page,.lock-card';
+ document.addEventListener('pointermove',e=>{
+  lastX=e.clientX;lastY=e.clientY;
+  if(glow){glow.style.left=lastX+'px';glow.style.top=lastY+'px';document.body.classList.add('dream-pointer-on');}
+  if(raf)return;
+  raf=requestAnimationFrame(()=>{
+   const target=e.target instanceof Element?e.target.closest(cards):null;
+   document.querySelectorAll(cards+'.dream-tilting').forEach(el=>{if(el!==target){el.classList.remove('dream-tilting');el.style.removeProperty('--dream-rx');el.style.removeProperty('--dream-ry');}});
+   if(target){
+    const r=target.getBoundingClientRect(),px=(lastX-r.left)/r.width,py=(lastY-r.top)/r.height;
+    target.classList.add('dream-tilting');
+    target.style.setProperty('--dream-rx',((.5-py)*5)+'deg');
+    target.style.setProperty('--dream-ry',((px-.5)*7)+'deg');
+    target.style.transform='perspective(1100px) rotateX('+((.5-py)*5)+'deg) rotateY('+((px-.5)*7)+'deg) translateY(-2px)';
+   }
+   raf=0;
+  });
+ },{passive:true});
+ document.addEventListener('pointerleave',()=>{document.body.classList.remove('dream-pointer-on');document.querySelectorAll('.dream-tilting').forEach(el=>{el.classList.remove('dream-tilting');el.style.removeProperty('transform');});});
+ document.addEventListener('pointerout',e=>{if(e.relatedTarget===null){document.querySelectorAll('.dream-tilting').forEach(el=>{el.classList.remove('dream-tilting');el.style.removeProperty('transform');});}});
+})();
+
+</script>
 </body>
 </html>
 
