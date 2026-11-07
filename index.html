@@ -917,6 +917,26 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid #d879a7;out
 @keyframes finalLovePulse{0%,100%{opacity:.86;transform:scale(1);filter:brightness(1)}50%{opacity:1;transform:scale(1.035);filter:brightness(1.22)}}
 @media(prefers-reduced-motion:reduce){.universe-star,.final-love-glow,.final-love-sparkles{animation:none}}
 
+
+/* SHIKHA'S LITTLE MATCHING GAME */
+.shikha-pair-game{max-width:470px;margin:18px auto 24px;padding:20px 14px;border:1px solid #efc4d8;border-radius:22px;background:linear-gradient(145deg,#fffafd,#fff0f7);box-shadow:0 10px 28px #9a426015}
+.shikha-pair-kicker{font:600 10px Arial,sans-serif;letter-spacing:2.5px;color:#b45b87}
+.shikha-pair-game h4{margin:9px 0;color:#a52e6b;font:600 21px Georgia,serif}
+.shikha-pair-game p{margin:8px auto 13px;max-width:340px;color:#94677f;font:13px/1.7 Arial,sans-serif}
+.shikha-pair-status{min-height:22px;margin:12px auto;color:#a34e79;font:600 12px Arial,sans-serif;letter-spacing:.3px}
+.shikha-pair-grid{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-width:350px;margin:12px auto}
+.shikha-pair-grid.is-playing{display:grid}
+.shikha-pair-card{min-width:0;min-height:67px;border:1px solid #edbfd5;border-radius:14px;background:linear-gradient(145deg,#fff,#ffeaf4);color:#b34e80;font-size:28px;box-shadow:0 5px 13px #9a426014;cursor:pointer;touch-action:manipulation;transition:transform .18s,background .18s}
+.shikha-pair-card:active{transform:scale(.94)}
+.shikha-pair-card .pair-face{display:none}
+.shikha-pair-card.is-flipped .pair-back{display:none}
+.shikha-pair-card.is-flipped .pair-face{display:inline-block;animation:extraPop .2s ease both}
+.shikha-pair-card.is-matched{background:linear-gradient(145deg,#fff1f8,#f9d9e9);border-color:#d98bb2;box-shadow:0 0 0 2px #f7d4e6 inset}
+.shikha-pair-card:disabled{opacity:1;cursor:default}
+.shikha-pair-result{display:none;margin:13px auto 0;padding:13px;border-radius:15px;background:#fff;color:#93486f;font:italic 14px/1.8 Georgia,serif}
+.shikha-pair-result.show{display:block;animation:extraPop .45s ease both}
+@media(max-width:380px){.shikha-pair-game{padding:17px 10px}.shikha-pair-grid{gap:7px}.shikha-pair-card{min-height:60px;font-size:25px}}
+@media(prefers-reduced-motion:reduce){.shikha-pair-card,.shikha-pair-card .pair-face{transition:none;animation:none}}
 </style>
 </head>
 
@@ -1265,6 +1285,15 @@ Tumhari taraf se ek special insaan ❤️
 <div class="extra-page" id="extraPage15">
   <div style="font-size:48px">💗✨💗</div>
   <h3>Page 15 · A Little Something From My Heart</h3>
+  <div class="shikha-pair-game">
+    <div class="shikha-pair-kicker">A TINY GAME JUST FOR YOU</div>
+    <h4>Find the matching little moments 💗</h4>
+    <p>Four sweet pairs are hiding here. Match them all to unlock one little message from my heart. ✨</p>
+    <button class="btn" id="shikhaPairStart" type="button" onclick="startShikhaPairs()">Start the little game 💞</button>
+    <div class="shikha-pair-status" id="shikhaPairStatus" aria-live="polite">4 pairs are waiting to be found. 🌷</div>
+    <div class="shikha-pair-grid" id="shikhaPairGrid" aria-label="A matching pairs game"></div>
+    <div class="shikha-pair-result" id="shikhaPairResult" aria-live="polite">You found every little pair! Tumhari har smile mere liye ek special memory hai, Shikha. 💗</div>
+  </div>
   <div class="final-love-card">
     <div class="final-love-sparkles">✦　♡　✧　♡　✦</div>
     <div class="final-love-glow">I love uhh<br>so much yaar</div>
@@ -1994,6 +2023,68 @@ setTimeout(()=>el.remove(),5500);
 document.getElementById('magicModal').addEventListener('click',e=>{
 if(e.target.id==='magicModal')closeMagic();
 });
+
+
+/* SHIKHA'S LITTLE MATCHING GAME */
+let shikhaPairFirst=null;
+let shikhaPairBusy=false;
+let shikhaPairMatches=0;
+let shikhaPairMoves=0;
+let shikhaPairTimer=null;
+function startShikhaPairs(){
+if(shikhaPairTimer){clearTimeout(shikhaPairTimer);shikhaPairTimer=null;}
+shikhaPairFirst=null;shikhaPairBusy=false;shikhaPairMatches=0;shikhaPairMoves=0;
+const symbols=['💗','🌷','🎂','✈️'];
+const deck=[...symbols,...symbols];
+for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
+const grid=document.getElementById('shikhaPairGrid');
+const status=document.getElementById('shikhaPairStatus');
+const result=document.getElementById('shikhaPairResult');
+if(!grid||!status||!result)return;
+grid.innerHTML='';
+deck.forEach((symbol,index)=>{
+const card=document.createElement('button');
+card.type='button';card.className='shikha-pair-card';card.dataset.symbol=symbol;
+card.setAttribute('aria-label','Hidden card '+(index+1));
+card.innerHTML='<span class="pair-back">♡</span><span class="pair-face">'+symbol+'</span>';
+card.addEventListener('click',()=>flipShikhaPair(card));
+grid.appendChild(card);
+});
+grid.classList.add('is-playing');
+result.classList.remove('show');
+status.textContent='Pairs: 0 / 4 · Moves: 0';
+const start=document.getElementById('shikhaPairStart');
+if(start)start.textContent='Play again 🔄';
+}
+function flipShikhaPair(card){
+if(shikhaPairBusy||!card||card.disabled||card.classList.contains('is-flipped')||card.classList.contains('is-matched'))return;
+card.classList.add('is-flipped');
+card.setAttribute('aria-label','Card showing '+card.dataset.symbol);
+if(!shikhaPairFirst){shikhaPairFirst=card;return;}
+shikhaPairMoves++;
+const status=document.getElementById('shikhaPairStatus');
+if(card.dataset.symbol===shikhaPairFirst.dataset.symbol){
+card.classList.add('is-matched');shikhaPairFirst.classList.add('is-matched');
+card.disabled=true;shikhaPairFirst.disabled=true;
+card.setAttribute('aria-label','Matched '+card.dataset.symbol);
+shikhaPairFirst.setAttribute('aria-label','Matched '+card.dataset.symbol);
+shikhaPairMatches++;shikhaPairFirst=null;
+if(status)status.textContent='Pairs: '+shikhaPairMatches+' / 4 · Moves: '+shikhaPairMoves;
+if(shikhaPairMatches===4){
+if(status)status.textContent='All 4 pairs found in '+shikhaPairMoves+' moves! 💖';
+const result=document.getElementById('shikhaPairResult');if(result)result.classList.add('show');
+}
+return;
+}
+shikhaPairBusy=true;
+if(status)status.textContent='Not a pair yet… try again! 💗';
+const first=shikhaPairFirst;
+shikhaPairTimer=setTimeout(()=>{
+[first,card].forEach(item=>{item.classList.remove('is-flipped');item.setAttribute('aria-label','Hidden memory card');});
+shikhaPairFirst=null;shikhaPairBusy=false;shikhaPairTimer=null;
+if(status)status.textContent='Pairs: '+shikhaPairMatches+' / 4 · Moves: '+shikhaPairMoves;
+},850);
+}
 </script>
 
 </body>
